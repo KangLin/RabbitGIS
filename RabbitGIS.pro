@@ -22,7 +22,7 @@ CONFIG += link_prl
 include(pri/ThirdLibraryConfig.pri)
 include(pri/ThirdLibrary.pri)
 include(pri/ThirdLibraryJoin.pri)
-include(pri/RabbitImFiles.pri)
+include(pri/RabbitGISFiles.pri)
 
 OTHER_FILES += README.md \
     .gitignore \

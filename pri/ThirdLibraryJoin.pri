@@ -40,8 +40,8 @@ equals(QXMPP_USE_VPX, 1) : myPackagesExist(vpx){
     }
 }
 
-!msvc{
-    message("MYPKGCONFIG:$$MYPKGCONFIG")
-    message("DEFINES:$$DEFINES")
-}
+
+message("MYPKGCONFIG:$$MYPKGCONFIG")
+message("DEFINES:$$DEFINES")
+
 message("LIBS:$$LIBS")
