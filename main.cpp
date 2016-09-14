@@ -17,19 +17,24 @@ int main(int argc, char *argv[])
     MainWindow w;
     w.show();
 
-    // load an earth file
-    osg::Node* node = osgDB::readNodeFile("C:/SXEarth2.6.5/bin/google.earth");
-    if ( !node )
-        qDebug() << "Failed to load earth file." ;
-/*
-    osgViewer::Viewer viewer;
+    osg::ArgumentParser arguments(&argc,argv);
+    if ( arguments.read("--stencil") )
+        osg::DisplaySettings::instance()->setMinimumNumStencilBits(8);
+
+    
+    osgViewer::Viewer viewer(arguments);
     viewer.setThreadingModel( viewer.SingleThreaded );
     viewer.setRunFrameScheme( viewer.ON_DEMAND );
     viewer.setCameraManipulator( new osgEarth::Util::EarthManipulator() );
-    viewer.setSceneData( node );
-    QWidget* viewerWidget = new osgEarth::QtGui::ViewerWidget( &viewer );
+    // load an earth file
+    osg::Node* node = osgEarth::Util::MapNodeHelper().load(arguments, &viewer);
+    if ( !node )
+        qDebug() << "Failed to load earth file.";
+    else
+        viewer.setSceneData(node);
+
+    QWidget* viewerWidget = new osgEarth::QtGui::ViewerWidget(&viewer);
     w.setCentralWidget(viewerWidget);
- */
     
     return a.exec();
 }
