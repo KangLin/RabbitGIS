@@ -9,15 +9,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    /*
-    m_MapNode = osgDB::readNodeFile(
+    
+    osg::Node* mapNode = osgDB::readNodeFile(
               CGlobalDir::Instance()->GetApplicationEarthFile().toStdString());
-    if(!m_MapNode.valid())
+    if(!mapNode)
         LOG_MODEL_ERROR("MainWindow", "Open node file fail: %s",
               CGlobalDir::Instance()->GetApplicationEarthFile().toStdString());
+    
+    m_pMapNode = osgEarth::MapNode::get(mapNode);
     osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
-    viewer->setSceneData(m_MapNode);
-    this->setCentralWidget(&m_MapViewer);*/
+    viewer->setSceneData(m_pMapNode);
+    this->setCentralWidget(&m_MapViewer);
 }
 
 MainWindow::~MainWindow()
@@ -31,15 +33,12 @@ void MainWindow::on_actionOpen_O_triggered()
                              QString(), tr("Map file(*.earth);; All(*.*)"));
     if(szFile.isEmpty())
         return;
-    /*
-    m_MapNode = osgDB::readNodeFile(szFile.toStdString());
-    if(!m_MapNode.valid())
-    {
-        LOG_MODEL_ERROR("MainWindow", "Open node file fail: %s",
-              szFile.toStdString());
-        return;
-    }
     
+    osg::Node* mapNode = osgDB::readNodeFile(szFile.toStdString());
+    if(!mapNode)
+        LOG_MODEL_ERROR("MainWindow", "Open node file fail: %s",
+                        szFile.toStdString());
     osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
-    viewer->setSceneData(m_MapNode);*/
+    m_pMapNode = osgEarth::MapNode::get(mapNode);
+    viewer->setSceneData(m_pMapNode);
 }

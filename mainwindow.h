@@ -24,7 +24,7 @@ private:
     Ui::MainWindow *ui;
     
     osgEarth::QtGui::ViewerWidget m_MapViewer;
-    osg::ref_ptr<osg::Node> m_MapNode;
+    osg::ref_ptr<osgEarth::MapNode> m_pMapNode;
 };
 
 #endif // MAINWINDOW_H
