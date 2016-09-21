@@ -87,11 +87,19 @@ win32 : equals(QMAKE_HOST.os, Windows){
     Deployment_osg_plugins.path = $$system_path($$PREFIX/osgPlugins-$${OSG_VERSION})
     Deployment_osg_plugins.CONFIG += directory no_check_exist
 
-    INSTALLS += Deployment_qtlib Deployment_third_lib Deployment_third_bin Deployment_osg_plugins
+    #安装数据  
+    Deployment_data_files.target = Deployment_data_files
+    Deployment_data_files.files = $$system_path($$PWD/Data)
+    Deployment_data_files.path = $$system_path($$PREFIX/Data)
+    Deployment_data_files.CONFIG += directory no_check_exist
+
+    INSTALLS += Deployment_qtlib Deployment_third_lib Deployment_third_bin \
+                Deployment_osg_plugins \
+                Deployment_data_files
     #QMAKE_EXTRA_TARGETS += Deployment_qtlib Deployment_third_lib Deployment_third_bin
     
     #为调试环境复制动态库  
-    !exists($${TARGET_PATH}/platforms){
+    !exists($$system_path($${TARGET_PATH}/platforms)){
 
         #复制QT系统插件  
         PlatformsPlugins.commands = \
@@ -134,15 +142,30 @@ win32 : equals(QMAKE_HOST.os, Windows){
         exists($${OSG_PLUGINS}){
             equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
                 OSG_PLUGINS = $$system_path($$OSG_PLUGINS)
-                TARGET_PATH = $$system_path($$TARGET_PATH/osgPlugins-$${OSG_VERSION})
+                OSG_PLUGINS_TARGET_PATH = $$system_path($$TARGET_PATH/osgPlugins-$${OSG_VERSION})
             }
-            mkpath($${TARGET_PATH})
+            mkpath($${OSG_PLUGINS_TARGET_PATH})
             osg_plugins.commands = \
-                $${QMAKE_COPY} $${OSG_PLUGINS} $${TARGET_PATH}
+                $${QMAKE_COPY} $${OSG_PLUGINS} $${OSG_PLUGINS_TARGET_PATH}
             osg_plugins.CONFIG += directory no_link no_clean no_check_exist
             osg_plugins.target = osg_plugins
             QMAKE_EXTRA_TARGETS += osg_plugins
             COPY_THIRD_DEPENDS.depends += osg_plugins
+        }
+
+        DATA_FILES = $$PWD/Data/
+        exists($${DATA_FILES}){
+            equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
+                DATA_FILES = $$system_path($$DATA_FILES)
+                DATA_FILES_TARGET_PATH = $$system_path($$TARGET_PATH/Data)
+            }
+            mkpath($${DATA_FILES_TARGET_PATH})
+            data_files.commands = \
+                $${QMAKE_COPY} $${DATA_FILES} $${DATA_FILES_TARGET_PATH}
+            data_files.CONFIG += directory no_link no_clean no_check_exist
+            data_files.target = data_files
+            QMAKE_EXTRA_TARGETS += data_files
+            COPY_THIRD_DEPENDS.depends += data_files
         }
 
         COPY_THIRD_DEPENDS.target = COPY_THIRD_DEPENDS

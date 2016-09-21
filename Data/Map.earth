@@ -1,0 +1,42 @@
+<map name="google" type="geocentric" version="2">
+   <options type="geocentric">
+    <cache path="cache_dir" type="filesystem" />
+    <terrain color="#ffffff00" 
+	     min_lod = "0"
+             max_lod = "18"
+	     first_lod = "0"
+	     blending = "true"
+	     />
+   </options>
+
+    <image name="google"
+           driver="xyz"
+	   min_level = "0"
+           max_level = "23">
+	<url>http://www.google.cn/maps/vt?lyrs=y&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
+        <profile>spherical-mercator</profile>
+	<cache_policy usage="read_write" />
+
+    </image>
+  <!-- 
+    <image name="google_png" driver="xyz">
+	<url>http://www.google.cn/maps/@{x},{y},{z}z</url>
+        <profile>spherical-mercator</profile>
+	<cache_policy usage="read_write" />
+    </image>
+
+   <image name="baidu" driver="xyz" >
+	<url>http://online[0-9].map.bdimg.com/onlinelabel/?qt=tile&amp;x={x}&amp;y={y}&amp;z={z}</url>
+        <profile>spherical-mercator</profile>
+	<cache_policy usage="read_write" />
+    </image>
+
+     <image name="amap" driver="xyz" opacity="0.2">
+	<url>http://wprd0[1-4].is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;style=7&amp;x={x}&amp;y={y}&amp;z={z}&amp;scl=1&amp;ltype=4</url>
+        <profile>spherical-mercator</profile>
+	<cache_policy usage="read_write" />
+    </image>
+   -->  
+
+
+</map>
