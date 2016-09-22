@@ -20,6 +20,8 @@ public:
 private slots:
     void on_actionOpen_O_triggered();
     
+    void on_actionOpen_track_T_triggered();
+    
 private:
     Ui::MainWindow *ui;
     

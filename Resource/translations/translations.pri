@@ -86,6 +86,24 @@ mytranslations.commands = $$mytranslations_commands
     }
 }
 
+#静态库或android下生成翻译资源文件  
+android | CONFIG(static, static|shared) {
+    TRANSLATIONS_RESOURCES_FILE = $$_PRO_FILE_PWD_/translations/Translations.qrc
+    #生成资源文件  
+    TRANSLATIONS_RESOURCES_CONTENT = "</qresource></RCC>"
+    FILE_CONTENT = $$cat($$TRANSLATIONS_RESOURCES_FILE) 
+    !contains(FILE_CONTENT, $$TRANSLATIONS_RESOURCES_CONTENT){
+        TRANSLATIONS_RESOURCES_CONTENT = "<RCC><qresource prefix='/translations'>"
+        for(file, TRANSLATIONS_QM_FILES) {
+            TRANSLATIONS_RESOURCES_CONTENT += "<file>$$replace(file, "$$_PRO_FILE_PWD_/translations/", "")</file>"
+        }
+        TRANSLATIONS_RESOURCES_CONTENT += "</qresource></RCC>"
+        write_file($$TRANSLATIONS_RESOURCES_FILE, TRANSLATIONS_RESOURCES_CONTENT, append)
+    }
+    #包含资源文件  
+    RESOURCES += $$TRANSLATIONS_RESOURCES_FILE
+}
+
 #Install resource files
 mytranslat.files = $$TRANSLATIONS_QM_FILES $$QT_QM
 mytranslat.path = $$PREFIX/translations

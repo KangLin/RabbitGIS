@@ -38,6 +38,8 @@
      <string>File(&amp;F)</string>
     </property>
     <addaction name="actionOpen_O"/>
+    <addaction name="separator"/>
+    <addaction name="actionOpen_track_T"/>
    </widget>
    <addaction name="menuFile_F"/>
   </widget>
@@ -52,7 +54,15 @@
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen_O">
    <property name="text">
-    <string>Open(&amp;O)</string>
+    <string>Open map(&amp;O)</string>
+   </property>
+   <property name="toolTip">
+    <string>Open map</string>
+   </property>
+  </action>
+  <action name="actionOpen_track_T">
+   <property name="text">
+    <string>Open track(&amp;T)</string>
    </property>
   </action>
  </widget>
