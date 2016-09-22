@@ -14,7 +14,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = RabbitGIS
 TEMPLATE = app
 
-#Set TARGET_PATH
+# Set TARGET_PATH
 win32{
     CONFIG(debug, debug|release) {
         TARGET_PATH=$${OUT_PWD}/Debug
@@ -24,7 +24,7 @@ win32{
 }else{
     TARGET_PATH=$$OUT_PWD
 }
-#Set prefix
+# Set prefix
 isEmpty(PREFIX) {
     android {
        PREFIX = /.
@@ -40,11 +40,17 @@ CONFIG += c++0x
 
 CONFIG += link_prl
 
-#The third library
+# The third library
 include(pri/ThirdLibraryConfig.pri)
 include(pri/ThirdLibrary.pri)
 include(pri/ThirdLibraryJoin.pri)
 include(pri/RabbitGISFiles.pri)
+
+# Rules for creating/updating {ts|qm}-files
+include(Resource/translations/translations.pri)
+
+# Appcation Icon
+RC_FILE = AppIcon.rc
 
 OTHER_FILES += README.md \
     .gitignore \

@@ -1,5 +1,5 @@
-[![Logon](Resource/png/AppIcon.png)RabbitGIS ![Logon](Resource/png/AppIcon.png)](https://github.com/KangLin/rabbitim)
- 
+[![Logon](Resource/png/AppIcon.png) RabbitGIS ![Logon](Resource/png/AppIcon.png)](https://github.com/KangLin/RabbitGIS)
+
 [![Build status](https://ci.appveyor.com/api/projects/status/qjqrq2pyo4qejxtv?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitgis)
 
 =============================================================================

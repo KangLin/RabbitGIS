@@ -10,4 +10,12 @@ HEADERS += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-#OTHER_FILES += Data/Map.earth
+RESOURCES += \
+    $$PWD/../Resource/Resource.qrc \
+    $$PWD/../Resource/sink/dark/style.qrc
+
+android{
+    RESOURCES += \
+        $$PWD/../Resource/translations/Translations.qrc \
+        $$PWD/../Resource/Android.qrc
+}

@@ -53,8 +53,8 @@ fi
 if [ ! -d ${RABBITGIS_BUILD_PREFIX} ]; then
     mkdir -p ${RABBITGIS_BUILD_PREFIX}
 fi
-if [ -z "${RABBITGIS_BUILD_PREFIX}" ]; then
-    THIRD_LIBRARY_PATH=${RABBITGIS_BUILD_PREFIX}
+if [ -z "${THIRD_LIBRARY_PATH}" ]; then
+    export THIRD_LIBRARY_PATH=${RABBITGIS_BUILD_PREFIX}
 fi
 
 if [ -z "$RABBITGIS_USE_REPOSITORIES" ]; then

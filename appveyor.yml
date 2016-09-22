@@ -162,13 +162,13 @@ test: off
 
 deploy:
   provider: FTP 
-  protocol: sftp 
-  host: frs.sourceforge.net 
-  username: kl222,rabbitim-third-library
+  protocol: sftp #https://sourceforge.net/p/forge/documentation/SCP/
+  host: frs.sourceforge.net
+  username: kl222,RabbitGIS
   #密码用这个加密 https://ci.appveyor.com/tools/encrypt
   password: 
     secure: 2WEtOQrdty3V3g0aEVvS3Q== 
-  folder: pfs/project/rabbitim-third-library/release
+  folder: pfs/project/RabbitGIS/release
   draft: false
   active_mode: false
   on:
