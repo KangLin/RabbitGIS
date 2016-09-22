@@ -10,4 +10,4 @@ HEADERS += mainwindow.h \
 
 FORMS    += mainwindow.ui
 
-OTHER_FILES += Data/Map.earth
+#OTHER_FILES += Data/Map.earth

@@ -48,7 +48,9 @@ include(pri/RabbitGISFiles.pri)
 
 OTHER_FILES += README.md \
     .gitignore \
-    LICENSE 
+    LICENSE \
+    appveyor.yml \
+    ci/*
 
 
 win32 : equals(QMAKE_HOST.os, Windows){
