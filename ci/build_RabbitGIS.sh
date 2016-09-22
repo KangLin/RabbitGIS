@@ -159,7 +159,7 @@ else #qmake编译
     $QMAKE ../RabbitGIS.pro  $PARA "CONFIG+=release"  \
            INCLUDEPATH+=${RABBITGIS_BUILD_PREFIX}/include \
            LIBS+=-L${RABBITGIS_BUILD_PREFIX}/lib 
-    echo "$MAKE ...."
+    echo "$MAKE install ...."
     if [ "$1" == "android" ]; then
         $MAKE -f Makefile install INSTALL_ROOT="`pwd`/android-build"
         ${QT_BIN}/androiddeployqt --input "`pwd`/android-libRabbitGISApp.so-deployment-settings.json" --output "`pwd`/android-build" --verbose

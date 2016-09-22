@@ -5,7 +5,7 @@ CONFIG += c++0x
 }
 
 CONFIG += link_prl
-
+isEmpty(THIRD_LIBRARY_PATH) : THIRD_LIBRARY_PATH = $$(THIRD_LIBRARY_PATH)
 #android选项中包含了unix选项，所以在写工程如下条件判断时，必须把android条件放在unix条件前  
 win32 {
     DEFINES += WINDOWS

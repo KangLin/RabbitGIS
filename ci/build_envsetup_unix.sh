@@ -42,6 +42,9 @@ fi
 if [ ! -d ${RABBITGIS_BUILD_PREFIX} ]; then
     mkdir -p ${RABBITGIS_BUILD_PREFIX}
 fi
+if [ -z "${RABBITGIS_BUILD_PREFIX}" ]; then
+    THIRD_LIBRARY_PATH=${RABBITGIS_BUILD_PREFIX}
+fi
 
 if [ -z "$RABBITGIS_USE_REPOSITORIES" ]; then
     RABBITGIS_USE_REPOSITORIES="TRUE" #下载开发库。省略，则下载指定的压缩包

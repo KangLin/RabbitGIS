@@ -44,6 +44,9 @@ fi
 if [ ! -d ${RABBITGIS_BUILD_PREFIX} ]; then
     mkdir -p ${RABBITGIS_BUILD_PREFIX}
 fi
+if [ -z "${RABBITGIS_BUILD_PREFIX}" ]; then
+    THIRD_LIBRARY_PATH=${RABBITGIS_BUILD_PREFIX}
+fi
 
 MAKE="make ${RABBITGIS_MAKE_JOB_PARA}"
 #自动判断主机类型，目前只做了linux、windows判断
