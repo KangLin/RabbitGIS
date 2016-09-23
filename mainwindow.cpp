@@ -2,12 +2,14 @@
 #include "ui_mainwindow.h"
 #include <vector>
 #include <QFileDialog>
+#include <QDebug>
 #include "Global/GlobalDir.h"
 #include "Global/Log.h"
 #include "GpxModel/gpx_model.h"
 #include <osgEarthAnnotation/FeatureNode>
 #include <osgEarthFeatures/Feature>
 #include <osgEarthSymbology/Style>
+#include <osgEarthUtil/EarthManipulator>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -23,6 +25,19 @@ MainWindow::MainWindow(QWidget *parent) :
     osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
     viewer->setSceneData(m_MapNode);
     this->setCentralWidget(&m_MapViewer);
+    
+    const osgEarth::SpatialReference* geoSRS = 
+            m_MapNode->getMapSRS()->getGeographicSRS();
+    
+    osgEarth::Util::EarthManipulator* em =
+            (osgEarth::Util::EarthManipulator*)viewer->getCameraManipulator();
+    if(!em)
+    {   
+        LOG_MODEL_ERROR("MainWindow", "getCameraManipulator fail");
+        return;
+    }
+    em->setViewpoint(osgEarth::Viewpoint("China", 105, 35, 0, 0, -90,
+                   geoSRS->getEllipsoid()->getRadiusEquator() * 2), 3); //3s, China
 }
 
 MainWindow::~MainWindow()
@@ -44,6 +59,20 @@ void MainWindow::on_actionOpen_O_triggered()
     osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
     m_MapNode = osgEarth::MapNode::get(mapNode);
     viewer->setSceneData(m_MapNode);
+    
+    // Set view port
+    const osgEarth::SpatialReference* geoSRS = 
+            m_MapNode->getMapSRS()->getGeographicSRS();
+    
+    osgEarth::Util::EarthManipulator* em =
+            (osgEarth::Util::EarthManipulator*)viewer->getCameraManipulator();
+    if(!em)
+    {   
+        LOG_MODEL_ERROR("MainWindow", "getCameraManipulator fail");
+        return;
+    }
+    em->setViewpoint(osgEarth::Viewpoint("China", 105, 35, 0, 0, -90,
+                   geoSRS->getEllipsoid()->getRadiusEquator() * 2), 3); //3s, China
 }
 
 void MainWindow::on_actionOpen_track_T_triggered()
@@ -65,7 +94,7 @@ void MainWindow::on_actionOpen_track_T_triggered()
     const osgEarth::SpatialReference* geoSRS = 
             m_MapNode->getMapSRS()->getGeographicSRS();
    
-    osgEarth::Geometry* path = new osgEarth::Symbology::LineString();
+    osgEarth::Symbology::LineString* path = new osgEarth::Symbology::LineString();
     std::vector<GPX_trkType>::iterator it;
     for(it = gpx.trk.begin(); it != gpx.trk.end(); it++)
     {
@@ -79,14 +108,14 @@ void MainWindow::on_actionOpen_track_T_triggered()
             }
         }
     }
-
+    
     osgEarth::Annotation::Features::Feature* pathFeature = 
             new osgEarth::Annotation::Features::Feature(path, geoSRS);
     pathFeature->geoInterp() = osgEarth::GEOINTERP_GREAT_CIRCLE;
    
     osgEarth::Style pathStyle;
     pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>()->stroke()->color()
-            = osgEarth::Color::Yellow;
+            = osgEarth::Color(osgEarth::Color::Orange, 0.75); //osgEarth::Color::Yellow;
     pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>()->stroke()->width()
             = 20.0f;
     pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>()->tessellationSize()
@@ -103,4 +132,24 @@ void MainWindow::on_actionOpen_track_T_triggered()
             new osgEarth::Annotation::FeatureNode(m_MapNode, pathFeature, pathStyle);
     
     m_MapNode->addChild(pathNode);
+    
+    // Set view port
+    osg::ref_ptr<osgViewer::Viewer> viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
+    osgEarth::Util::EarthManipulator* em =
+            (osgEarth::Util::EarthManipulator*)viewer->getCameraManipulator();
+    if(!em)
+    {   
+        LOG_MODEL_ERROR("MainWindow", "getCameraManipulator fail");
+        return;
+    }
+    qDebug() << "x:" << path->getBounds().center2d().x()
+             << "y:" << path->getBounds().center2d().y();
+    double range = path->getBounds().width() > path->getBounds().height()
+            ? path->getBounds().width() * 1.5
+            : path->getBounds().height() * 1.5;
+    em->setViewpoint(osgEarth::Viewpoint("track", 
+                   path->getBounds().center2d().x(),
+                   path->getBounds().center2d().y(),
+                   0, 0, -90,
+                   range), 3);
 }

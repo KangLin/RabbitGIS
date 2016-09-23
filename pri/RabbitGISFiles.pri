@@ -28,6 +28,6 @@ RESOURCES += \
 
 android{
     RESOURCES += \
-        $$PWD/../Resource/translations/Translations.qrc \
         $$PWD/../Resource/Android.qrc
+        #$$PWD/../Resource/translations/Translations.qrc \
 }
