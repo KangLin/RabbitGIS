@@ -1,3 +1,4 @@
+Data/cache_dir/
 Translations.qrc
 Plugin/PluginStatic.cpp
 Plugin/PluginStatic.pri

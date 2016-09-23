@@ -168,7 +168,7 @@ deploy:
   #密码用这个加密 https://ci.appveyor.com/tools/encrypt
   password: 
     secure: 2WEtOQrdty3V3g0aEVvS3Q== 
-  folder: pfs/project/RabbitGIS/release
+  folder: pfs/Release   #link pfs to /home/frs/project/r/ra/rabbitgis
   draft: false
   active_mode: false
   on:
