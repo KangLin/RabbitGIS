@@ -1,26 +1,27 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <vector>
 #include <QFileDialog>
 #include "Global/GlobalDir.h"
 #include "Global/Log.h"
 #include "GpxModel/gpx_model.h"
-#include <vector>
+#include <osgEarthAnnotation/FeatureNode>
+#include <osgEarthFeatures/Feature>
+#include <osgEarthSymbology/Style>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    
     osg::Node* mapNode = osgDB::readNodeFile(
               CGlobalDir::Instance()->GetApplicationEarthFile().toStdString());
     if(!mapNode)
         LOG_MODEL_ERROR("MainWindow", "Open node file fail: %s",
               CGlobalDir::Instance()->GetApplicationEarthFile().toStdString());
-    
-    m_pMapNode = osgEarth::MapNode::get(mapNode);
+    m_MapNode = osgEarth::MapNode::get(mapNode);
     osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
-    viewer->setSceneData(m_pMapNode);
+    viewer->setSceneData(m_MapNode);
     this->setCentralWidget(&m_MapViewer);
 }
 
@@ -41,8 +42,8 @@ void MainWindow::on_actionOpen_O_triggered()
         LOG_MODEL_ERROR("MainWindow", "Open node file fail: %s",
                         szFile.toStdString());
     osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
-    m_pMapNode = osgEarth::MapNode::get(mapNode);
-    viewer->setSceneData(m_pMapNode);
+    m_MapNode = osgEarth::MapNode::get(mapNode);
+    viewer->setSceneData(m_MapNode);
 }
 
 void MainWindow::on_actionOpen_track_T_triggered()
@@ -60,4 +61,46 @@ void MainWindow::on_actionOpen_track_T_triggered()
                         szFile.toStdString());
         return;
     }
+   
+    const osgEarth::SpatialReference* geoSRS = 
+            m_MapNode->getMapSRS()->getGeographicSRS();
+   
+    osgEarth::Geometry* path = new osgEarth::Symbology::LineString();
+    std::vector<GPX_trkType>::iterator it;
+    for(it = gpx.trk.begin(); it != gpx.trk.end(); it++)
+    {
+        std::vector<GPX_trksegType>::iterator itSeg;
+        for(itSeg = it->trkseg.begin(); itSeg != it->trkseg.end(); itSeg++)
+        {
+            std::vector<GPX_wptType>::iterator itWpt;
+            for(itWpt = itSeg->trkpt.begin(); itWpt != itSeg->trkpt.end(); itWpt++)
+            {
+                path->push_back(itWpt->longitude, itWpt->latitude, itWpt->geoidheight);
+            }
+        }
+    }
+
+    osgEarth::Annotation::Features::Feature* pathFeature = 
+            new osgEarth::Annotation::Features::Feature(path, geoSRS);
+    pathFeature->geoInterp() = osgEarth::GEOINTERP_GREAT_CIRCLE;
+   
+    osgEarth::Style pathStyle;
+    pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>()->stroke()->color()
+            = osgEarth::Color::Yellow;
+    pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>()->stroke()->width()
+            = 20.0f;
+    pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>()->tessellationSize()
+            = 75000;
+    pathStyle.getOrCreate<osgEarth::Symbology::PointSymbol>()->size() = 5;
+    pathStyle.getOrCreate<osgEarth::Symbology::PointSymbol>()->fill()->color()
+            = osgEarth::Color::Green;
+    /*pathStyle.getOrCreate<osgEarth::Symbology::AltitudeSymbol>()->clamping()
+            =  osgEarth::AltitudeSymbol::CLAMP_TO_TERRAIN;*/
+    pathStyle.getOrCreate<osgEarth::Symbology::AltitudeSymbol>()->technique()
+            =  osgEarth::AltitudeSymbol::TECHNIQUE_GPU;
+    
+    osgEarth::Annotation::FeatureNode* pathNode = 
+            new osgEarth::Annotation::FeatureNode(m_MapNode, pathFeature, pathStyle);
+    
+    m_MapNode->addChild(pathNode);
 }
