@@ -9,16 +9,17 @@ public:
     CGlobalDir();
     
     static CGlobalDir* Instance();
-    
-    /// 应用程序目录  
+     
     QString GetDirApplication();
-    /// 文档目录，默认是系统文档目录  
+
     QString GetDirDocument();
     int SetDirDocument(QString szPath);
     
-    /// 翻译文件目录  
+    QString GetDirData();
+    QString GetDirImage();
+    
     QString GetDirTranslate();
-    /// 应用程序配置文件  
+
     QString GetApplicationEarthFile();
    
 private:

@@ -55,7 +55,17 @@ int CGlobalDir::SetDirDocument(QString szPath)
     return 0;
 }
 
+QString CGlobalDir::GetDirData()
+{
+    return GetDirApplication() + QDir::separator() + "Data";
+}
+
+QString CGlobalDir::GetDirImage()
+{
+    return GetDirData() + QDir::separator() + "Image";
+}
+
 QString CGlobalDir::GetApplicationEarthFile()
 {
-    return GetDirApplication() + QDir::separator() + "Data" + QDir::separator() + "Map.earth";
+    return GetDirData() + QDir::separator() + "Map.earth";
 }

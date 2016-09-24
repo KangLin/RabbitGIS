@@ -10,6 +10,7 @@
 #include <osgEarthFeatures/Feature>
 #include <osgEarthSymbology/Style>
 #include <osgEarthUtil/EarthManipulator>
+#include <osgEarthAnnotation/PlaceNode>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -92,6 +93,7 @@ void MainWindow::on_actionOpen_track_T_triggered()
         return;
     }
     
+    // Add track path
     osgEarth::Symbology::LineString* path =
             new osgEarth::Symbology::LineString();
     std::vector<GPX_trkType>::iterator it;
@@ -133,6 +135,30 @@ void MainWindow::on_actionOpen_track_T_triggered()
             new osgEarth::Annotation::FeatureNode(m_MapNode, pathFeature,
                                                   pathStyle);
  
+    // Add start and end labels
+    osg::Group* labelGroup = new osg::Group(); 
+    m_MapNode->addChild(labelGroup); 
+    osg::Vec3d start = path->at(0);
+    osg::Vec3d end = path->at(path->size() - 1);
+    osgEarth::Style pm;
+    QString szStartIcon = CGlobalDir::Instance()->GetDirImage()
+            + QDir::separator()
+            + "Start.png";
+    pm.getOrCreate<osgEarth::IconSymbol>()->url()->setLiteral(
+                szStartIcon.toStdString()); 
+    pm.getOrCreate<osgEarth::IconSymbol>()->declutter() = true; 
+    pm.getOrCreate<osgEarth::TextSymbol>()->halo() = osgEarth::Color("#5f5f5f"); 
+    labelGroup->addChild( new osgEarth::Annotation::PlaceNode(m_MapNode, 
+                       osgEarth::GeoPoint(geoSRS, start.x(), start.y()),
+                                        tr("Start").toStdString(), pm));
+    QString szEndIcon = CGlobalDir::Instance()->GetDirImage()
+            + QDir::separator()
+            + "End.png";
+    pm.getOrCreate<osgEarth::IconSymbol>()->url()->setLiteral(
+                szEndIcon.toStdString()); 
+    labelGroup->addChild( new osgEarth::Annotation::PlaceNode(m_MapNode, 
+                           osgEarth::GeoPoint(geoSRS, end.x(), end.y()),
+                                          tr("End").toStdString(), pm));
     m_MapNode->addChild(pathNode);
     
     // Set view port
