@@ -71,7 +71,7 @@ for(file, TRANSLATIONS_QM_FILES){
 mytranslations_commands += && $${QMAKE_COPY} $${QT_QM} $${TRANSLATIONS_OUTPUT_PATH}
 mytranslations.commands = $$mytranslations_commands 
 
-!android{    
+!android{
     QMAKE_EXTRA_TARGETS += mytranslations
     #TODO:需要调试编译前编译翻译   
     #PRE_TARGETDEPS += mytranslations

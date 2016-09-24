@@ -77,6 +77,7 @@ void MainWindow::on_actionOpen_O_triggered()
 
 void MainWindow::on_actionOpen_track_T_triggered()
 {
+
     QString szFile = QFileDialog::getOpenFileName(this, tr("Open track file"), 
                 QString(),
                 tr("Track file(*.gpx);; nmea file(*.txt *.nmea);; All(*.*)"));
@@ -90,11 +91,9 @@ void MainWindow::on_actionOpen_track_T_triggered()
                         szFile.toStdString());
         return;
     }
-   
-    const osgEarth::SpatialReference* geoSRS = 
-            m_MapNode->getMapSRS()->getGeographicSRS();
-   
-    osgEarth::Symbology::LineString* path = new osgEarth::Symbology::LineString();
+    
+    osgEarth::Symbology::LineString* path =
+            new osgEarth::Symbology::LineString();
     std::vector<GPX_trkType>::iterator it;
     for(it = gpx.trk.begin(); it != gpx.trk.end(); it++)
     {
@@ -102,39 +101,42 @@ void MainWindow::on_actionOpen_track_T_triggered()
         for(itSeg = it->trkseg.begin(); itSeg != it->trkseg.end(); itSeg++)
         {
             std::vector<GPX_wptType>::iterator itWpt;
-            for(itWpt = itSeg->trkpt.begin(); itWpt != itSeg->trkpt.end(); itWpt++)
+            for(itWpt = itSeg->trkpt.begin(); itWpt != itSeg->trkpt.end();
+                itWpt++)
             {
-                path->push_back(itWpt->longitude, itWpt->latitude, itWpt->geoidheight);
+                path->push_back(itWpt->longitude, itWpt->latitude); //, itWpt->geoidheight);
             }
         }
     }
     
+    const osgEarth::SpatialReference* geoSRS = 
+            m_MapNode->getMapSRS()->getGeographicSRS();
+   
     osgEarth::Annotation::Features::Feature* pathFeature = 
             new osgEarth::Annotation::Features::Feature(path, geoSRS);
     pathFeature->geoInterp() = osgEarth::GEOINTERP_GREAT_CIRCLE;
    
     osgEarth::Style pathStyle;
     pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>()->stroke()->color()
-            = osgEarth::Color(osgEarth::Color::Orange, 0.75); //osgEarth::Color::Yellow;
+            = osgEarth::Color::Yellow;
     pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>()->stroke()->width()
             = 20.0f;
     pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>()->tessellationSize()
             = 75000;
-    pathStyle.getOrCreate<osgEarth::Symbology::PointSymbol>()->size() = 5;
+    /*pathStyle.getOrCreate<osgEarth::Symbology::PointSymbol>()->size() = 5;
     pathStyle.getOrCreate<osgEarth::Symbology::PointSymbol>()->fill()->color()
-            = osgEarth::Color::Green;
-    /*pathStyle.getOrCreate<osgEarth::Symbology::AltitudeSymbol>()->clamping()
-            =  osgEarth::AltitudeSymbol::CLAMP_TO_TERRAIN;*/
+            = osgEarth::Color::Green;*/
     pathStyle.getOrCreate<osgEarth::Symbology::AltitudeSymbol>()->technique()
             =  osgEarth::AltitudeSymbol::TECHNIQUE_GPU;
     
     osgEarth::Annotation::FeatureNode* pathNode = 
-            new osgEarth::Annotation::FeatureNode(m_MapNode, pathFeature, pathStyle);
-    
+            new osgEarth::Annotation::FeatureNode(m_MapNode, pathFeature,
+                                                  pathStyle);
+ 
     m_MapNode->addChild(pathNode);
     
     // Set view port
-    osg::ref_ptr<osgViewer::Viewer> viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
+    osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
     osgEarth::Util::EarthManipulator* em =
             (osgEarth::Util::EarthManipulator*)viewer->getCameraManipulator();
     if(!em)
@@ -142,14 +144,12 @@ void MainWindow::on_actionOpen_track_T_triggered()
         LOG_MODEL_ERROR("MainWindow", "getCameraManipulator fail");
         return;
     }
-    qDebug() << "x:" << path->getBounds().center2d().x()
-             << "y:" << path->getBounds().center2d().y();
     double range = path->getBounds().width() > path->getBounds().height()
-            ? path->getBounds().width() * 1.5
-            : path->getBounds().height() * 1.5;
+            ? path->getBounds().width()
+            : path->getBounds().height();
     em->setViewpoint(osgEarth::Viewpoint("track", 
-                   path->getBounds().center2d().x(),
-                   path->getBounds().center2d().y(),
-                   0, 0, -90,
-                   range), 3);
+                 path->getBounds().center2d().x(),
+                 path->getBounds().center2d().y(),
+                 0, 0, -90,
+                 range + geoSRS->getEllipsoid()->getRadiusEquator() * 0.2), 3);
 }

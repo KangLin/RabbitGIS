@@ -3,7 +3,7 @@
     <cache path="cache_dir" type="filesystem" />
     <terrain color="#ffffff00" 
 	     min_lod = "0"
-             max_lod = "18"
+         max_lod = "18"
 	     first_lod = "0"
 	     blending = "true"
 	     />
@@ -12,7 +12,7 @@
     <image name="google"
            driver="xyz"
 	   min_level = "0"
-           max_level = "23">
+           max_level = "18">
 	<url>http://www.google.cn/maps/vt?lyrs=y&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
         <profile>spherical-mercator</profile>
 	<cache_policy usage="read_write" />

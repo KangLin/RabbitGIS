@@ -55,7 +55,8 @@ RC_FILE = AppIcon.rc
 OTHER_FILES += README.md \
     .gitignore \
     appveyor.yml \
-    ci/*
+    ci/* \
+    Data/*
 
 other.files = LICENSE.md Authors.txt ChangeLog.md
 other.path = $$PREFIX
@@ -103,7 +104,7 @@ win32 : equals(QMAKE_HOST.os, Windows){
     #QMAKE_EXTRA_TARGETS += Deployment_qtlib Deployment_third_lib Deployment_third_bin
     
     # Copy third library dll to path of development when debug in development
-    !exists($$system_path($${TARGET_PATH}/platforms)){
+    !exists("$$system_path($${TARGET_PATH}/platforms/*)"){
 
         # Copy qt plugins 
         PlatformsPlugins.commands = \
