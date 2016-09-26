@@ -29,23 +29,38 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="51"/>
+        <location filename="../../mainwindow.cpp" line="53"/>
+        <source>Mouse:</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="68"/>
         <source>Open map file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="52"/>
+        <location filename="../../mainwindow.cpp" line="69"/>
         <source>Map file(*.earth);; All(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="82"/>
+        <location filename="../../mainwindow.cpp" line="99"/>
         <source>Open track file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="84"/>
+        <location filename="../../mainwindow.cpp" line="101"/>
         <source>Track file(*.gpx);; nmea file(*.txt *.nmea);; All(*.*)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="170"/>
+        <source>Start</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="178"/>
+        <source>End</source>
         <translation type="unfinished"></translation>
     </message>
 </context>

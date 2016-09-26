@@ -104,15 +104,15 @@ win32 : equals(QMAKE_HOST.os, Windows){
     #QMAKE_EXTRA_TARGETS += Deployment_qtlib Deployment_third_lib Deployment_third_bin
     
     # Copy third library dll to path of development when debug in development
-    !exists("$$system_path($${TARGET_PATH}/platforms/*)"){
+    !exists("$$system_path($${TARGET_PATH}/Data/Map.earth)"){
 
         # Copy qt plugins 
-        PlatformsPlugins.commands = \
-            $(COPY_DIR) $$system_path($$[QT_INSTALL_PLUGINS]/platforms) $$system_path($${TARGET_PATH}/platforms)
-        PlatformsPlugins.CONFIG += directory no_link no_clean no_check_exist
-        PlatformsPlugins.target = PlatformsPlugins
-        QMAKE_EXTRA_TARGETS += PlatformsPlugins
-        COPY_THIRD_DEPENDS.depends = PlatformsPlugins
+        #PlatformsPlugins.commands = \
+        #    $(COPY_DIR) $$system_path($$[QT_INSTALL_PLUGINS]/platforms) $$system_path($${TARGET_PATH}/platforms)
+        #PlatformsPlugins.CONFIG += directory no_link no_clean no_check_exist
+        #PlatformsPlugins.target = PlatformsPlugins
+        #QMAKE_EXTRA_TARGETS += PlatformsPlugins
+        #COPY_THIRD_DEPENDS.depends = PlatformsPlugins
 
         # Copy third library dll
         THIRD_LIBRARY_DLL = $${THIRD_LIBRARY_PATH}/bin/*.dll

@@ -11,6 +11,8 @@
 #include <osgEarthSymbology/Style>
 #include <osgEarthUtil/EarthManipulator>
 #include <osgEarthAnnotation/PlaceNode>
+#include <osgEarthUtil/MouseCoordsTool>
+#include <osgEarthUtil/LatLongFormatter>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -39,6 +41,27 @@ MainWindow::MainWindow(QWidget *parent) :
     }
     em->setViewpoint(osgEarth::Viewpoint("China", 105, 35, 0, 0, -90,
                    geoSRS->getEllipsoid()->getRadiusEquator() * 2), 3); //3s, China
+    
+    // Create canvas
+    m_Canvas = osgEarth::Util::Controls::ControlCanvas::getOrCreate(viewer);
+    osgEarth::Util::Controls::HBox* bottom = new osgEarth::Util::Controls::HBox();
+    bottom->setBackColor(0, 0, 0, 0.2);        
+    bottom->setMargin(10);
+    bottom->setChildSpacing(145);
+    bottom->setVertAlign(osgEarth::Util::Controls::Control::ALIGN_BOTTOM);
+    bottom->setHorizAlign(osgEarth::Util::Controls::Control::ALIGN_CENTER);
+    
+    bottom->addControl(new osgEarth::Util::Controls::LabelControl(
+                           tr("Coordinate:").toStdString()));
+    osgEarth::Util::Controls::LabelControl* mouseLabel =
+            new osgEarth::Util::Controls::LabelControl();
+    bottom->addControl(mouseLabel);
+    viewer->addEventHandler(new osgEarth::Util::MouseCoordsTool(m_MapNode,
+                            mouseLabel)); 
+                                  /*new osgEarth::Util::LatLongFormatter(
+                   osgEarth::Util::LatLongFormatter::FORMAT_DEFAULT)));*/
+    m_Canvas->addControl(bottom);
+
 }
 
 MainWindow::~MainWindow()
@@ -53,7 +76,7 @@ void MainWindow::on_actionOpen_O_triggered()
     if(szFile.isEmpty())
         return;
     
-    osg::Node* mapNode = osgDB::readNodeFile(szFile.toStdString());
+    osg::Node* mapNode = osgDB::readNodeFile(szFile.toLocal8Bit().data());
     if(!mapNode)
         LOG_MODEL_ERROR("MainWindow", "Open node file fail: %s",
                         szFile.toStdString());

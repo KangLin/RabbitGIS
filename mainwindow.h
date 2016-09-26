@@ -4,6 +4,7 @@
 #include <QMainWindow>
 
 #include <osgEarthQt/ViewerWidget>
+#include <osgEarthUtil/Controls>
 
 namespace Ui {
 class MainWindow;
@@ -27,6 +28,7 @@ private:
     
     osgEarth::QtGui::ViewerWidget m_MapViewer;
     osg::ref_ptr<osgEarth::MapNode> m_MapNode;
+    osg::ref_ptr<osgEarth::Util::Controls::ControlCanvas> m_Canvas;
 };
 
 #endif // MAINWINDOW_H
