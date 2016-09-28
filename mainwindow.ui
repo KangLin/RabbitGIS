@@ -65,6 +65,10 @@
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionOpen_O">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/map</normaloff>:/icon/map</iconset>
+   </property>
    <property name="text">
     <string>Open map(&amp;O)</string>
    </property>
@@ -73,6 +77,10 @@
    </property>
   </action>
   <action name="actionOpen_track_T">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/track</normaloff>:/icon/track</iconset>
+   </property>
    <property name="text">
     <string>Open track(&amp;T)</string>
    </property>

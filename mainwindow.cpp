@@ -175,7 +175,7 @@ void MainWindow::on_actionOpen_track_T_triggered()
     osgEarth::Style pm;
     QString szStartIcon = CGlobalDir::Instance()->GetDirImage()
             + QDir::separator()
-            + "Start.png";
+            + "Start32.png";
     pm.getOrCreate<osgEarth::IconSymbol>()->url()->setLiteral(
                 szStartIcon.toStdString()); 
     pm.getOrCreate<osgEarth::IconSymbol>()->declutter() = true; 
@@ -185,7 +185,7 @@ void MainWindow::on_actionOpen_track_T_triggered()
                                         tr("Start").toStdString(), pm));
     QString szEndIcon = CGlobalDir::Instance()->GetDirImage()
             + QDir::separator()
-            + "End.png";
+            + "End32.png";
     pm.getOrCreate<osgEarth::IconSymbol>()->url()->setLiteral(
                 szEndIcon.toStdString()); 
     labelGroup->addChild( new osgEarth::Annotation::PlaceNode(m_MapNode, 
