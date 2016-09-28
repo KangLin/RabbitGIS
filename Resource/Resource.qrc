@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/icon">
         <file alias="AppIcon">png/AppIcon.png</file>
+        <file alias="Language">png/Language.jpg</file>
+        <file alias="China">png/china.png</file>
+        <file alias="English">png/English.png</file>
+        <file alias="Setting">png/settings16x16.png</file>
     </qresource>
 </RCC>

@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QTranslator>
+#include <QActionGroup>
 
 #include <osgEarthQt/ViewerWidget>
 #include <osgEarthUtil/Controls>
@@ -20,8 +22,22 @@ public:
     
 private slots:
     void on_actionOpen_O_triggered();
-    
     void on_actionOpen_track_T_triggered();
+
+    void changeEvent(QEvent *e);
+
+private:
+    // Language
+    int LoadTranslate(QString szLocale = QString());
+    int ClearTranslate();
+    int InitMenuTranslate();
+    int ClearMenuTranslate();
+    QMap<QString, QAction*> m_ActionTranslator;
+    QActionGroup m_ActionGroupTranslator;
+    QSharedPointer<QTranslator> m_TranslatorQt;
+    QSharedPointer<QTranslator> m_TranslatorApp;
+private slots:
+    void slotActionGroupTranslateTriggered(QAction* pAct);
     
 private:
     Ui::MainWindow *ui;

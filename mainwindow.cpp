@@ -3,6 +3,8 @@
 #include <vector>
 #include <QFileDialog>
 #include <QDebug>
+#include <QSettings>
+#include <QMessageBox>
 #include "Global/GlobalDir.h"
 #include "Global/Log.h"
 #include "GpxModel/gpx_model.h"
@@ -16,9 +18,13 @@
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
+    m_ActionGroupTranslator(this),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    LoadTranslate();
+    InitMenuTranslate();    
+    
     osg::Node* mapNode = osgDB::readNodeFile(
               CGlobalDir::Instance()->GetApplicationEarthFile().toStdString());
     if(!mapNode)
@@ -47,12 +53,15 @@ MainWindow::MainWindow(QWidget *parent) :
     osgEarth::Util::Controls::HBox* bottom = new osgEarth::Util::Controls::HBox();
     bottom->setBackColor(0, 0, 0, 0.2);        
     bottom->setMargin(10);
-    bottom->setChildSpacing(145);
+    bottom->setChildSpacing(120);
     bottom->setVertAlign(osgEarth::Util::Controls::Control::ALIGN_BOTTOM);
     bottom->setHorizAlign(osgEarth::Util::Controls::Control::ALIGN_CENTER);
     
-    bottom->addControl(new osgEarth::Util::Controls::LabelControl(
-                           tr("Coordinate:").toStdString()));
+    osgEarth::Util::Controls::LabelControl* pLabel =
+            new osgEarth::Util::Controls::LabelControl();
+    pLabel->setEncoding(osgText::String::ENCODING_UTF32);
+    pLabel->setText(tr("Coordinate:").toStdString());
+    bottom->addControl(pLabel);
     osgEarth::Util::Controls::LabelControl* mouseLabel =
             new osgEarth::Util::Controls::LabelControl();
     bottom->addControl(mouseLabel);
@@ -201,4 +210,147 @@ void MainWindow::on_actionOpen_track_T_triggered()
                  path->getBounds().center2d().y(),
                  0, 0, -90,
                  range + geoSRS->getEllipsoid()->getRadiusEquator() * 0.2), 3);
+}
+
+void MainWindow::changeEvent(QEvent *e)
+{
+    //LOG_MODEL_DEBUG("MainWindow", "MainWindow::changeEvent.e->type:%d", e->type());
+    switch(e->type())
+    {
+    case QEvent::LanguageChange:
+        ui->retranslateUi(this);
+        break;
+    }
+}
+
+int MainWindow::InitMenuTranslate()
+{
+    QMap<QString, QAction*>::iterator it;
+    for(it = m_ActionTranslator.begin(); it != m_ActionTranslator.end(); it++)
+    {
+        QAction* p = it.value();
+        ui->menuLanguage_L->removeAction(p);
+        delete p;
+    }
+    m_ActionTranslator["Default"] = ui->menuLanguage_L->addAction(
+                QIcon(":/icon/Language"), tr("Default"));
+    m_ActionTranslator["English"] = ui->menuLanguage_L->addAction(
+                QIcon(":/icon/English"), tr("English"));
+    m_ActionTranslator["zh_CN"] = ui->menuLanguage_L->addAction(
+                QIcon(":/icon/China"), tr("Chinese"));
+    m_ActionTranslator["zh_TW"] = ui->menuLanguage_L->addAction(
+                QIcon(":/icon/China"), tr("Chinese(TaiWan)"));
+
+    for(it = m_ActionTranslator.begin(); it != m_ActionTranslator.end(); it++)
+    {
+        it.value()->setCheckable(true);
+        m_ActionGroupTranslator.addAction(it.value());
+    }
+
+    LOG_MODEL_DEBUG("MainWindow",
+                    "MainWindow::InitMenuTranslate m_ActionTranslator size:%d",
+                    m_ActionTranslator.size());
+
+    bool check = connect(&m_ActionGroupTranslator, SIGNAL(triggered(QAction*)),
+                        SLOT(slotActionGroupTranslateTriggered(QAction*)));
+    Q_ASSERT(check);
+
+    QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
+                   QSettings::IniFormat);
+    QString szLocale = conf.value("Global/Language", "Default").toString();
+    QAction* pAct = m_ActionTranslator[szLocale];
+    if(pAct)
+    {
+        LOG_MODEL_DEBUG("MainWindow",
+                        "MainWindow::InitMenuTranslate setchecked locale:%s",
+                        szLocale.toStdString().c_str());
+        pAct->setChecked(true);
+        LOG_MODEL_DEBUG("MainWindow",
+                        "MainWindow::InitMenuTranslate setchecked end");
+    }
+
+    return 0;
+}
+
+int MainWindow::ClearTranslate()
+{
+    if(!m_TranslatorQt.isNull())
+    {
+        qApp->removeTranslator(m_TranslatorQt.data());
+        m_TranslatorQt.clear();
+    }
+
+    if(m_TranslatorApp.isNull())
+    {
+        qApp->removeTranslator(m_TranslatorApp.data());
+        m_TranslatorApp.clear();
+    }
+    return 0;
+}
+
+int MainWindow::LoadTranslate(QString szLocale)
+{
+    if(szLocale.isEmpty())
+    {
+        QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
+                       QSettings::IniFormat);
+        szLocale = conf.value("Global/Language",
+                              QLocale::system().name()).toString();
+    }
+
+    if("Default" == szLocale)
+    {
+        szLocale = QLocale::system().name();
+    }
+
+    LOG_MODEL_DEBUG("main", "locale language:%s",
+                    szLocale.toStdString().c_str());
+
+    ClearTranslate();
+    LOG_MODEL_DEBUG("MainWindow", "Translate dir:%s",
+                    qPrintable(CGlobalDir::Instance()->GetDirTranslate()));
+
+    m_TranslatorQt = QSharedPointer<QTranslator>(new QTranslator(this));
+    m_TranslatorQt->load("qt_" + szLocale + ".qm",
+                         CGlobalDir::Instance()->GetDirTranslate());
+    qApp->installTranslator(m_TranslatorQt.data());
+
+    m_TranslatorApp = QSharedPointer<QTranslator>(new QTranslator(this));
+#ifdef ANDROID
+    m_TranslatorApp->load(":/translations/app_" + szLocale + ".qm");
+#else
+    m_TranslatorApp->load("app_" + szLocale + ".qm",
+                          CGlobalDir::Instance()->GetDirTranslate());
+#endif
+    qApp->installTranslator(m_TranslatorApp.data());
+
+    ui->retranslateUi(this);
+    return 0;
+}
+
+void MainWindow::slotActionGroupTranslateTriggered(QAction *pAct)
+{
+    LOG_MODEL_DEBUG("MainWindow", "MainWindow::slotActionGroupTranslateTriggered");
+    QMap<QString, QAction*>::iterator it;
+    for(it = m_ActionTranslator.begin(); it != m_ActionTranslator.end(); it++)
+    {
+        if(it.value() == pAct)
+        {
+            QString szLocale = it.key();
+            QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
+                           QSettings::IniFormat);
+            conf.setValue("Global/Language", szLocale);
+            LOG_MODEL_DEBUG("MainWindow",
+                            "MainWindow::slotActionGroupTranslateTriggered:%s",
+                            it.key().toStdString().c_str());
+            LoadTranslate(it.key());
+            pAct->setChecked(true);
+            InitMenuTranslate();
+            /*QMessageBox::information(this, tr("Information"),
+                                     tr("Change language must reset program."));
+            //close();
+            
+            //return;*/
+        }
+    }
 }

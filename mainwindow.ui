@@ -41,7 +41,19 @@
     <addaction name="separator"/>
     <addaction name="actionOpen_track_T"/>
    </widget>
+   <widget class="QMenu" name="menuOptions">
+    <property name="title">
+     <string>Options(&amp;O)</string>
+    </property>
+    <widget class="QMenu" name="menuLanguage_L">
+     <property name="title">
+      <string>Language(&amp;L)</string>
+     </property>
+    </widget>
+    <addaction name="menuLanguage_L"/>
+   </widget>
    <addaction name="menuFile_F"/>
+   <addaction name="menuOptions"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">

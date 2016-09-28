@@ -20,6 +20,7 @@ public:
     
     QString GetDirTranslate();
 
+    QString GetApplicationConfigureFile();
     QString GetApplicationEarthFile();
    
 private:

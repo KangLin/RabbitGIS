@@ -65,7 +65,21 @@ QString CGlobalDir::GetDirImage()
     return GetDirData() + QDir::separator() + "Image";
 }
 
+QString CGlobalDir::GetDirTranslate()
+{
+#ifdef ANDROID
+    //TODO:android下应该在安装包中装好语言  
+    return GetDirDocument() + QDir::separator() + "translations";
+#endif
+    return GetDirApplication() + QDir::separator() + "translations";
+}
+
 QString CGlobalDir::GetApplicationEarthFile()
 {
     return GetDirData() + QDir::separator() + "Map.earth";
+}
+
+QString CGlobalDir::GetApplicationConfigureFile()
+{
+    return GetDirDocument() + QDir::separator() + "app.conf";
 }

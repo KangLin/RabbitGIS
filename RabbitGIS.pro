@@ -158,7 +158,7 @@ win32 : equals(QMAKE_HOST.os, Windows){
             COPY_THIRD_DEPENDS.depends += osg_plugins
         }
 
-        DATA_FILES = $$PWD/Data/
+        DATA_FILES = $$PWD/Data
         exists($${DATA_FILES}){
             equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
                 DATA_FILES = $$system_path($$DATA_FILES)
@@ -166,7 +166,7 @@ win32 : equals(QMAKE_HOST.os, Windows){
             }
             mkpath($${DATA_FILES_TARGET_PATH})
             data_files.commands = \
-                $${QMAKE_COPY} $${DATA_FILES} $${DATA_FILES_TARGET_PATH}
+                $${QMAKE_COPY_DIR} $${DATA_FILES} $${DATA_FILES_TARGET_PATH}
             data_files.CONFIG += directory no_link no_clean no_check_exist
             data_files.target = data_files
             QMAKE_EXTRA_TARGETS += data_files
