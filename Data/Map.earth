@@ -9,15 +9,7 @@
 	     />
    </options>
 
-    <image name="google"
-           driver="xyz"
-	   min_level = "0"
-           max_level = "18">
-	<url>http://www.google.cn/maps/vt?lyrs=y&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
-        <profile>spherical-mercator</profile>
-	<cache_policy usage="read_write" />
-
-    </image>
+  
   <!-- 
     <image name="google_png" driver="xyz">
 	<url>http://www.google.cn/maps/@{x},{y},{z}z</url>
@@ -31,12 +23,24 @@
 	<cache_policy usage="read_write" />
     </image>
 
-     <image name="amap" driver="xyz" opacity="0.2">
+     <image name="amap" driver="xyz">
 	<url>http://wprd0[1-4].is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;style=7&amp;x={x}&amp;y={y}&amp;z={z}&amp;scl=1&amp;ltype=4</url>
         <profile>spherical-mercator</profile>
 	<cache_policy usage="read_write" />
     </image>
-   -->  
-
-
+    
+    <image driver="xyz" enabled="true" name="gaode_sat-1" profile="global-mercator" url="http://webst0[1234].is.autonavi.com/appmaptile?style=6&amp;x={x}&amp;y={y}&amp;z={z}">
+      <cache_policy min_time="0" usage="no_cache" />
+    </image>
+   --> 
+   
+    <image name="google"
+           driver="xyz"
+       min_level = "0"
+           max_level = "18">
+    <url>http://www.google.cn/maps/vt?lyrs=y&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
+        <profile>spherical-mercator</profile>
+    <cache_policy usage="read_write" />
+    
+    </image>
 </map>

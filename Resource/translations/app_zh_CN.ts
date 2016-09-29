@@ -24,17 +24,17 @@
         <translation>语言(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="69"/>
+        <location filename="../../mainwindow.ui" line="73"/>
         <source>Open map(&amp;O)</source>
         <translation>打开地图文件(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="72"/>
+        <location filename="../../mainwindow.ui" line="76"/>
         <source>Open map</source>
         <translation>打开地图文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="77"/>
+        <location filename="../../mainwindow.ui" line="85"/>
         <source>Open track(&amp;T)</source>
         <translation>打开轨迹文件(&amp;T)</translation>
     </message>
@@ -64,32 +64,32 @@
         <translation>轨迹文件(*.gpx);; GPS nmea文件(*.txt *.nmea);; 所有(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="185"/>
+        <location filename="../../mainwindow.cpp" line="188"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="193"/>
+        <location filename="../../mainwindow.cpp" line="196"/>
         <source>End</source>
         <translation>结束</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="236"/>
+        <location filename="../../mainwindow.cpp" line="239"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="238"/>
+        <location filename="../../mainwindow.cpp" line="241"/>
         <source>English</source>
         <translation>英语</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="240"/>
+        <location filename="../../mainwindow.cpp" line="243"/>
         <source>Chinese</source>
         <translation>中文</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="242"/>
+        <location filename="../../mainwindow.cpp" line="245"/>
         <source>Chinese(TaiWan)</source>
         <translation>中文（台湾）</translation>
     </message>

@@ -59,8 +59,8 @@ MainWindow::MainWindow(QWidget *parent) :
     
     osgEarth::Util::Controls::LabelControl* pLabel =
             new osgEarth::Util::Controls::LabelControl();
-    pLabel->setEncoding(osgText::String::ENCODING_UTF32);
-    pLabel->setText(tr("Coordinate:").toStdString());
+    pLabel->setEncoding(osgText::String::ENCODING_UTF8);
+    pLabel->setText(tr("Coordinate:").toUtf8().data());
     bottom->addControl(pLabel);
     osgEarth::Util::Controls::LabelControl* mouseLabel =
             new osgEarth::Util::Controls::LabelControl();
@@ -180,17 +180,19 @@ void MainWindow::on_actionOpen_track_T_triggered()
                 szStartIcon.toStdString()); 
     pm.getOrCreate<osgEarth::IconSymbol>()->declutter() = true; 
     pm.getOrCreate<osgEarth::TextSymbol>()->halo() = osgEarth::Color("#5f5f5f"); 
-    labelGroup->addChild( new osgEarth::Annotation::PlaceNode(m_MapNode, 
+    pm.getOrCreate<osgEarth::TextSymbol>()->encoding() = 
+            osgEarth::TextSymbol::ENCODING_UTF8;
+    labelGroup->addChild(new osgEarth::Annotation::PlaceNode(m_MapNode, 
                        osgEarth::GeoPoint(geoSRS, start.x(), start.y()),
-                                        tr("Start").toStdString(), pm));
+                                        tr("Start").toUtf8().data(), pm));
     QString szEndIcon = CGlobalDir::Instance()->GetDirImage()
             + QDir::separator()
             + "End32.png";
     pm.getOrCreate<osgEarth::IconSymbol>()->url()->setLiteral(
-                szEndIcon.toStdString()); 
-    labelGroup->addChild( new osgEarth::Annotation::PlaceNode(m_MapNode, 
+                szEndIcon.toStdString());
+    labelGroup->addChild(new osgEarth::Annotation::PlaceNode(m_MapNode, 
                            osgEarth::GeoPoint(geoSRS, end.x(), end.y()),
-                                          tr("End").toStdString(), pm));
+                                          tr("End").toUtf8().data(), pm));
     m_MapNode->addChild(pathNode);
     
     // Set view port
