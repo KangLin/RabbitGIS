@@ -7,6 +7,7 @@
 
 #include <osgEarthQt/ViewerWidget>
 #include <osgEarthUtil/Controls>
+#include <osgEarthUtil/MouseCoordsTool>
 
 namespace Ui {
 class MainWindow;
@@ -40,11 +41,19 @@ private slots:
     void slotActionGroupTranslateTriggered(QAction* pAct);
     
 private:
+    int LoadMap(QString szFile);
+    
+private:
     Ui::MainWindow *ui;
     
     osgEarth::QtGui::ViewerWidget m_MapViewer;
+    osg::ref_ptr<osg::Group> m_Root;
     osg::ref_ptr<osgEarth::MapNode> m_MapNode;
-    osg::ref_ptr<osgEarth::Util::Controls::ControlCanvas> m_Canvas;
+    
+    // Display mouse coodinate canvas
+    osg::ref_ptr<osgEarth::Util::Controls::HBox> m_MouseCanvasHBox;
+    osg::ref_ptr<osgEarth::Util::MouseCoordsTool> m_MouseCoordsTool;
+    
 };
 
 #endif // MAINWINDOW_H

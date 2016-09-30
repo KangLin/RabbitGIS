@@ -13,7 +13,6 @@
 #include <osgEarthSymbology/Style>
 #include <osgEarthUtil/EarthManipulator>
 #include <osgEarthAnnotation/PlaceNode>
-#include <osgEarthUtil/MouseCoordsTool>
 #include <osgEarthUtil/LatLongFormatter>
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -24,58 +23,84 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     LoadTranslate();
     InitMenuTranslate();    
-    
-    osg::Node* mapNode = osgDB::readNodeFile(
-              CGlobalDir::Instance()->GetApplicationEarthFile().toStdString());
-    if(!mapNode)
-        LOG_MODEL_ERROR("MainWindow", "Open node file fail: %s",
-              CGlobalDir::Instance()->GetApplicationEarthFile().toStdString());
-    m_MapNode = osgEarth::MapNode::get(mapNode);
+    m_Root = new osg::Group();
     osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
-    viewer->setSceneData(m_MapNode);
+    viewer->setSceneData(m_Root);
     this->setCentralWidget(&m_MapViewer);
     
-    const osgEarth::SpatialReference* geoSRS = 
-            m_MapNode->getMapSRS()->getGeographicSRS();
-    
-    osgEarth::Util::EarthManipulator* em =
-            (osgEarth::Util::EarthManipulator*)viewer->getCameraManipulator();
-    if(!em)
-    {   
-        LOG_MODEL_ERROR("MainWindow", "getCameraManipulator fail");
-        return;
-    }
-    em->setViewpoint(osgEarth::Viewpoint("China", 105, 35, 0, 0, -90,
-                   geoSRS->getEllipsoid()->getRadiusEquator() * 2), 3); //3s, China
-    
-    // Create canvas
-    m_Canvas = osgEarth::Util::Controls::ControlCanvas::getOrCreate(viewer);
-    osgEarth::Util::Controls::HBox* bottom = new osgEarth::Util::Controls::HBox();
-    bottom->setBackColor(0, 0, 0, 0.2);        
-    bottom->setMargin(10);
-    bottom->setChildSpacing(120);
-    bottom->setVertAlign(osgEarth::Util::Controls::Control::ALIGN_BOTTOM);
-    bottom->setHorizAlign(osgEarth::Util::Controls::Control::ALIGN_CENTER);
-    
-    osgEarth::Util::Controls::LabelControl* pLabel =
-            new osgEarth::Util::Controls::LabelControl();
-    pLabel->setEncoding(osgText::String::ENCODING_UTF8);
-    pLabel->setText(tr("Coordinate:").toUtf8().data());
-    bottom->addControl(pLabel);
-    osgEarth::Util::Controls::LabelControl* mouseLabel =
-            new osgEarth::Util::Controls::LabelControl();
-    bottom->addControl(mouseLabel);
-    viewer->addEventHandler(new osgEarth::Util::MouseCoordsTool(m_MapNode,
-                            mouseLabel)); 
-                                  /*new osgEarth::Util::LatLongFormatter(
-                   osgEarth::Util::LatLongFormatter::FORMAT_DEFAULT)));*/
-    m_Canvas->addControl(bottom);
-
+    LoadMap(CGlobalDir::Instance()->GetApplicationEarthFile());
 }
 
 MainWindow::~MainWindow()
 {    
     delete ui;
+}
+
+int MainWindow::LoadMap(QString szFile)
+{
+    osg::Node* mapNode = osgDB::readNodeFile(
+              szFile.toStdString());
+    if(!mapNode)
+    {
+        LOG_MODEL_ERROR("MainWindow", "Open node file fail: %s",
+              szFile.toStdString());
+        return -1;
+    }
+    
+    osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
+    
+    // Clean
+    viewer->removeEventHandler(m_MouseCoordsTool);
+    m_Root->removeChild(m_MapNode);
+
+    m_MapNode = osgEarth::MapNode::get(mapNode);
+    
+    // Set view port    
+    const osgEarth::SpatialReference* geoSRS = 
+            m_MapNode->getMapSRS()->getGeographicSRS();
+    osgEarth::Util::EarthManipulator* em =
+            (osgEarth::Util::EarthManipulator*)viewer->getCameraManipulator();
+    if(!em)
+    {   
+        LOG_MODEL_ERROR("MainWindow", "getCameraManipulator fail");
+        return -2;
+    }
+    em->setViewpoint(osgEarth::Viewpoint("China", 105, 35, 0, 0, -90,
+                   geoSRS->getEllipsoid()->getRadiusEquator() * 2), 3); //3s, To China
+    
+    // Create display mouse coordinate canvas
+    osgEarth::Util::Controls::ControlCanvas* pCanvas =
+            osgEarth::Util::Controls::ControlCanvas::getOrCreate(viewer);
+    if(m_MouseCanvasHBox)
+    {
+        pCanvas->removeControl(m_MouseCanvasHBox);
+        m_MouseCanvasHBox.release();
+    }
+
+    m_MouseCanvasHBox = new osgEarth::Util::Controls::HBox();
+    m_MouseCanvasHBox->setBackColor(0, 0, 0, 0.5);        
+    m_MouseCanvasHBox->setMargin(10);
+    m_MouseCanvasHBox->setChildSpacing(80);
+    m_MouseCanvasHBox->setVertAlign(osgEarth::Util::Controls::Control::ALIGN_BOTTOM);
+    m_MouseCanvasHBox->setHorizAlign(osgEarth::Util::Controls::Control::ALIGN_CENTER);
+    
+    osgEarth::Util::Controls::LabelControl* pLabel =
+            new osgEarth::Util::Controls::LabelControl();
+    pLabel->setEncoding(osgText::String::ENCODING_UTF8);
+    pLabel->setText(tr("Coordinate:").toUtf8().data());
+    m_MouseCanvasHBox->addControl(pLabel);
+    osgEarth::Util::Controls::LabelControl* mouseLabel =
+            new osgEarth::Util::Controls::LabelControl();
+    m_MouseCanvasHBox->addControl(mouseLabel);
+    m_MouseCoordsTool = new osgEarth::Util::MouseCoordsTool(m_MapNode,
+                            mouseLabel/*,
+                            new osgEarth::Util::LatLongFormatter(
+                            osgEarth::Util::LatLongFormatter::FORMAT_DEFAULT*/);
+    viewer->addEventHandler(m_MouseCoordsTool); 
+    pCanvas->addControl(m_MouseCanvasHBox.get());
+    
+    m_Root->addChild(m_MapNode);
+    return 0;
 }
 
 void MainWindow::on_actionOpen_O_triggered()
@@ -85,32 +110,11 @@ void MainWindow::on_actionOpen_O_triggered()
     if(szFile.isEmpty())
         return;
     
-    osg::Node* mapNode = osgDB::readNodeFile(szFile.toLocal8Bit().data());
-    if(!mapNode)
-        LOG_MODEL_ERROR("MainWindow", "Open node file fail: %s",
-                        szFile.toStdString());
-    osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
-    m_MapNode = osgEarth::MapNode::get(mapNode);
-    viewer->setSceneData(m_MapNode);
-    
-    // Set view port
-    const osgEarth::SpatialReference* geoSRS = 
-            m_MapNode->getMapSRS()->getGeographicSRS();
-    
-    osgEarth::Util::EarthManipulator* em =
-            (osgEarth::Util::EarthManipulator*)viewer->getCameraManipulator();
-    if(!em)
-    {   
-        LOG_MODEL_ERROR("MainWindow", "getCameraManipulator fail");
-        return;
-    }
-    em->setViewpoint(osgEarth::Viewpoint("China", 105, 35, 0, 0, -90,
-                   geoSRS->getEllipsoid()->getRadiusEquator() * 2), 3); //3s, China
+    LoadMap(szFile);
 }
 
 void MainWindow::on_actionOpen_track_T_triggered()
 {
-
     QString szFile = QFileDialog::getOpenFileName(this, tr("Open track file"), 
                 QString(),
                 tr("Track file(*.gpx);; nmea file(*.txt *.nmea);; All(*.*)"));
@@ -125,6 +129,8 @@ void MainWindow::on_actionOpen_track_T_triggered()
         return;
     }
     
+    osg::ref_ptr<osg::Group> track = new osg::Group();
+
     // Add track path
     osgEarth::Symbology::LineString* path =
             new osgEarth::Symbology::LineString();
@@ -169,7 +175,7 @@ void MainWindow::on_actionOpen_track_T_triggered()
  
     // Add start and end labels
     osg::Group* labelGroup = new osg::Group(); 
-    m_MapNode->addChild(labelGroup); 
+    track->addChild(labelGroup); 
     osg::Vec3d start = path->at(0);
     osg::Vec3d end = path->at(path->size() - 1);
     osgEarth::Style pm;
@@ -193,7 +199,8 @@ void MainWindow::on_actionOpen_track_T_triggered()
     labelGroup->addChild(new osgEarth::Annotation::PlaceNode(m_MapNode, 
                            osgEarth::GeoPoint(geoSRS, end.x(), end.y()),
                                           tr("End").toUtf8().data(), pm));
-    m_MapNode->addChild(pathNode);
+    track->addChild(pathNode);
+    m_Root->addChild(track);
     
     // Set view port
     osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
