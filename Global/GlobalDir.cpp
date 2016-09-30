@@ -81,5 +81,5 @@ QString CGlobalDir::GetApplicationEarthFile()
 
 QString CGlobalDir::GetApplicationConfigureFile()
 {
-    return GetDirDocument() + QDir::separator() + "app.conf";
+    return GetDirDocument() + QDir::separator() + "App.conf";
 }

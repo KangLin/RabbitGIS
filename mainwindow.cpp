@@ -32,7 +32,18 @@ MainWindow::MainWindow(QWidget *parent) :
 }
 
 MainWindow::~MainWindow()
-{    
+{
+#ifndef MOBILE
+    //保存窗口位置  
+    QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
+                   QSettings::IniFormat);
+    conf.setValue("UI/MainWindow/top", this->y());
+    conf.setValue("UI/MainWindow/left", this->x());
+    conf.setValue("UI/MainWindow/width", this->width());
+    conf.setValue("UI/MainWindow/height", this->height());
+#endif
+        
+    this->ClearTranslate();
     delete ui;
 }
 
