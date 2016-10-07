@@ -8,7 +8,8 @@ SOURCES += main.cpp \
         GpxModel/gpxfile.cpp \
         GpxModel/nmeafile.cpp \
         GpxModel/utils.c \
-        GpxModel/uxmlpars.c
+        GpxModel/uxmlpars.c \
+        MeasureTool.cpp 
  
 HEADERS += mainwindow.h \
         Global/Log.h \
@@ -18,9 +19,11 @@ HEADERS += mainwindow.h \
         GpxModel/gpxfile.h \
         GpxModel/nmeafile.h \
         GpxModel/utils.h \
-        GpxModel/uxmlpars.h
+        GpxModel/uxmlpars.h \
+        MeasureTool.h 
 
-FORMS    += mainwindow.ui
+FORMS += mainwindow.ui \
+      MeasureTool.ui 
 
 RESOURCES += \
     $$PWD/../Resource/Resource.qrc \

@@ -40,6 +40,7 @@
     <addaction name="actionOpen_O"/>
     <addaction name="separator"/>
     <addaction name="actionOpen_track_T"/>
+    <addaction name="actionExit_E"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
     <property name="title">
@@ -52,8 +53,15 @@
     </widget>
     <addaction name="menuLanguage_L"/>
    </widget>
+   <widget class="QMenu" name="menuTools_T">
+    <property name="title">
+     <string>Tools(&amp;T)</string>
+    </property>
+    <addaction name="actionMeasure_the_distance_M"/>
+   </widget>
    <addaction name="menuFile_F"/>
    <addaction name="menuOptions"/>
+   <addaction name="menuTools_T"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -67,7 +75,7 @@
   <action name="actionOpen_O">
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
-     <normaloff>:/icon/map</normaloff>:/icon/map</iconset>
+     <normaloff>:/icon/Map</normaloff>:/icon/Map</iconset>
    </property>
    <property name="text">
     <string>Open map(&amp;O)</string>
@@ -79,10 +87,27 @@
   <action name="actionOpen_track_T">
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
-     <normaloff>:/icon/track</normaloff>:/icon/track</iconset>
+     <normaloff>:/icon/Track</normaloff>:/icon/Track</iconset>
    </property>
    <property name="text">
     <string>Open track(&amp;T)</string>
+   </property>
+  </action>
+  <action name="actionExit_E">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Close</normaloff>:/icon/Close</iconset>
+   </property>
+   <property name="text">
+    <string>Exit(&amp;E)</string>
+   </property>
+  </action>
+  <action name="actionMeasure_the_distance_M">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Measure the distance(&amp;M)</string>
    </property>
   </action>
  </widget>

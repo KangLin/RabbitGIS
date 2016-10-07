@@ -9,6 +9,8 @@
 #include <osgEarthUtil/Controls>
 #include <osgEarthUtil/MouseCoordsTool>
 
+#include "MeasureTool.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -40,6 +42,10 @@ private:
 private slots:
     void slotActionGroupTranslateTriggered(QAction* pAct);
     
+    void on_actionExit_E_triggered();
+    
+    void on_actionMeasure_the_distance_M_triggered();
+    
 private:
     int LoadMap(QString szFile);
     
@@ -53,7 +59,8 @@ private:
     // Display mouse coodinate canvas
     osg::ref_ptr<osgEarth::Util::Controls::HBox> m_MouseCanvasHBox;
     osg::ref_ptr<osgEarth::Util::MouseCoordsTool> m_MouseCoordsTool;
-    
+  
+    CMeasureTool* m_pMeasureTool;
 };
 
 #endif // MAINWINDOW_H

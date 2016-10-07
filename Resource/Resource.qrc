@@ -5,7 +5,8 @@
         <file alias="China">png/china.png</file>
         <file alias="English">png/English.png</file>
         <file alias="Setting">png/settings16x16.png</file>
-        <file alias="map">png/map.jpg</file>
-        <file alias="track">png/track.png</file>
+        <file alias="Map">png/map.jpg</file>
+        <file alias="Track">png/track.png</file>
+        <file alias="Close">png/close.png</file>
     </qresource>
 </RCC>

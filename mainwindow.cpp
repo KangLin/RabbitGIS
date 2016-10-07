@@ -8,6 +8,7 @@
 #include "Global/GlobalDir.h"
 #include "Global/Log.h"
 #include "GpxModel/gpx_model.h"
+
 #include <osgEarthAnnotation/FeatureNode>
 #include <osgEarthFeatures/Feature>
 #include <osgEarthSymbology/Style>
@@ -22,7 +23,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
     LoadTranslate();
-    InitMenuTranslate();    
+    InitMenuTranslate();
+    m_pMeasureTool = NULL;
+    
     m_Root = new osg::Group();
     osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
     viewer->setSceneData(m_Root);
@@ -168,12 +171,13 @@ void MainWindow::on_actionOpen_track_T_triggered()
     pathFeature->geoInterp() = osgEarth::GEOINTERP_GREAT_CIRCLE;
    
     osgEarth::Style pathStyle;
-    pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>()->stroke()->color()
-            = osgEarth::Color::Yellow;
-    pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>()->stroke()->width()
-            = 20.0f;
-    pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>()->tessellationSize()
-            = 75000;
+    osgEarth::Symbology::LineSymbol* ls =
+            pathStyle.getOrCreate<osgEarth::Symbology::LineSymbol>();
+    ls->stroke()->color() = osgEarth::Color::Yellow;
+    ls->stroke()->width() = 4.0f;
+    ls->stroke()->widthUnits() = osgEarth::Units::PIXELS;
+    ls->tessellation() = 150;
+
     /*pathStyle.getOrCreate<osgEarth::Symbology::PointSymbol>()->size() = 5;
     pathStyle.getOrCreate<osgEarth::Symbology::PointSymbol>()->fill()->color()
             = osgEarth::Color::Green;*/
@@ -366,11 +370,35 @@ void MainWindow::slotActionGroupTranslateTriggered(QAction *pAct)
             LoadTranslate(it.key());
             pAct->setChecked(true);
             InitMenuTranslate();
-            /*QMessageBox::information(this, tr("Information"),
+            QMessageBox::information(this, tr("Information"),
                                      tr("Change language must reset program."));
-            //close();
+            close();
             
-            //return;*/
+            return;
         }
+    }
+}
+
+void MainWindow::on_actionExit_E_triggered()
+{
+    this->close();
+}
+
+void MainWindow::on_actionMeasure_the_distance_M_triggered()
+{
+    if(ui->actionMeasure_the_distance_M->isChecked())
+    {
+        osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
+        if(NULL == m_pMeasureTool)
+            m_pMeasureTool = new CMeasureTool(viewer, m_Root, m_MapNode, this);
+        QRect rect = this->centralWidget()->geometry();
+        m_pMeasureTool->move(rect.left(), rect.top());
+        m_pMeasureTool->show();   
+    }
+    else
+    {   
+        m_pMeasureTool->close();
+        delete m_pMeasureTool;
+        m_pMeasureTool = NULL;
     }
 }
