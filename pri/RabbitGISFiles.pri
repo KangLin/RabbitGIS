@@ -3,6 +3,8 @@ SOURCES += main.cpp \
         mainwindow.cpp \
         Global/Log.cpp \
         Global/GlobalDir.cpp \
+        Global/Global.cpp \
+        Common/Tool.cpp \
         GpxModel/actfile.cpp \
         GpxModel/gpx_model.cpp \
         GpxModel/gpxfile.cpp \
@@ -14,6 +16,8 @@ SOURCES += main.cpp \
 HEADERS += mainwindow.h \
         Global/Log.h \
         Global/GlobalDir.h \
+        Global/Global.h \
+        Common/Tool.h \
         GpxModel/actfile.h \
         GpxModel/gpx_model.h \
         GpxModel/gpxfile.h \

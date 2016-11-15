@@ -35,6 +35,14 @@
     </message>
 </context>
 <context>
+    <name>CTool</name>
+    <message>
+        <location filename="../../Common/Tool.h" line="52"/>
+        <source>Open file</source>
+        <translation>打开文件</translation>
+    </message>
+</context>
+<context>
     <name>MainWindow</name>
     <message>
         <location filename="../../mainwindow.ui" line="20"/>
@@ -57,126 +65,156 @@
         <translation>语言(&amp;L)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="58"/>
+        <location filename="../../mainwindow.ui" line="62"/>
         <source>Tools(&amp;T)</source>
         <translation>工具(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="81"/>
+        <location filename="../../mainwindow.ui" line="85"/>
         <source>Open map(&amp;O)</source>
         <translation>打开地图文件(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="84"/>
+        <location filename="../../mainwindow.ui" line="88"/>
         <source>Open map</source>
         <translation>打开地图文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="93"/>
+        <location filename="../../mainwindow.ui" line="97"/>
         <source>Open track(&amp;T)</source>
         <translation>打开轨迹文件(&amp;T)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="102"/>
+        <location filename="../../mainwindow.ui" line="106"/>
         <source>Exit(&amp;E)</source>
         <translation>退出(&amp;E)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.ui" line="110"/>
+        <location filename="../../mainwindow.ui" line="114"/>
         <source>Measure the distance(&amp;M)</source>
         <translation>测量距离(&amp;M)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="55"/>
+        <location filename="../../mainwindow.cpp" line="60"/>
         <source>Loading map ...... </source>
         <translation>加载地图  ......</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="63"/>
+        <location filename="../../mainwindow.cpp" line="68"/>
         <source>Load map fail:%1</source>
         <translation>加载地图：%1</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="109"/>
+        <location filename="../../mainwindow.cpp" line="114"/>
         <source>Coordinate:</source>
         <translation>坐标：</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="123"/>
-        <location filename="../../mainwindow.cpp" line="135"/>
-        <location filename="../../mainwindow.cpp" line="248"/>
+        <location filename="../../mainwindow.cpp" line="128"/>
+        <location filename="../../mainwindow.cpp" line="140"/>
+        <location filename="../../mainwindow.cpp" line="254"/>
         <source>Ready</source>
         <translation>预备</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="129"/>
+        <location filename="../../mainwindow.cpp" line="134"/>
         <source>Open map file ......</source>
         <translation>打开地图文件  ......</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="130"/>
+        <location filename="../../mainwindow.cpp" line="135"/>
         <source>Open map file</source>
         <translation>打开地图文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="131"/>
+        <location filename="../../mainwindow.cpp" line="136"/>
         <source>Map file(*.earth);; All(*.*)</source>
         <translation>地图文件(*.earth);; 所有文件(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="141"/>
+        <location filename="../../mainwindow.cpp" line="146"/>
         <source>Open track file ......</source>
         <translation>打开轨迹文件  ......</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="143"/>
+        <location filename="../../mainwindow.cpp" line="149"/>
         <source>Open track file</source>
         <translation>打开轨迹文件</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="145"/>
+        <location filename="../../mainwindow.cpp" line="151"/>
         <source>Track file(*.gpx);; nmea file(*.txt *.nmea);; All(*.*)</source>
         <translation>轨迹文件(*.gpx);; GPS nmea文件(*.txt *.nmea);; 所有(*.*)</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="218"/>
+        <location filename="../../mainwindow.cpp" line="224"/>
         <source>Start</source>
         <translation>开始</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="226"/>
+        <location filename="../../mainwindow.cpp" line="232"/>
         <source>End</source>
         <translation>结束</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="272"/>
+        <location filename="../../mainwindow.cpp" line="278"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="274"/>
+        <location filename="../../mainwindow.cpp" line="280"/>
         <source>English</source>
         <translation>英语</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="276"/>
+        <location filename="../../mainwindow.cpp" line="282"/>
         <source>Chinese</source>
         <translation>中文</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="278"/>
+        <location filename="../../mainwindow.cpp" line="284"/>
         <source>Chinese(TaiWan)</source>
         <translation>中文（台湾）</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="385"/>
+        <location filename="../../mainwindow.cpp" line="391"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../mainwindow.cpp" line="386"/>
+        <location filename="../../mainwindow.cpp" line="392"/>
         <source>Change language must reset program.</source>
         <translation>改变语言必须重启程序。</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="426"/>
+        <source>Custom</source>
+        <translation>自定义</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="427"/>
+        <source>System</source>
+        <translation>系统</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="428"/>
+        <source>Blue</source>
+        <translation>蓝色</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="429"/>
+        <source>Dark</source>
+        <translation>暗色</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="445"/>
+        <source>Change Style Sheet(&amp;S)</source>
+        <translation>改变样式(&amp;S)</translation>
+    </message>
+    <message>
+        <location filename="../../mainwindow.cpp" line="492"/>
+        <source>Open File</source>
+        <translation>打开文件</translation>
     </message>
 </context>
 </TS>

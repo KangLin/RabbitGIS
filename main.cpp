@@ -9,7 +9,7 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     MainWindow w;
 #ifndef MOBILE
-    //加载窗口位置  
+    //Load windows position 
     QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
                    QSettings::IniFormat);
     QScreen *pScreen = QGuiApplication::primaryScreen();

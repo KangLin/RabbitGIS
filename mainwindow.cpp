@@ -8,6 +8,8 @@
 #include "Global/GlobalDir.h"
 #include "Global/Log.h"
 #include "GpxModel/gpx_model.h"
+#include "Global/Global.h"
+#include "Common/Tool.h"
 
 #include <osgEarthAnnotation/FeatureNode>
 #include <osgEarthFeatures/Feature>
@@ -19,11 +21,14 @@
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     m_ActionGroupTranslator(this),
+    m_ActionGroupStyle(this),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     LoadTranslate();
     InitMenuTranslate();
+    LoadStyle();
+    InitMenuStyles();
     m_pMeasureTool = NULL;
     
     m_Root = new osg::Group();
@@ -36,7 +41,7 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
 #ifndef MOBILE
-    //保存窗口位置  
+    //Save windows position  
     QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
                    QSettings::IniFormat);
     conf.setValue("UI/MainWindow/top", this->y());
@@ -77,7 +82,7 @@ int MainWindow::LoadMap(QString szFile)
         const osgEarth::SpatialReference* geoSRS =
                 m_MapNode->getMapSRS()->getGeographicSRS();
         osgEarth::Util::EarthManipulator* em =
-                (osgEarth::Util::EarthManipulator*)viewer->getCameraManipulator();
+              (osgEarth::Util::EarthManipulator*)viewer->getCameraManipulator();
         if(!em)
         {
             LOG_MODEL_ERROR("MainWindow", "getCameraManipulator fail");
@@ -85,7 +90,7 @@ int MainWindow::LoadMap(QString szFile)
             break;
         }
         em->setViewpoint(osgEarth::Viewpoint("China", 105, 35, 0, 0, -90,
-                                             geoSRS->getEllipsoid()->getRadiusEquator() * 2), 3); //3s, To China
+                            geoSRS->getEllipsoid()->getRadiusEquator() * 2), 3); //3s, To China
 
         // Create display mouse coordinate canvas
         osgEarth::Util::Controls::ControlCanvas* pCanvas =
@@ -414,4 +419,117 @@ void MainWindow::on_actionMeasure_the_distance_M_triggered()
         delete m_pMeasureTool;
         m_pMeasureTool = NULL;
     }
+}
+
+int MainWindow::InitMenuStyles()
+{
+    m_ActionStyles["Custom"] = m_MenuStyle.addAction(tr("Custom"));
+    m_ActionStyles["System"] = m_MenuStyle.addAction(tr("System"));
+    m_ActionStyles["Blue"] = m_MenuStyle.addAction(tr("Blue"));
+    m_ActionStyles["Dark"] = m_MenuStyle.addAction(tr("Dark"));
+    QMap<QString, QAction*>::iterator it;
+    for(it = m_ActionStyles.begin(); it != m_ActionStyles.end(); it++)
+    {
+        it.value()->setCheckable(true);
+        m_ActionGroupStyle.addAction(it.value());
+    }
+    bool check = connect(&m_ActionGroupStyle, SIGNAL(triggered(QAction*)),
+                         SLOT(slotActionGroupStyleTriggered(QAction*)));
+    Q_ASSERT(check);
+    QAction* pAct = m_ActionStyles[CGlobal::Instance()->GetStyleMenu()];
+    if(pAct)
+    {
+        pAct->setChecked(true);
+    }
+    m_MenuStyle.setIcon(QIcon(":/icon/Stype"));
+    m_MenuStyle.setTitle(tr("Change Style Sheet(&S)"));
+    ui->menuOptions->addMenu(&m_MenuStyle);
+    return 0;
+}
+
+int MainWindow::ClearMenuStyles()
+{
+    QMap<QString, QAction*>::iterator it;
+    for(it = m_ActionStyles.begin(); it != m_ActionStyles.end(); it++)
+    {
+        m_ActionGroupStyle.removeAction(it.value());
+    }
+    m_ActionGroupStyle.disconnect();
+    m_ActionStyles.clear();
+    m_MenuStyle.clear();
+    return 0;
+}
+
+int MainWindow::LoadStyle()
+{
+    QString szFile = CGlobal::Instance()->GetStyle();
+    if(szFile.isEmpty())
+        qApp->setStyleSheet("");
+    else
+    {
+        QFile file(szFile);
+        if(file.open(QFile::ReadOnly))
+        {
+            QString stylesheet= file.readAll();
+            qApp->setStyleSheet(stylesheet);
+            file.close();
+        }
+        else
+        {
+            LOG_MODEL_ERROR("app", "file open file [%s] fail:%d",
+                        CGlobal::Instance()->GetStyle().toStdString().c_str(),
+                        file.error());
+        }
+    }
+    return 0;
+}
+
+int MainWindow::OpenCustomStyleMenu()
+{
+    QString szFile;
+    QString szFilter("*.qss *.*");
+    szFile = CTool::FileDialog(this, QString(), szFilter, tr("Open File"));
+    if(szFile.isEmpty())
+        return -1;
+
+    QFile file(szFile);
+    if(file.open(QFile::ReadOnly))
+    {
+        QString stylesheet= file.readAll();
+        qApp->setStyleSheet(stylesheet);
+        file.close();
+        QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
+                       QSettings::IniFormat);
+        conf.setValue("UI/StyleSheet", szFile);
+        
+        CGlobal::Instance()->SetStyleMenu("Custom", szFile);
+    }
+    else
+    {
+        LOG_MODEL_ERROR("app", "file open file [%s] fail:%d", 
+                        szFile.toStdString().c_str(), file.error());
+    }
+    return 0;
+}
+
+void MainWindow::slotActionGroupStyleTriggered(QAction* act)
+{
+    QMap<QString, QAction*>::iterator it;
+    for(it = m_ActionStyles.begin(); it != m_ActionStyles.end(); it++)
+    {
+        if(it.value() == act)
+        {
+            act->setChecked(true);
+            if(it.key() == "Blue")
+                CGlobal::Instance()->SetStyleMenu("Blue", ":/sink/Blue");
+            else if(it.key() == "Dark")
+                CGlobal::Instance()->SetStyleMenu("Dark", ":/qdarkstyle/style.qss");
+            else if(it.key() == "Custom")
+                OpenCustomStyleMenu();
+            else
+                CGlobal::Instance()->SetStyleMenu("System", "");
+        }
+    }
+
+    LoadStyle();
 }

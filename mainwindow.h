@@ -4,7 +4,7 @@
 #include <QMainWindow>
 #include <QTranslator>
 #include <QActionGroup>
-
+#include <QMenu>
 #include <osgEarthQt/ViewerWidget>
 #include <osgEarthUtil/Controls>
 #include <osgEarthUtil/MouseCoordsTool>
@@ -41,6 +41,18 @@ private:
     QSharedPointer<QTranslator> m_TranslatorApp;
 private slots:
     void slotActionGroupTranslateTriggered(QAction* pAct);
+    
+private:
+    //Style menu
+    QMenu m_MenuStyle;
+    QActionGroup m_ActionGroupStyle;
+    QMap<QString, QAction*> m_ActionStyles;
+    int InitMenuStyles();
+    int ClearMenuStyles();
+    int OpenCustomStyleMenu();
+    int LoadStyle();
+private slots:
+    void slotActionGroupStyleTriggered(QAction* act);
     
     void on_actionExit_E_triggered();
     

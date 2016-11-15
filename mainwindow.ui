@@ -50,6 +50,10 @@
      <property name="title">
       <string>Language(&amp;L)</string>
      </property>
+     <property name="icon">
+      <iconset resource="Resource/Resource.qrc">
+       <normaloff>:/icon/Language</normaloff>:/icon/Language</iconset>
+     </property>
     </widget>
     <addaction name="menuLanguage_L"/>
    </widget>
