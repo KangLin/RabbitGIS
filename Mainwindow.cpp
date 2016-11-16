@@ -39,6 +39,7 @@ MainWindow::MainWindow(QWidget *parent) :
     osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
     viewer->setSceneData(m_Root);
     this->setCentralWidget(&m_MapViewer);
+    m_MapViewer.setCursor(Qt::OpenHandCursor);
     LoadMap(CGlobalDir::Instance()->GetApplicationEarthFile());
 }
 
@@ -62,6 +63,7 @@ int MainWindow::LoadMap(QString szFile)
 {
     int nRet = 0;
     this->statusBar()->showMessage(tr("Loading map ...... "));
+    m_MapViewer.setCursor(Qt::BusyCursor);
     do {
         osg::Node* mapNode = osgDB::readNodeFile(
                     szFile.toStdString());
@@ -130,6 +132,7 @@ int MainWindow::LoadMap(QString szFile)
         m_Root->addChild(m_MapNode);
     } while(0);
     this->statusBar()->showMessage(tr("Ready"));
+    m_MapViewer.setCursor(Qt::OpenHandCursor);
     return 0;
 }
 
@@ -156,6 +159,7 @@ void MainWindow::on_actionOpen_track_T_triggered()
         if(szFile.isEmpty())
             break;
 
+        m_MapViewer.setCursor(Qt::BusyCursor);
         GPX_model gpx("RabbitGIS");
         if(GPX_model::GPXM_OK != gpx.load(szFile.toStdString()))
         {
@@ -256,6 +260,7 @@ void MainWindow::on_actionOpen_track_T_triggered()
                   range + geoSRS->getEllipsoid()->getRadiusEquator() * 0.2), 3);
     }while(0);
     this->statusBar()->showMessage(tr("Ready"));
+    m_MapViewer.setCursor(Qt::OpenHandCursor);
 }
 
 void MainWindow::changeEvent(QEvent *e)
@@ -413,9 +418,11 @@ void MainWindow::on_actionMeasure_the_distance_M_triggered()
         QRect rect = this->centralWidget()->geometry();
         m_pMeasureTool->move(rect.left(), rect.top());
         m_pMeasureTool->show();
+        m_MapViewer.setCursor(Qt::CrossCursor);
     }
     else
     {
+        m_MapViewer.setCursor(Qt::OpenHandCursor);
         m_pMeasureTool->close();
         delete m_pMeasureTool;
         m_pMeasureTool = NULL;
