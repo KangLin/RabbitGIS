@@ -1,6 +1,6 @@
 
 SOURCES += main.cpp \
-        mainwindow.cpp \
+        Mainwindow.cpp \
         Global/Log.cpp \
         Global/GlobalDir.cpp \
         Global/Global.cpp \
@@ -11,9 +11,10 @@ SOURCES += main.cpp \
         GpxModel/nmeafile.cpp \
         GpxModel/utils.c \
         GpxModel/uxmlpars.c \
-        MeasureTool.cpp 
+        MeasureTool.cpp \
+        Widgets\DlgAbout\DlgAbout.cpp
  
-HEADERS += mainwindow.h \
+HEADERS += Mainwindow.h \
         Global/Log.h \
         Global/GlobalDir.h \
         Global/Global.h \
@@ -24,10 +25,12 @@ HEADERS += mainwindow.h \
         GpxModel/nmeafile.h \
         GpxModel/utils.h \
         GpxModel/uxmlpars.h \
-        MeasureTool.h 
+        MeasureTool.h \
+        Widgets\DlgAbout\DlgAbout.h
 
-FORMS += mainwindow.ui \
-      MeasureTool.ui 
+FORMS += Mainwindow.ui \
+      MeasureTool.ui \
+      Widgets\DlgAbout\DlgAbout.ui
 
 RESOURCES += \
     $$PWD/../Resource/Resource.qrc \

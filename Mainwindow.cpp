@@ -10,6 +10,7 @@
 #include "GpxModel/gpx_model.h"
 #include "Global/Global.h"
 #include "Common/Tool.h"
+#include "Widgets/DlgAbout/DlgAbout.h"
 
 #include <osgEarthAnnotation/FeatureNode>
 #include <osgEarthFeatures/Feature>
@@ -561,4 +562,10 @@ int MainWindow::InitToolbar()
     ui->mainToolBar->addSeparator();
     ui->mainToolBar->addAction(ui->actionMeasure_the_distance_M);
     return 0;
+}
+
+void MainWindow::on_actionAbout_A_triggered()
+{
+    CDlgAbout about(this);
+    about.exec();
 }

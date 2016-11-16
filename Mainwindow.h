@@ -62,6 +62,8 @@ private slots:
     
     void on_actionToolBar_triggered();
     
+    void on_actionAbout_A_triggered();
+    
 private:
     int LoadMap(QString szFile);
     

@@ -4,10 +4,10 @@
 
 =============================================================================
 
-* Author：KangLin（msn、email:kl222@126.com ; QQ:16614119)
+* Author：KangLin（email:kl222@126.com ; QQ:16614119)
 * Project：https://github.com/KangLin/rabbitGIS  
 
-|[<img src="Resource/png/china.png" alt="Chinese" title="Chinese" width="16" height="16" />Chinese](README_ZH.md)|
+|[<img src="Resource/png/China.png" alt="Chinese" title="Chinese" width="16" height="16" />Chinese](README_ZH.md)|
 
 -----------------------------------------------------------------------------
 ## Build
