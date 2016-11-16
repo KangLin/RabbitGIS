@@ -46,16 +46,6 @@
     <property name="title">
      <string>Options(&amp;O)</string>
     </property>
-    <widget class="QMenu" name="menuLanguage_L">
-     <property name="title">
-      <string>Language(&amp;L)</string>
-     </property>
-     <property name="icon">
-      <iconset resource="Resource/Resource.qrc">
-       <normaloff>:/icon/Language</normaloff>:/icon/Language</iconset>
-     </property>
-    </widget>
-    <addaction name="menuLanguage_L"/>
    </widget>
    <widget class="QMenu" name="menuTools_T">
     <property name="title">
@@ -63,9 +53,24 @@
     </property>
     <addaction name="actionMeasure_the_distance_M"/>
    </widget>
+   <widget class="QMenu" name="menuView_V">
+    <property name="title">
+     <string>View(&amp;V)</string>
+    </property>
+    <addaction name="actionToolBar"/>
+    <addaction name="actionStatusBar_S"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp_H">
+    <property name="title">
+     <string>Help(&amp;H)</string>
+    </property>
+    <addaction name="actionAbout_A"/>
+   </widget>
    <addaction name="menuFile_F"/>
-   <addaction name="menuOptions"/>
+   <addaction name="menuView_V"/>
    <addaction name="menuTools_T"/>
+   <addaction name="menuOptions"/>
+   <addaction name="menuHelp_H"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -96,6 +101,9 @@
    <property name="text">
     <string>Open track(&amp;T)</string>
    </property>
+   <property name="toolTip">
+    <string>Open track</string>
+   </property>
   </action>
   <action name="actionExit_E">
    <property name="icon">
@@ -105,13 +113,47 @@
    <property name="text">
     <string>Exit(&amp;E)</string>
    </property>
+   <property name="toolTip">
+    <string>Exit</string>
+   </property>
   </action>
   <action name="actionMeasure_the_distance_M">
    <property name="checkable">
     <bool>true</bool>
    </property>
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Measure</normaloff>:/icon/Measure</iconset>
+   </property>
    <property name="text">
     <string>Measure the distance(&amp;M)</string>
+   </property>
+   <property name="toolTip">
+    <string>Measure the distance</string>
+   </property>
+  </action>
+  <action name="actionStatusBar_S">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>StatusBar(&amp;S)</string>
+   </property>
+   <property name="toolTip">
+    <string>StatusBar</string>
+   </property>
+  </action>
+  <action name="actionToolBar">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>ToolBar</string>
+   </property>
+  </action>
+  <action name="actionAbout_A">
+   <property name="text">
+    <string>About(&amp;A)</string>
    </property>
   </action>
  </widget>

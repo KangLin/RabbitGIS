@@ -22,19 +22,17 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+
+private:
+    int InitToolbar();
     
-private slots:
-    void on_actionOpen_O_triggered();
-    void on_actionOpen_track_T_triggered();
-
-    void changeEvent(QEvent *e);
-
 private:
     // Language
     int LoadTranslate(QString szLocale = QString());
     int ClearTranslate();
     int InitMenuTranslate();
     int ClearMenuTranslate();
+    QMenu m_MenuTranslate;
     QMap<QString, QAction*> m_ActionTranslator;
     QActionGroup m_ActionGroupTranslator;
     QSharedPointer<QTranslator> m_TranslatorQt;
@@ -54,9 +52,15 @@ private:
 private slots:
     void slotActionGroupStyleTriggered(QAction* act);
     
+private slots:
+    void changeEvent(QEvent *e);
+    void on_actionOpen_O_triggered();
+    void on_actionOpen_track_T_triggered();
     void on_actionExit_E_triggered();
-    
     void on_actionMeasure_the_distance_M_triggered();
+    void on_actionStatusBar_S_triggered();
+    
+    void on_actionToolBar_triggered();
     
 private:
     int LoadMap(QString szFile);

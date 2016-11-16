@@ -22,14 +22,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     m_ActionGroupTranslator(this),
     m_ActionGroupStyle(this),
+    m_pMeasureTool(NULL),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
     LoadTranslate();
-    InitMenuTranslate();
     LoadStyle();
     InitMenuStyles();
-    m_pMeasureTool = NULL;
+    InitMenuTranslate();
+    this->statusBar()->setVisible(CGlobal::Instance()->GetStatusbarVisable());
+    ui->actionStatusBar_S->setChecked(CGlobal::Instance()->GetStatusbarVisable());
+    InitToolbar();
     
     m_Root = new osg::Group();
     osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
@@ -267,22 +270,17 @@ void MainWindow::changeEvent(QEvent *e)
 
 int MainWindow::InitMenuTranslate()
 {
-    QMap<QString, QAction*>::iterator it;
-    for(it = m_ActionTranslator.begin(); it != m_ActionTranslator.end(); it++)
-    {
-        QAction* p = it.value();
-        ui->menuLanguage_L->removeAction(p);
-        delete p;
-    }
-    m_ActionTranslator["Default"] = ui->menuLanguage_L->addAction(
+    m_MenuTranslate.clear();
+    m_ActionTranslator["Default"] = m_MenuTranslate.addAction(
                 QIcon(":/icon/Language"), tr("Default"));
-    m_ActionTranslator["English"] = ui->menuLanguage_L->addAction(
+    m_ActionTranslator["English"] = m_MenuTranslate.addAction(
                 QIcon(":/icon/English"), tr("English"));
-    m_ActionTranslator["zh_CN"] = ui->menuLanguage_L->addAction(
+    m_ActionTranslator["zh_CN"] = m_MenuTranslate.addAction(
                 QIcon(":/icon/China"), tr("Chinese"));
-    m_ActionTranslator["zh_TW"] = ui->menuLanguage_L->addAction(
+    m_ActionTranslator["zh_TW"] = m_MenuTranslate.addAction(
                 QIcon(":/icon/China"), tr("Chinese(TaiWan)"));
 
+    QMap<QString, QAction*>::iterator it;
     for(it = m_ActionTranslator.begin(); it != m_ActionTranslator.end(); it++)
     {
         it.value()->setCheckable(true);
@@ -310,7 +308,9 @@ int MainWindow::InitMenuTranslate()
         LOG_MODEL_DEBUG("MainWindow",
                         "MainWindow::InitMenuTranslate setchecked end");
     }
-
+    m_MenuTranslate.setIcon(QIcon(":/icon/Language"));
+    m_MenuTranslate.setTitle(tr("Language(&L)"));
+    ui->menuOptions->addMenu(&m_MenuTranslate);
     return 0;
 }
 
@@ -423,6 +423,7 @@ void MainWindow::on_actionMeasure_the_distance_M_triggered()
 
 int MainWindow::InitMenuStyles()
 {
+    m_MenuStyle.clear();
     m_ActionStyles["Custom"] = m_MenuStyle.addAction(tr("Custom"));
     m_ActionStyles["System"] = m_MenuStyle.addAction(tr("System"));
     m_ActionStyles["Blue"] = m_MenuStyle.addAction(tr("Blue"));
@@ -532,4 +533,32 @@ void MainWindow::slotActionGroupStyleTriggered(QAction* act)
     }
 
     LoadStyle();
+}
+
+void MainWindow::on_actionStatusBar_S_triggered()
+{
+    bool bVisable = !CGlobal::Instance()->GetStatusbarVisable();
+    CGlobal::Instance()->SetStatusbarVisable(bVisable);
+    ui->actionStatusBar_S->setChecked(bVisable);
+    this->statusBar()->setVisible(bVisable);
+}
+
+void MainWindow::on_actionToolBar_triggered()
+{
+    bool bVisable = !CGlobal::Instance()->GetToolbarVisable();
+    CGlobal::Instance()->SetToolbarVisable(bVisable);
+    ui->actionToolBar->setChecked(bVisable);
+    ui->mainToolBar->setVisible(bVisable);
+}
+
+int MainWindow::InitToolbar()
+{
+    ui->mainToolBar->setVisible(CGlobal::Instance()->GetToolbarVisable());
+    ui->actionToolBar->setChecked(CGlobal::Instance()->GetToolbarVisable());
+    
+    ui->mainToolBar->addAction(ui->actionOpen_O);
+    ui->mainToolBar->addAction(ui->actionOpen_track_T);
+    ui->mainToolBar->addSeparator();
+    ui->mainToolBar->addAction(ui->actionMeasure_the_distance_M);
+    return 0;
 }

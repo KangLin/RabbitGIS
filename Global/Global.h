@@ -31,6 +31,18 @@ public:
     static CGlobal* Instance();
 
 public:
+    bool GetStatusbarVisable();
+    int SetStatusbarVisable(bool bVisable);
+private:
+    bool m_StatusbarVisable;
+
+public:
+    bool GetToolbarVisable();
+    int SetToolbarVisable(bool bVisable);
+private:
+    bool m_ToolbarVisable;
+
+public:
     QString GetStyle();
     QString GetStyleMenu();
     int SetStyleMenu(QString szMenu, QString szFile);

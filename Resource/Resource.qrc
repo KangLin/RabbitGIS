@@ -9,6 +9,7 @@
         <file alias="Track">png/track.png</file>
         <file alias="Close">png/close.png</file>
         <file alias="Stype">png/stype.png</file>
+        <file alias="Measure">png/Measure.png</file>
     </qresource>
     <qresource prefix="/sink">
         <file alias="Blue">sink/blue.qss</file>
