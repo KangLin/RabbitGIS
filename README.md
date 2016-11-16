@@ -7,6 +7,8 @@
 * Author：KangLin（msn、email:kl222@126.com ; QQ:16614119)
 * Project：https://github.com/KangLin/rabbitGIS  
 
+|[<img src="Resource/png/china.png" alt="Chinese" title="Chinese" width="16" height="16" />Chinese](README_ZH.md)|
+
 -----------------------------------------------------------------------------
 ## Build
 ### 1. Download Precompiled or compiled third-party libraries

@@ -52,11 +52,16 @@ include(Resource/translations/translations.pri)
 # Appcation Icon
 RC_FILE = AppIcon.rc
 
-OTHER_FILES += README.md \
+OTHER_FILES += \
     .gitignore \
     appveyor.yml \
     ci/* \
     Data/*
+
+DISTFILES += \
+    LICENSE.md \
+    README.md \
+    README_ZH.md
 
 other.files = LICENSE.md Authors.txt ChangeLog.md
 other.path = $$PREFIX
@@ -180,6 +185,3 @@ win32 : equals(QMAKE_HOST.os, Windows){
 
     }
 }
-
-DISTFILES += \
-    LICENSE.md
