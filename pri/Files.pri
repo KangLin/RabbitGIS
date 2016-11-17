@@ -5,6 +5,7 @@ SOURCES += main.cpp \
         Global/GlobalDir.cpp \
         Global/Global.cpp \
         Common/Tool.cpp \
+        Common/QRCode.cpp \
         GpxModel/actfile.cpp \
         GpxModel/gpx_model.cpp \
         GpxModel/gpxfile.cpp \
@@ -19,6 +20,7 @@ HEADERS += Mainwindow.h \
         Global/GlobalDir.h \
         Global/Global.h \
         Common/Tool.h \
+        Common/QRCode.h \
         GpxModel/actfile.h \
         GpxModel/gpx_model.h \
         GpxModel/gpxfile.h \

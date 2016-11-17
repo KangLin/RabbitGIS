@@ -26,3 +26,16 @@ myPackagesExist(libcurl) {
 myPackagesExist(libcrypto) {
     MYPKGCONFIG *= libcrypto
 }
+
+myPackagesExist(libqrencode) {
+    DEFINES *= RABBITGIS_USE_LIBQRENCODE
+    MYPKGCONFIG *= libqrencode
+}
+
+myPackagesExist(QZXing) {
+    DEFINES *= RABBITGIS_USE_QZXING
+    MYPKGCONFIG *= QZXing
+} else : msvc {
+    DEFINES *= RABBITGIS_USE_QZXING
+    LIBS += -lQZXing2
+}

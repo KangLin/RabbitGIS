@@ -1,6 +1,7 @@
 #include "DlgAbout.h"
 #include "ui_DlgAbout.h"
 #include "common/Tool.h"
+#include "Common/QRCode.h"
 #include "Version.h"
 #include <QFile>
 #include "Global/Global.h"
@@ -30,7 +31,7 @@ CDlgAbout::CDlgAbout(QWidget *parent) :
     ui->lbCopyright->setText(tr(" Copyright (C) 2014 - %1 KangLin Studio").arg(
                                  QString::number(QDate::currentDate().year())));
     ui->lbQrencode->setText("");
-    //m_Image = CQRCode::QRcodeEncodeString(szHomePage, QImage(":/icon/AppIcon"));
+    m_Image = CQRCode::QRcodeEncodeString(szHomePage, QImage(":/icon/AppIcon"));
     if(m_Image.isNull()) {
         ui->lbQrCodePrompt->setVisible(false);
         ui->lbQrencode->setVisible(false);

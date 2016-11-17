@@ -1,6 +1,6 @@
 [![Logon](Resource/png/AppIcon.png) RabbitGIS ![Logon](Resource/png/AppIcon.png)](https://github.com/KangLin/RabbitGIS)
 
-[![Build status](https://ci.appveyor.com/api/projects/status/qjqrq2pyo4qejxtv?svg=true)](https://ci.appveyor.com/project/KangLin/rabbitgis)
+[![Build status](https://ci.appveyor.com/api/projects/status/qjqrq2pyo4qejxtv?svg=true)](https://ci.appveyor.com/project/KangLin/RabbitGis)
 
 =============================================================================
 
@@ -14,6 +14,17 @@
 ## 编译
 ### 1. 下载预编译或编译第三方依赖库
 #### 1.1. 下载预编译第三方依赖库
+从 https://sourceforge.net/projects/rabbitim-third-library/files/release/ 下载与你编译器和QT版本相同的库。
+
+|编译器|版本号|平台|架构|
+|:--:|:--:|:--:|:--:|
+|VS2015|14|MSVC|x86|
+|VS2013|12|MSVC|x86|
+|gcc|5.3.0|MINGW|x86|
+|gcc|4.9.2|MINGW|x86|
+|gcc|4.9.1|MINGW|x86|
+|gcc|4.8.2|MINGW|x86|
+|gcc|4.8|ANDROID|arm|
 
 #### 2.2. 编译第三方依赖库
 See [rabbitim-third-library](https://github.com/KangLin/rabbitim-third-library)
