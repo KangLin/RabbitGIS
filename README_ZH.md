@@ -18,13 +18,13 @@
 
 |编译器|版本号|平台|架构|
 |:--:|:--:|:--:|:--:|
-|VS2015|14|MSVC|x86|
-|VS2013|12|MSVC|x86|
-|gcc|5.3.0|MINGW|x86|
-|gcc|4.9.2|MINGW|x86|
-|gcc|4.9.1|MINGW|x86|
-|gcc|4.8.2|MINGW|x86|
-|gcc|4.8|ANDROID|arm|
+|VS2015|14|WINDOWS_MSVC|x86|
+|VS2013|12|WINDOWS_MSVC|x86|
+|gcc 5.3.0|530|WINDOWS_MINGW|x86|
+|gcc 4.9.2|492|WINDOWS_MINGW|x86|
+|gcc 4.9.1|491|WINDOWS_MINGW|x86|
+|gcc 4.8.2|482|WINDOWS_MINGW|x86|
+|gcc 4.8|4.8|ANDROID|arm|
 
 #### 2.2. 编译第三方依赖库
 See [rabbitim-third-library](https://github.com/KangLin/rabbitim-third-library)
