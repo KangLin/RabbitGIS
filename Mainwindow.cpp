@@ -153,7 +153,7 @@ int MainWindow::LoadMap(QString szFile)
     } while(0);
     this->statusBar()->showMessage(tr("Ready"));
     m_MapViewer.setCursor(Qt::OpenHandCursor);
-    return 0;
+    return nRet;
 }
 
 void MainWindow::on_actionOpen_O_triggered()
