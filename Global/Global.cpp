@@ -1,11 +1,14 @@
 #include "Global.h"
 #include <QSettings>
+#include <QLocale>
 
 CGlobal::CGlobal(QObject *parent) :
     QObject(parent)
 {
     QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
                    QSettings::IniFormat);
+    m_szLanguage = conf.value("Global/Language",
+                              QLocale::system().name()).toString();
     m_szStyleFile = conf.value(
                 "UI/StyleSheet", ":/qdarkstyle/style.qss").toString();
     m_szStyleMenu = conf.value("UI/MenuStyleSheet", "Dark").toString();
@@ -71,5 +74,19 @@ int CGlobal::SetToolbarVisable(bool bVisable)
     QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
                    QSettings::IniFormat);
     conf.setValue("UI/Visable/Toolbar", m_ToolbarVisable);
+    return 0;
+}
+
+QString CGlobal::GetLanguage()
+{
+    return m_szLanguage;
+}
+
+int CGlobal::SetLanguage(QString szLanguage)
+{
+    m_szLanguage = szLanguage;
+    QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
+                   QSettings::IniFormat);
+    conf.setValue("Global/Language", m_szLanguage);
     return 0;
 }

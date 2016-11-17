@@ -69,33 +69,33 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="17"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="18"/>
         <source>Version:%1.%2.%3.%4</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="24"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="25"/>
         <source>Build date:%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="25"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="26"/>
         <source>Author: KangLin
 Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="28"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="29"/>
         <source>Home page:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="30"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="31"/>
         <source> Copyright (C) 2014 - %1 KangLin Studio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="87"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="88"/>
         <source>Save as</source>
         <translation type="unfinished"></translation>
     </message>
@@ -159,7 +159,7 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="313"/>
+        <location filename="../../Mainwindow.cpp" line="302"/>
         <source>Language(&amp;L)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -169,194 +169,204 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="58"/>
+        <location filename="../../Mainwindow.ui" line="56"/>
+        <source>Map(&amp;A)</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Mainwindow.ui" line="64"/>
         <source>View(&amp;V)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="65"/>
+        <location filename="../../Mainwindow.ui" line="71"/>
         <source>Help(&amp;H)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="90"/>
+        <location filename="../../Mainwindow.ui" line="96"/>
         <source>Open map(&amp;O)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="93"/>
+        <location filename="../../Mainwindow.ui" line="99"/>
         <source>Open map</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="102"/>
+        <location filename="../../Mainwindow.ui" line="108"/>
         <source>Open track(&amp;T)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="105"/>
+        <location filename="../../Mainwindow.ui" line="111"/>
         <source>Open track</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="114"/>
+        <location filename="../../Mainwindow.ui" line="120"/>
         <source>Exit(&amp;E)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="117"/>
+        <location filename="../../Mainwindow.ui" line="123"/>
         <source>Exit</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="129"/>
+        <location filename="../../Mainwindow.ui" line="135"/>
         <source>Measure the distance(&amp;M)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="132"/>
+        <location filename="../../Mainwindow.ui" line="138"/>
         <source>Measure the distance</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="140"/>
+        <location filename="../../Mainwindow.ui" line="146"/>
         <source>StatusBar(&amp;S)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="143"/>
+        <location filename="../../Mainwindow.ui" line="149"/>
         <source>StatusBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="151"/>
+        <location filename="../../Mainwindow.ui" line="157"/>
         <source>ToolBar</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="156"/>
+        <location filename="../../Mainwindow.ui" line="162"/>
         <source>About(&amp;A)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="64"/>
+        <location filename="../../Mainwindow.cpp" line="54"/>
+        <source>Open Map fail</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Mainwindow.cpp" line="86"/>
         <source>Loading map ...... </source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="72"/>
+        <location filename="../../Mainwindow.cpp" line="95"/>
         <source>Load map fail:%1</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="118"/>
+        <location filename="../../Mainwindow.cpp" line="141"/>
         <source>Coordinate:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="132"/>
-        <location filename="../../Mainwindow.cpp" line="144"/>
-        <location filename="../../Mainwindow.cpp" line="258"/>
+        <location filename="../../Mainwindow.cpp" line="156"/>
+        <location filename="../../Mainwindow.cpp" line="169"/>
+        <location filename="../../Mainwindow.cpp" line="284"/>
         <source>Ready</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="138"/>
+        <location filename="../../Mainwindow.cpp" line="163"/>
         <source>Open map file ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="139"/>
+        <location filename="../../Mainwindow.cpp" line="164"/>
         <source>Open map file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="140"/>
+        <location filename="../../Mainwindow.cpp" line="165"/>
         <source>Map file(*.earth);; All(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="150"/>
+        <location filename="../../Mainwindow.cpp" line="175"/>
         <source>Open track file ......</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="153"/>
+        <location filename="../../Mainwindow.cpp" line="178"/>
         <source>Open track file</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="155"/>
+        <location filename="../../Mainwindow.cpp" line="180"/>
         <source>Track file(*.gpx);; nmea file(*.txt *.nmea);; All(*.*)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="228"/>
+        <location filename="../../Mainwindow.cpp" line="254"/>
         <source>Start</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="236"/>
+        <location filename="../../Mainwindow.cpp" line="262"/>
         <source>End</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="276"/>
+        <location filename="../../Mainwindow.cpp" line="305"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="278"/>
+        <location filename="../../Mainwindow.cpp" line="307"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="280"/>
+        <location filename="../../Mainwindow.cpp" line="309"/>
         <source>Chinese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="282"/>
+        <location filename="../../Mainwindow.cpp" line="311"/>
         <source>Chinese(TaiWan)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="392"/>
+        <location filename="../../Mainwindow.cpp" line="430"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="393"/>
+        <location filename="../../Mainwindow.cpp" line="431"/>
         <source>Change language must reset program.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="428"/>
+        <location filename="../../Mainwindow.cpp" line="468"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="429"/>
+        <location filename="../../Mainwindow.cpp" line="469"/>
         <source>System</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="430"/>
+        <location filename="../../Mainwindow.cpp" line="470"/>
         <source>Blue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="431"/>
+        <location filename="../../Mainwindow.cpp" line="471"/>
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="447"/>
+        <location filename="../../Mainwindow.cpp" line="487"/>
         <source>Change Style Sheet(&amp;S)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="493"/>
+        <location filename="../../Mainwindow.cpp" line="533"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>

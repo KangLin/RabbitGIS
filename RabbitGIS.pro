@@ -63,7 +63,8 @@ OTHER_FILES += \
 DISTFILES += \
     LICENSE.md \
     README.md \
-    README_ZH.md
+    README_ZH.md \
+    Data/Map_zh_CN.earth
 
 other.files = LICENSE.md Authors.txt ChangeLog.md
 other.path = $$PREFIX

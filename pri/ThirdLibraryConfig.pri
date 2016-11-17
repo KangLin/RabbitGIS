@@ -54,6 +54,7 @@ LIBS += -L$${THIRD_LIBRARY_PATH}/lib
 android : LIBS += -L$${THIRD_LIBRARY_PATH}/libs/$${ANDROID_TARGET_ARCH}
 LIBS += $$LDFLAGS
 CONFIG(debug, debug|release) {
+    DEFINES += DEBUG
     LIBS +=  -L$${THIRD_LIBRARY_PATH}/lib/Debug
 } else {
     LIBS +=  -L$${THIRD_LIBRARY_PATH}/lib/Release

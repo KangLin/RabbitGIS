@@ -9,37 +9,37 @@
 	     />
     </options>
    
-    <image name="google map and image" driver="xyz" min_level="0" max_level="18" visible="true">
+    <image name="google影像交通地图" driver="xyz" min_level="0" max_level="18" visible="true">
         <url>http://www.google.cn/maps/vt?lyrs=y&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
         <profile>spherical-mercator</profile>
         <cache_policy usage="read_write" />
     </image>
 
-    <image name="google image" driver="xyz" min_level="0" max_level="18" visible="false">
+    <image name="google影像" driver="xyz" min_level="0" max_level="18" visible="false">
         <url>http://www.google.cn/maps/vt?lyrs=s&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
         <profile>spherical-mercator</profile>
 	<cache_policy usage="read_write" />
     </image>
 
-    <image name="google map" driver="xyz" min_level="0" max_level="18" visible="false">
+    <image name="google交通地图" driver="xyz" min_level="0" max_level="18" visible="false">
         <url>http://www.google.cn/maps/vt?lyrs=r&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
         <profile>spherical-mercator</profile>
 	<cache_policy usage="read_write" />
     </image>
       
-    <image name="baidu" driver="xyz" visible="false">
+    <image name="百度地图" driver="xyz" visible="false">
 	<url>http://online[0-9].map.bdimg.com/onlinelabel/?qt=tile&amp;x={x}&amp;y={y}&amp;z={z}</url>
         <profile>spherical-mercator</profile>
 	<cache_policy usage="read_write" />
     </image>
 
-    <image name="amap" driver="xyz" visible="false">
+    <image name="高德地图" driver="xyz" visible="false">
 	<url>http://wprd0[1-4].is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;style=7&amp;x={x}&amp;y={y}&amp;z={z}&amp;scl=1&amp;ltype=4</url>
         <profile>spherical-mercator</profile>
 	<cache_policy usage="read_write" />
     </image>
     
-    <image  name="amap-1" driver="xyz" visible="false" profile="global-mercator">
+    <image  name="高德地图-1" driver="xyz" visible="false" profile="global-mercator">
       <url>"http://webst0[1234].is.autonavi.com/appmaptile?style=6&amp;x={x}&amp;y={y}&amp;z={z}"</url>
       <cache_policy usage="read_write" />
     </image>

@@ -23,9 +23,11 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     m_ActionGroupTranslator(this),
     m_ActionGroupStyle(this),
+    m_ActionGroupMap(this),
     m_pMeasureTool(NULL),
     ui(new Ui::MainWindow)
 {
+    int nRet = 0;
     ui->setupUi(this);
     LoadTranslate();
     LoadStyle();
@@ -40,7 +42,20 @@ MainWindow::MainWindow(QWidget *parent) :
     viewer->setSceneData(m_Root);
     this->setCentralWidget(&m_MapViewer);
     m_MapViewer.setCursor(Qt::OpenHandCursor);
-    LoadMap(CGlobalDir::Instance()->GetApplicationEarthFile());
+
+    nRet = LoadMap(CGlobalDir::Instance()->GetDirData()
+                   + QDir::separator()
+                   + "Map_"
+                   + CGlobal::Instance()->GetLanguage()
+                   + ".earth");
+    if(nRet)
+        nRet = LoadMap(CGlobalDir::Instance()->GetApplicationEarthFile());
+    if(nRet)
+        statusBar()->showMessage(tr("Open Map fail"));
+    
+    bool check = connect(ui->menuMap_A, SIGNAL(aboutToShow()),
+            SLOT(slotMenuMapShow()));
+    Q_ASSERT(check);
 }
 
 MainWindow::~MainWindow()
@@ -54,8 +69,12 @@ MainWindow::~MainWindow()
     conf.setValue("UI/MainWindow/width", this->width());
     conf.setValue("UI/MainWindow/height", this->height());
 #endif
-        
-    this->ClearTranslate();
+
+    ui->menuMap_A->disconnect();
+    ClearMenuStyles();
+    ClearTranslate();
+    ClearMenuTranslate();
+    ClearMenuMap();
     delete ui;
 }
 
@@ -70,7 +89,7 @@ int MainWindow::LoadMap(QString szFile)
         if(!mapNode)
         {
             LOG_MODEL_ERROR("MainWindow", "Open node file fail: %s",
-                            szFile.toStdString());
+                            szFile.toStdString().c_str());
             this->statusBar()->showMessage(tr("Load map fail:%1").arg(szFile));
             nRet = -1;
             break;
@@ -130,6 +149,7 @@ int MainWindow::LoadMap(QString szFile)
         pCanvas->addControl(m_MouseCanvasHBox.get());
 
         m_Root->addChild(m_MapNode);
+        
     } while(0);
     this->statusBar()->showMessage(tr("Ready"));
     m_MapViewer.setCursor(Qt::OpenHandCursor);
@@ -276,16 +296,18 @@ void MainWindow::changeEvent(QEvent *e)
 
 int MainWindow::InitMenuTranslate()
 {
-    m_MenuTranslate.clear();
+    m_MenuTranslate.setIcon(QIcon(":/icon/Language"));
+    m_MenuTranslate.setTitle(tr("Language(&L)"));
+    ui->menuOptions->addMenu(&m_MenuTranslate);
     m_ActionTranslator["Default"] = m_MenuTranslate.addAction(
                 QIcon(":/icon/Language"), tr("Default"));
-    m_ActionTranslator["English"] = m_MenuTranslate.addAction(
+    m_ActionTranslator["en"] = m_MenuTranslate.addAction(
                 QIcon(":/icon/English"), tr("English"));
     m_ActionTranslator["zh_CN"] = m_MenuTranslate.addAction(
                 QIcon(":/icon/China"), tr("Chinese"));
     m_ActionTranslator["zh_TW"] = m_MenuTranslate.addAction(
                 QIcon(":/icon/China"), tr("Chinese(TaiWan)"));
-
+    
     QMap<QString, QAction*>::iterator it;
     for(it = m_ActionTranslator.begin(); it != m_ActionTranslator.end(); it++)
     {
@@ -311,12 +333,29 @@ int MainWindow::InitMenuTranslate()
                         "MainWindow::InitMenuTranslate setchecked locale:%s",
                         szLocale.toStdString().c_str());
         pAct->setChecked(true);
+        m_MenuTranslate.setIcon(pAct->icon());
         LOG_MODEL_DEBUG("MainWindow",
                         "MainWindow::InitMenuTranslate setchecked end");
     }
-    m_MenuTranslate.setIcon(QIcon(":/icon/Language"));
-    m_MenuTranslate.setTitle(tr("Language(&L)"));
-    ui->menuOptions->addMenu(&m_MenuTranslate);
+    
+    return 0;
+}
+
+int MainWindow::ClearMenuTranslate()
+{
+    QMap<QString, QAction*>::iterator it;
+    for(it = m_ActionTranslator.begin(); it != m_ActionTranslator.end(); it++)
+    {
+        m_ActionGroupTranslator.removeAction(it.value());
+    }
+    m_ActionGroupTranslator.disconnect();
+    m_ActionTranslator.clear();
+    m_MenuTranslate.clear();    
+
+    LOG_MODEL_DEBUG("MainWindow",
+                    "MainWindow::ClearMenuTranslate m_ActionTranslator size:%d",
+                    m_ActionTranslator.size());
+    
     return 0;
 }
 
@@ -340,10 +379,7 @@ int MainWindow::LoadTranslate(QString szLocale)
 {
     if(szLocale.isEmpty())
     {
-        QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
-                       QSettings::IniFormat);
-        szLocale = conf.value("Global/Language",
-                              QLocale::system().name()).toString();
+        szLocale = CGlobal::Instance()->GetLanguage();
     }
 
     if("Default" == szLocale)
@@ -385,12 +421,7 @@ void MainWindow::slotActionGroupTranslateTriggered(QAction *pAct)
         if(it.value() == pAct)
         {
             QString szLocale = it.key();
-            QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
-                           QSettings::IniFormat);
-            conf.setValue("Global/Language", szLocale);
-            LOG_MODEL_DEBUG("MainWindow",
-                            "MainWindow::slotActionGroupTranslateTriggered:%s",
-                            it.key().toStdString().c_str());
+            CGlobal::Instance()->SetLanguage(szLocale);
             LoadTranslate(it.key());
             pAct->setChecked(true);
             InitMenuTranslate();
@@ -431,12 +462,12 @@ void MainWindow::on_actionMeasure_the_distance_M_triggered()
 
 int MainWindow::InitMenuStyles()
 {
-    m_MenuStyle.clear();
+    QMap<QString, QAction*>::iterator it;
     m_ActionStyles["Custom"] = m_MenuStyle.addAction(tr("Custom"));
     m_ActionStyles["System"] = m_MenuStyle.addAction(tr("System"));
     m_ActionStyles["Blue"] = m_MenuStyle.addAction(tr("Blue"));
     m_ActionStyles["Dark"] = m_MenuStyle.addAction(tr("Dark"));
-    QMap<QString, QAction*>::iterator it;
+    
     for(it = m_ActionStyles.begin(); it != m_ActionStyles.end(); it++)
     {
         it.value()->setCheckable(true);
@@ -575,4 +606,63 @@ void MainWindow::on_actionAbout_A_triggered()
 {
     CDlgAbout about(this);
     about.exec();
+}
+
+void MainWindow::slotActionGroupMapTriggered(QAction *act)
+{
+    if(!m_MapNode.valid())
+        return;
+    
+    osg::ref_ptr<osgEarth::Map> map = m_MapNode->getMap();
+    int i = 0;
+    std::list<QAction*>::iterator it;
+    for(it = m_ActionMap.begin(); it != m_ActionMap.end(); it++)
+    {
+        if(*it == act)
+        {
+            map->getImageLayerAt(i)->setVisible(true);
+        }
+        else
+            map->getImageLayerAt(i)->setVisible(false);
+        i++;
+    }
+}
+
+void MainWindow::slotMenuMapShow()
+{
+    if(!m_MapNode.valid())
+        return;
+
+    ClearMenuMap();
+    osg::ref_ptr<osgEarth::Map> map = m_MapNode->getMap();
+    int num = map->getNumImageLayers();
+    for(int i = 0; i < num; i++)
+    {
+        osg::ref_ptr<osgEarth::ImageLayer> image = map->getImageLayerAt(i);
+        QAction* action =
+                ui->menuMap_A->addAction(QString(image->getName().c_str()));
+        action->setCheckable(true);
+        action->setChecked(image->getVisible());
+        m_ActionMap.push_back(action);
+        m_ActionGroupMap.addAction(action);
+    }
+    bool check = connect(&m_ActionGroupMap, SIGNAL(triggered(QAction*)),
+                         SLOT(slotActionGroupMapTriggered(QAction*)));
+    Q_ASSERT(check);
+    
+    return;
+}
+
+void MainWindow::ClearMenuMap()
+{
+    m_ActionGroupMap.disconnect();
+    std::list<QAction*>::iterator it;
+    for(it = m_ActionMap.begin(); it != m_ActionMap.end(); it++)
+    {
+        m_ActionGroupMap.removeAction(*it);
+    }
+    m_ActionMap.clear();
+    ui->menuMap_A->clear();
+        
+    return;
 }

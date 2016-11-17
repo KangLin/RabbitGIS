@@ -43,6 +43,12 @@ private:
     bool m_ToolbarVisable;
 
 public:
+    QString GetLanguage();
+    int SetLanguage(QString szLanguage);
+private:
+    QString m_szLanguage;
+
+public:
     QString GetStyle();
     QString GetStyleMenu();
     int SetStyleMenu(QString szMenu, QString szFile);

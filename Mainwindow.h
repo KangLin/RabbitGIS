@@ -25,9 +25,9 @@ public:
 
 private:
     int InitToolbar();
-    
+
+    // Language menu    
 private:
-    // Language
     int LoadTranslate(QString szLocale = QString());
     int ClearTranslate();
     int InitMenuTranslate();
@@ -40,8 +40,8 @@ private:
 private slots:
     void slotActionGroupTranslateTriggered(QAction* pAct);
     
-private:
     //Style menu
+private:
     QMenu m_MenuStyle;
     QActionGroup m_ActionGroupStyle;
     QMap<QString, QAction*> m_ActionStyles;
@@ -51,6 +51,15 @@ private:
     int LoadStyle();
 private slots:
     void slotActionGroupStyleTriggered(QAction* act);
+
+    //Map menu
+private:
+    QActionGroup m_ActionGroupMap;
+    std::list<QAction*> m_ActionMap;
+    void ClearMenuMap();
+private slots:
+    void slotActionGroupMapTriggered(QAction* act);
+    void slotMenuMapShow();
     
 private slots:
     void changeEvent(QEvent *e);
