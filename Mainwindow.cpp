@@ -46,7 +46,9 @@ MainWindow::MainWindow(QWidget *parent) :
     nRet = LoadMap(CGlobalDir::Instance()->GetDirData()
                    + QDir::separator()
                    + "Map_"
-                   + CGlobal::Instance()->GetLanguage()
+                   + (CGlobal::Instance()->GetLanguage() == "Default" 
+                        ? QLocale::system().name()
+                        : CGlobal::Instance()->GetLanguage())
                    + ".earth");
     if(nRet)
         nRet = LoadMap(CGlobalDir::Instance()->GetApplicationEarthFile());
@@ -323,9 +325,7 @@ int MainWindow::InitMenuTranslate()
                         SLOT(slotActionGroupTranslateTriggered(QAction*)));
     Q_ASSERT(check);
 
-    QSettings conf(CGlobalDir::Instance()->GetApplicationConfigureFile(),
-                   QSettings::IniFormat);
-    QString szLocale = conf.value("Global/Language", "Default").toString();
+    QString szLocale = CGlobal::Instance()->GetLanguage();
     QAction* pAct = m_ActionTranslator[szLocale];
     if(pAct)
     {
