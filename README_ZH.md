@@ -16,15 +16,17 @@
 #### 1.1. 下载预编译第三方依赖库
 从 https://sourceforge.net/projects/rabbitim-third-library/files/release/ 下载与你编译器和QT版本相同的库。
 
+文件格式： RabbitIm_$(平台)$(版本号)_$(架构)_$(QT 版本).zip
+
 |编译器|版本号|平台|架构|
 |:--:|:--:|:--:|:--:|
-|VS2015|14|WINDOWS_MSVC|x86|
-|VS2013|12|WINDOWS_MSVC|x86|
-|gcc 5.3.0|530|WINDOWS_MINGW|x86|
-|gcc 4.9.2|492|WINDOWS_MINGW|x86|
-|gcc 4.9.1|491|WINDOWS_MINGW|x86|
-|gcc 4.8.2|482|WINDOWS_MINGW|x86|
-|gcc 4.8|4.8|ANDROID|arm|
+|VS2015|14|windows_msvc|x86|
+|VS2013|12|windows_msvc|x86|
+|gcc 5.3.0|530|windows_mingw|x86|
+|gcc 4.9.2|492|windows_mingw|x86|
+|gcc 4.9.1|491|windows_mingw|x86|
+|gcc 4.8.2|482|windows_mingw|x86|
+|gcc 4.8|4.8|android|arm|
 
 #### 2.2. 编译第三方依赖库
 See [rabbitim-third-library](https://github.com/KangLin/rabbitim-third-library)
