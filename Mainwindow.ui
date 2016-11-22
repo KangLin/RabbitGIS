@@ -37,9 +37,11 @@
     <property name="title">
      <string>File(&amp;F)</string>
     </property>
-    <addaction name="actionOpen_O"/>
+    <addaction name="actionOpen_Project"/>
+    <addaction name="actionSava_project_S"/>
     <addaction name="separator"/>
     <addaction name="actionOpen_track_T"/>
+    <addaction name="separator"/>
     <addaction name="actionExit_E"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
@@ -91,16 +93,19 @@
    </attribute>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
-  <action name="actionOpen_O">
+  <action name="actionOpen_Project">
    <property name="icon">
     <iconset resource="Resource/Resource.qrc">
-     <normaloff>:/icon/Map</normaloff>:/icon/Map</iconset>
+     <normaloff>:/icon/OpenFile</normaloff>:/icon/OpenFile</iconset>
    </property>
    <property name="text">
-    <string>Open map(&amp;O)</string>
+    <string>Open project(&amp;O)</string>
    </property>
    <property name="toolTip">
-    <string>Open map</string>
+    <string>Open project file</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
    </property>
   </action>
   <action name="actionOpen_track_T">
@@ -147,7 +152,7 @@
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>StatusBar(&amp;S)</string>
+    <string>StatusBar</string>
    </property>
    <property name="toolTip">
     <string>StatusBar</string>
@@ -164,6 +169,24 @@
   <action name="actionAbout_A">
    <property name="text">
     <string>About(&amp;A)</string>
+   </property>
+   <property name="toolTip">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionSava_project_S">
+   <property name="icon">
+    <iconset resource="Resource/Resource.qrc">
+     <normaloff>:/icon/Save</normaloff>:/icon/Save</iconset>
+   </property>
+   <property name="text">
+    <string>Sava project(&amp;S)</string>
+   </property>
+   <property name="toolTip">
+    <string>Sava project</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
    </property>
   </action>
  </widget>

@@ -63,18 +63,17 @@ private slots:
     
 private slots:
     void changeEvent(QEvent *e);
-    void on_actionOpen_O_triggered();
+    void on_actionOpen_Project_triggered();
+    void on_actionSava_project_S_triggered();
     void on_actionOpen_track_T_triggered();
     void on_actionExit_E_triggered();
     void on_actionMeasure_the_distance_M_triggered();
     void on_actionStatusBar_S_triggered();
-    
     void on_actionToolBar_triggered();
-    
     void on_actionAbout_A_triggered();
     
 private:
-    int LoadMap(QString szFile);
+    int LoadProject(QString szFile);
     
 private:
     Ui::MainWindow *ui;

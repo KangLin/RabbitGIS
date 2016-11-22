@@ -29,7 +29,7 @@
 |gcc 4.8|4.8|android|arm|
 
 #### 2.2. 编译第三方依赖库
-See [rabbitim-third-library](https://github.com/KangLin/rabbitim-third-library)
+See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
 
 ### 2. 设置环境变量
 #### 2.1 设置编译环境变量

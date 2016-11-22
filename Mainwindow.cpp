@@ -1,5 +1,5 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "Mainwindow.h"
+#include "ui_Mainwindow.h"
 #include <vector>
 #include <QFileDialog>
 #include <QDebug>
@@ -18,6 +18,7 @@
 #include <osgEarthUtil/EarthManipulator>
 #include <osgEarthAnnotation/PlaceNode>
 #include <osgEarthUtil/LatLongFormatter>
+#include <osgDB/WriteFile>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -43,7 +44,7 @@ MainWindow::MainWindow(QWidget *parent) :
     this->setCentralWidget(&m_MapViewer);
     m_MapViewer.setCursor(Qt::OpenHandCursor);
 
-    nRet = LoadMap(CGlobalDir::Instance()->GetDirData()
+    nRet = LoadProject(CGlobalDir::Instance()->GetDirData()
                    + QDir::separator()
                    + "Map_"
                    + (CGlobal::Instance()->GetLanguage() == "Default" 
@@ -51,9 +52,9 @@ MainWindow::MainWindow(QWidget *parent) :
                         : CGlobal::Instance()->GetLanguage())
                    + ".earth");
     if(nRet)
-        nRet = LoadMap(CGlobalDir::Instance()->GetApplicationEarthFile());
+        nRet = LoadProject(CGlobalDir::Instance()->GetApplicationEarthFile());
     if(nRet)
-        statusBar()->showMessage(tr("Open Map fail"));
+        statusBar()->showMessage(tr("Open project fail"));
     
     bool check = connect(ui->menuMap_A, SIGNAL(aboutToShow()),
             SLOT(slotMenuMapShow()));
@@ -80,10 +81,10 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-int MainWindow::LoadMap(QString szFile)
+int MainWindow::LoadProject(QString szFile)
 {
     int nRet = 0;
-    this->statusBar()->showMessage(tr("Loading map ...... "));
+    this->statusBar()->showMessage(tr("Loading project ...... "));
     m_MapViewer.setCursor(Qt::BusyCursor);
     do {
         osg::Node* mapNode = osgDB::readNodeFile(
@@ -92,7 +93,7 @@ int MainWindow::LoadMap(QString szFile)
         {
             LOG_MODEL_ERROR("MainWindow", "Open node file fail: %s",
                             szFile.toStdString().c_str());
-            this->statusBar()->showMessage(tr("Load map fail:%1").arg(szFile));
+            this->statusBar()->showMessage(tr("Load project fail:%1").arg(szFile));
             nRet = -1;
             break;
         }
@@ -158,16 +159,35 @@ int MainWindow::LoadMap(QString szFile)
     return nRet;
 }
 
-void MainWindow::on_actionOpen_O_triggered()
+void MainWindow::on_actionOpen_Project_triggered()
 {
-    this->statusBar()->showMessage(tr("Open map file ......"));
-    QString szFile = QFileDialog::getOpenFileName(this, tr("Open map file"), 
-                             QString(), tr("Map file(*.earth);; All(*.*)"));
+    this->statusBar()->showMessage(tr("Open project file ......"));
+    QString szFile = QFileDialog::getOpenFileName(this, tr("Open project file"), 
+                             QString(), tr("Project file(*.earth);; All(*.*)"));
     if(!szFile.isEmpty())
-        LoadMap(szFile);
+        LoadProject(szFile);
 
     this->statusBar()->showMessage(tr("Ready"));
     return;
+}
+
+void MainWindow::on_actionSava_project_S_triggered()
+{
+    this->statusBar()->showMessage(tr("Save project to file ......"));
+    QString szFile = QFileDialog::getSaveFileName(this, tr("Open project file"), 
+                             QString(), tr("Project file(*.earth);; All(*.*)"));
+    if(!szFile.isEmpty())
+    {
+        if(!osgDB::writeNodeFile(*m_Root, szFile.toStdString()))
+        {
+            LOG_MODEL_ERROR("MainWindow", "writeNodeFile fail:%s",
+                            szFile.toStdString().c_str());
+        }
+    }
+
+    this->statusBar()->showMessage(tr("Ready"));
+    return;
+    
 }
 
 void MainWindow::on_actionOpen_track_T_triggered()
@@ -455,8 +475,11 @@ void MainWindow::on_actionMeasure_the_distance_M_triggered()
     {
         m_MapViewer.setCursor(Qt::OpenHandCursor);
         m_pMeasureTool->close();
-        delete m_pMeasureTool;
-        m_pMeasureTool = NULL;
+        if(m_pMeasureTool)
+        {
+            delete m_pMeasureTool;
+            m_pMeasureTool = NULL;
+        }
     }
 }
 
@@ -595,7 +618,8 @@ int MainWindow::InitToolbar()
     ui->mainToolBar->setVisible(CGlobal::Instance()->GetToolbarVisable());
     ui->actionToolBar->setChecked(CGlobal::Instance()->GetToolbarVisable());
     
-    ui->mainToolBar->addAction(ui->actionOpen_O);
+    ui->mainToolBar->addAction(ui->actionOpen_Project);
+    ui->mainToolBar->addAction(ui->actionSava_project_S);
     ui->mainToolBar->addAction(ui->actionOpen_track_T);
     ui->mainToolBar->addSeparator();
     ui->mainToolBar->addAction(ui->actionMeasure_the_distance_M);

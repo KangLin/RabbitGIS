@@ -10,6 +10,11 @@
         <file alias="Stype">png/stype.png</file>
         <file alias="Measure">png/Measure.png</file>
         <file alias="China">png/China.png</file>
+        <file alias="Earth">png/Earth.png</file>
+        <file alias="OpenEarth">png/OpenEarth.png</file>
+        <file alias="Open">png/Open.png</file>
+        <file alias="OpenFile">png/open-file.png</file>
+        <file alias="Save">png/Save.png</file>
     </qresource>
     <qresource prefix="/sink">
         <file alias="Blue">sink/blue.qss</file>

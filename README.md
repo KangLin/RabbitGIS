@@ -28,7 +28,7 @@ File format: RabbitIm_$(Platform)$(Version)_$(Architecture)_$(QT_VERSION).zip
 |gcc 4.8|4.8|android|arm|
 
 #### 2.2. compiled third-party libraries
-See [rabbitim-third-library](https://github.com/KangLin/rabbitim-third-library)
+See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
 
 ### 2. Set up the compilation environment
 #### 2.1 Set up build environment

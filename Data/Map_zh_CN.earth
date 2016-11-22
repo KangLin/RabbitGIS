@@ -1,47 +1,85 @@
-<map name="google" type="geocentric" version="2">
-    <options type="geocentric">
-    <cache path="cache_dir" type="filesystem" />
-    <terrain color="#ffffff00" 
-	     min_lod="0"
-             max_lod="18"
-	     first_lod="0"
-	     blending="true"
-	     />
-    </options>
-   
-    <image name="google影像交通地图" driver="xyz" min_level="0" max_level="18" visible="true">
-        <url>http://www.google.cn/maps/vt?lyrs=y&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
-        <profile>spherical-mercator</profile>
-        <cache_policy usage="read_write" />
-    </image>
-
-    <image name="google影像" driver="xyz" min_level="0" max_level="18" visible="false">
-        <url>http://www.google.cn/maps/vt?lyrs=s&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
-        <profile>spherical-mercator</profile>
-	<cache_policy usage="read_write" />
-    </image>
-
-    <image name="google交通地图" driver="xyz" min_level="0" max_level="18" visible="false">
-        <url>http://www.google.cn/maps/vt?lyrs=r&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
-        <profile>spherical-mercator</profile>
-	<cache_policy usage="read_write" />
-    </image>
-      
-    <image name="百度地图" driver="xyz" visible="false">
-	<url>http://online[0-9].map.bdimg.com/onlinelabel/?qt=tile&amp;x={x}&amp;y={y}&amp;z={z}</url>
-        <profile>spherical-mercator</profile>
-	<cache_policy usage="read_write" />
-    </image>
-
-    <image name="高德地图" driver="xyz" visible="false">
-	<url>http://wprd0[1-4].is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;style=7&amp;x={x}&amp;y={y}&amp;z={z}&amp;scl=1&amp;ltype=4</url>
-        <profile>spherical-mercator</profile>
-	<cache_policy usage="read_write" />
-    </image>
-    
-    <image  name="高德地图-1" driver="xyz" visible="false" profile="global-mercator">
-      <url>"http://webst0[1234].is.autonavi.com/appmaptile?style=6&amp;x={x}&amp;y={y}&amp;z={z}"</url>
-      <cache_policy usage="read_write" />
-    </image>
-
+<?xml version="1.0" ?>
+<map>
+  <version>2</version>
+  <options>
+    <name>project</name>
+    <cache>
+      <path>cache_dir</path>
+      <type>filesystem</type>
+    </cache>
+    <type>geocentric</type>
+    <terrain>
+      <blending>true</blending>
+      <color>#ffffff00</color>
+      <first_lod>0</first_lod>
+      <max_lod>18</max_lod>
+      <min_lod>0</min_lod>
+    </terrain>
+  </options>
+  <image>
+    <max_level>18</max_level>
+    <min_level>0</min_level>
+    <visible>true</visible>
+    <url>http://www.google.cn/maps/vt?lyrs=y&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
+    <cache_policy>
+      <usage>read_write</usage>
+    </cache_policy>
+    <profile>spherical-mercator</profile>
+    <name>google影像交通地图</name>
+    <driver>xyz</driver>
+  </image>
+  <image>
+    <max_level>18</max_level>
+    <min_level>0</min_level>
+    <visible>false</visible>
+    <url>http://www.google.cn/maps/vt?lyrs=s&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
+    <cache_policy>
+      <usage>read_write</usage>
+    </cache_policy>
+    <profile>spherical-mercator</profile>
+    <name>google影像</name>
+    <driver>xyz</driver>
+  </image>
+  <image>
+    <max_level>18</max_level>
+    <min_level>0</min_level>
+    <visible>false</visible>
+    <url>http://www.google.cn/maps/vt?lyrs=r&amp;gl=cn&amp;x={x}&amp;y={y}&amp;z={z}</url>
+    <cache_policy>
+      <usage>read_write</usage>
+    </cache_policy>
+    <profile>spherical-mercator</profile>
+    <name>google交通地图</name>
+    <driver>xyz</driver>
+  </image>
+  <image>
+    <visible>false</visible>
+    <url>http://online[0-9].map.bdimg.com/onlinelabel/?qt=tile&amp;x={x}&amp;y={y}&amp;z={z}</url>
+    <cache_policy>
+      <usage>read_write</usage>
+    </cache_policy>
+    <profile>spherical-mercator</profile>
+    <name>百度地图</name>
+    <driver>xyz</driver>
+  </image>
+  <image>
+    <visible>false</visible>
+    <url>http://wprd0[1-4].is.autonavi.com/appmaptile?lang=zh_cn&amp;size=1&amp;style=7&amp;x={x}&amp;y={y}&amp;z={z}&amp;scl=1&amp;ltype=4</url>
+    <cache_policy>
+      <usage>read_write</usage>
+    </cache_policy>
+    <profile>spherical-mercator</profile>
+    <name>高德地图</name>
+    <driver>xyz</driver>
+  </image>
+  <image>
+    <visible>false</visible>
+    <url>Debug/Data/&quot;http:/webst0[1234].is.autonavi.com/appmaptile?style=6&amp;x={x}&amp;y={y}&amp;z={z}&quot;</url>
+    <cache_policy>
+      <usage>read_write</usage>
+    </cache_policy>
+    <profile>global-mercator</profile>
+    <name>高德地图-1</name>
+    <driver>xyz</driver>
+  </image>
 </map>
