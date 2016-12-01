@@ -36,6 +36,8 @@ myPackagesExist(QZXing) {
     DEFINES *= RABBITGIS_USE_QZXING
     MYPKGCONFIG *= QZXing
 } else : msvc {
-    DEFINES *= RABBITGIS_USE_QZXING
-    LIBS += -lQZXing2
+    exists("$${THIRD_LIBRARY_PATH}/include/QZXing.h"){
+        DEFINES *= RABBITGIS_USE_QZXING
+        LIBS += -lQZXing2
+    }
 }

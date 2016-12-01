@@ -222,48 +222,48 @@ Email:kl222@126.com</source>
         <translation>退出</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="141"/>
+        <location filename="../../Mainwindow.ui" line="144"/>
         <source>Measure the distance(&amp;M)</source>
         <translation>测量距离(&amp;M)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="144"/>
+        <location filename="../../Mainwindow.ui" line="147"/>
         <source>Measure the distance</source>
         <translation>测量距离</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="171"/>
+        <location filename="../../Mainwindow.ui" line="174"/>
         <source>About</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="176"/>
+        <location filename="../../Mainwindow.ui" line="183"/>
         <source>Sava project(&amp;S)</source>
         <translation>保存工程(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="179"/>
+        <location filename="../../Mainwindow.ui" line="186"/>
         <source>Sava project</source>
         <translation>保存工程</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="182"/>
+        <location filename="../../Mainwindow.ui" line="189"/>
         <source>Ctrl+S</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="152"/>
         <location filename="../../Mainwindow.ui" line="155"/>
+        <location filename="../../Mainwindow.ui" line="158"/>
         <source>StatusBar</source>
         <translation>状态栏</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="163"/>
+        <location filename="../../Mainwindow.ui" line="166"/>
         <source>ToolBar</source>
         <translation>工具栏</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.ui" line="168"/>
+        <location filename="../../Mainwindow.ui" line="171"/>
         <source>About(&amp;A)</source>
         <translation>关于(&amp;A)</translation>
     </message>
@@ -367,32 +367,32 @@ Email:kl222@126.com</source>
         <translation>改变语言必须重启程序。</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="486"/>
+        <location filename="../../Mainwindow.cpp" line="489"/>
         <source>Custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="487"/>
+        <location filename="../../Mainwindow.cpp" line="490"/>
         <source>System</source>
         <translation>系统</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="488"/>
+        <location filename="../../Mainwindow.cpp" line="491"/>
         <source>Blue</source>
         <translation>蓝色</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="489"/>
+        <location filename="../../Mainwindow.cpp" line="492"/>
         <source>Dark</source>
         <translation>暗色</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="505"/>
+        <location filename="../../Mainwindow.cpp" line="508"/>
         <source>Change Style Sheet(&amp;S)</source>
         <translation>改变样式(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="551"/>
+        <location filename="../../Mainwindow.cpp" line="554"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
