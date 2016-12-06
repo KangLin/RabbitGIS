@@ -642,12 +642,13 @@ void MainWindow::slotActionGroupMapTriggered(QAction *act)
     std::list<QAction*>::iterator it;
     for(it = m_ActionMap.begin(); it != m_ActionMap.end(); it++)
     {
+        osgEarth::ImageLayer* layer = map->getLayerAt<osgEarth::ImageLayer>(i);
         if(*it == act)
         {
-            map->getImageLayerAt(i)->setVisible(true);
+            layer->setVisible(true);
         }
         else
-            map->getImageLayerAt(i)->setVisible(false);
+            layer->setVisible(false);
         i++;
     }
 }
@@ -659,10 +660,12 @@ void MainWindow::slotMenuMapShow()
 
     ClearMenuMap();
     osg::ref_ptr<osgEarth::Map> map = m_MapNode->getMap();
-    int num = map->getNumImageLayers();
-    for(int i = 0; i < num; i++)
+    std::vector< osg::ref_ptr<osgEarth::ImageLayer> > v;
+    map->getLayers(v);
+    std::vector< osg::ref_ptr<osgEarth::ImageLayer> >::iterator it;
+    for(it = v.begin(); it != v.end(); it++)
     {
-        osg::ref_ptr<osgEarth::ImageLayer> image = map->getImageLayerAt(i);
+        osg::ref_ptr<osgEarth::ImageLayer> image = *it;
         QAction* action =
                 ui->menuMap_A->addAction(QString(image->getName().c_str()));
         action->setCheckable(true);

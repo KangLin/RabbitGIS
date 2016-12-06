@@ -74,12 +74,22 @@
   </image>
   <image>
     <visible>false</visible>
-    <url>Debug/Data/&quot;http:/webst0[1234].is.autonavi.com/appmaptile?style=6&amp;x={x}&amp;y={y}&amp;z={z}&quot;</url>
+    <url>http:/webst0[1234].is.autonavi.com/appmaptile?style=6&amp;x={x}&amp;y={y}&amp;z={z}&quot;</url>
     <cache_policy>
       <usage>read_write</usage>
     </cache_policy>
     <profile>global-mercator</profile>
     <name>高德地图-1</name>
     <driver>xyz</driver>
+  </image>
+  <image>
+    <enabled>false</enabled>
+    <url>http://services.arcgisonline.com/arcgis/rest/services/World_Imagery/MapServer/</url>
+    <cache_policy>
+      <usage>read_write</usage>
+    </cache_policy>
+    <nodata_image>http://services.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/100/0/0.jpeg</nodata_image>
+    <name>arcgis影像</name>
+    <driver>arcgis</driver>
   </image>
 </map>
