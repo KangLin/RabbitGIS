@@ -9,7 +9,9 @@ environment:
     QT_VERSION: qt5.7
     QT_ROOT: /C/Qt/5.7/msvc2015
     AUTOBUILD_ARCH: x86
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_windows_msvc14_x86_qt5.7.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_msvc14_x86_qt5.7.tar.gz/download
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
   - BUILD_TARGERT: windows_msvc
     GENERATORS: "Visual Studio 14 2015"
@@ -17,8 +19,10 @@ environment:
     QT_VERSION: qt5.6.1
     QT_ROOT: /C/Qt/5.6/msvc2015
     AUTOBUILD_ARCH: x86
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_windows_msvc14_x86_qt5.6.1.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_msvc14_x86_qt5.6.1.tar.gz/download
     RABBITIM_USE_REPOSITORIES: "FALSE"
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
   - BUILD_TARGERT: windows_msvc
     GENERATORS: "Visual Studio 12 2013"
@@ -26,7 +30,9 @@ environment:
     QT_VERSION: qt5.7
     QT_ROOT: /C/Qt/5.7/msvc2013
     AUTOBUILD_ARCH: x86 
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_windows_msvc12_x86_qt5.7.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_msvc12_x86_qt5.7.tar.gz/download
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
   - BUILD_TARGERT: windows_msvc
     GENERATORS: "Visual Studio 12 2013"
@@ -34,17 +40,21 @@ environment:
     QT_VERSION: qt5.6.1
     QT_ROOT: /C/Qt/5.6/msvc2013
     AUTOBUILD_ARCH: x86
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_windows_msvc12_x86_qt5.6.1.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_msvc12_x86_qt5.6.1.tar.gz/download
     RABBITIM_USE_REPOSITORIES: "FALSE"
- 
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
+
   - BUILD_TARGERT: windows_msvc
     GENERATORS: "Visual Studio 12 2013"
     TOOLCHAIN_VERSION: 12
     QT_VERSION: qt5.5
     QT_ROOT: /C/Qt/5.5/msvc2013
     AUTOBUILD_ARCH: x86
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_windows_msvc12_x86_qt5.5.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_msvc12_x86_qt5.5.tar.gz/download
     RABBITIM_USE_REPOSITORIES: "FALSE"
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
   - BUILD_TARGERT: windows_msvc
     GENERATORS: "Visual Studio 12 2013"
@@ -52,81 +62,101 @@ environment:
     QT_VERSION: qt5.4
     QT_ROOT: /C/Qt/5.4/msvc2013_opengl
     AUTOBUILD_ARCH: x86
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_windows_msvc12_x86_qt5.4.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_msvc12_x86_qt5.4.tar.gz/download
     RABBITIM_USE_REPOSITORIES: "FALSE"
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
-  #- BUILD_TARGERT: windows_msvc
-  #  GENERATORS: "Visual Studio 12 2013"
-  #  TOOLCHAIN_VERSION: 12
-  #  QT_VERSION: qt5.3
-  #  QT_ROOT: /C/Qt/5.3/msvc2013_opengl
-  #  AUTOBUILD_ARCH: x86
-  #  RABBITIM_BUILD_THIRDLIBRARY: rabbitim
-  #  DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_windows_msvc12_x86_qt5.3.zip/download
-  #  RABBITIM_USE_REPOSITORIES: "FALSE"
+  - BUILD_TARGERT: windows_msvc
+    GENERATORS: "Visual Studio 12 2013"
+    TOOLCHAIN_VERSION: 12
+    QT_VERSION: qt5.3
+    QT_ROOT: /C/Qt/5.3/msvc2013_opengl
+    AUTOBUILD_ARCH: x86
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_msvc12_x86_qt5.3.tar.gz/download
+    RABBITIM_USE_REPOSITORIES: "FALSE"
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
   - BUILD_TARGERT: android
     QT_VERSION_DIR: 5.7
     QT_VERSION: 5.7.0
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_android__5.7.0.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_android__5.7.0.tar.gz/download
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
   - BUILD_TARGERT: android
     QT_VERSION_DIR: 5.6
     QT_VERSION: 5.6.1
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_android__5.6.1.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_android__5.6.1.tar.gz/download
     RABBITIM_USE_REPOSITORIES: "FALSE"
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
   - BUILD_TARGERT: android
     QT_VERSION_DIR: 5.5
     QT_VERSION: 5.5.1
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_android__5.5.1.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_android__5.5.1.tar.gz/download
     RABBITIM_USE_REPOSITORIES: "FALSE"
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
   - BUILD_TARGERT: windows_mingw
     TOOLCHAIN_VERSION: 530
     QT_VERSION: qt5.7
     QT_ROOT: /C/Qt/5.7/mingw53_32
     AUTOBUILD_ARCH: x86
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_windows_mingw530_x86_qt5.7.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_mingw530_x86_qt5.7.tar.gz/download
     RABBITIM_USE_REPOSITORIES: "FALSE"
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
   - BUILD_TARGERT: windows_mingw
     TOOLCHAIN_VERSION: 492
     QT_VERSION: qt5.6
     QT_ROOT: /C/Qt/5.6/mingw49_32
     AUTOBUILD_ARCH: x86
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_windows_mingw492_x86_qt5.6.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_mingw492_x86_qt5.6.tar.gz/download
     RABBITIM_USE_REPOSITORIES: "FALSE"
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
   - BUILD_TARGERT: windows_mingw
     TOOLCHAIN_VERSION: 492
     QT_VERSION: qt5.5
     QT_ROOT: /C/Qt/5.5/mingw492_32
     AUTOBUILD_ARCH: x86
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_windows_mingw492_x86_qt5.5.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_mingw492_x86_qt5.5.tar.gz/download
     RABBITIM_USE_REPOSITORIES: "FALSE"
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
   - BUILD_TARGERT: windows_mingw
     TOOLCHAIN_VERSION: 491
     QT_VERSION: qt5.4
     QT_ROOT: /C/Qt/5.4/mingw491_32
     AUTOBUILD_ARCH: x86
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_windows_mingw491_x86_qt5.4.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_mingw491_x86_qt5.4.tar.gz/download
     RABBITIM_USE_REPOSITORIES: "FALSE"
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
 
   - BUILD_TARGERT: windows_mingw
     TOOLCHAIN_VERSION: 482
     QT_VERSION: qt5.3
     QT_ROOT: /C/Qt/5.3/mingw482_32
     AUTOBUILD_ARCH: x86
-    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitim-third-library/files/release/RabbitIm_windows_mingw482_x86_qt5.3.zip/download
+    DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_mingw482_x86_qt5.3.tar.gz/download
     RABBITIM_USE_REPOSITORIES: "FALSE"
+    PASSWORD:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
   ##### rabbitim #####
 
 matrix:
   fast_finish: false
 
 init:
+  - set BUILD_VERSION=%APPVEYOR_BUILD_VERSION%
   - set varch=%AUTOBUILD_ARCH%
   - if "%AUTOBUILD_ARCH%" == "x64" set varch=amd64
   - if "%BUILD_TARGERT%"=="windows_msvc" call "C:\Program Files (x86)\Microsoft Visual Studio %TOOLCHAIN_VERSION%.0\VC\vcvarsall.bat" %varch%
@@ -154,26 +184,26 @@ build_script:
 
 #after_build:
 
-artifacts:
-  - path: build_$(BUILD_TARGERT)/install
-    name: RabbitGIS_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
-    type: zip
+#artifacts:
+#  - path: build_$(BUILD_TARGERT)/install
+#    name: RabbitGIS_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
+#    type: zip
 
 test: off
 
-deploy:
-  provider: FTP #https://sourceforge.net/p/forge/documentation/Release%20Files%20for%20Download/#scp
-  protocol: sftp #https://sourceforge.net/p/forge/documentation/SFTP/
-  host: frs.sourceforge.net
-  username: kl222,RabbitGIS
+#deploy:
+#  provider: FTP #https://sourceforge.net/p/forge/documentation/Release%20Files%20for%20Download/#scp
+#  protocol: sftp #https://sourceforge.net/p/forge/documentation/SFTP/
+#  host: frs.sourceforge.net
+#  username: kl222,RabbitGIS
   #密码用这个加密 https://ci.appveyor.com/tools/encrypt
-  password: 
-    secure: 2WEtOQrdty3V3g0aEVvS3Q== 
-  folder: pfs/Release   #link pfs to /home/frs/project/r/ra/rabbitgis
-  draft: false
-  active_mode: false
-  on:
-    branch: master
+#  password: 
+#    secure: 2WEtOQrdty3V3g0aEVvS3Q== 
+#  folder: pfs/Release   #link pfs to /home/frs/project/r/ra/rabbitgis
+#  draft: false
+#  active_mode: false
+#  on:
+#    branch: master
 
 #deploy:
 #  provider: GitHub
