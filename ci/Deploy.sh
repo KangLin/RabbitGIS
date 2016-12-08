@@ -11,6 +11,6 @@ fi
 
 cd ${SOURCE_DIR}
 if [ "${BUILD_TARGERT}" != "android" ]; then
-    zip -rq RabbitGIS_${BUILD_TARGERT}${TOOLCHAIN_VERSION}_${AUTOBUILD_ARCH}_${QT_VERSION}_v${BUILD_VERSION}.zip build_${BUILD_TARGERT}
+    zip -rq RabbitGIS_${BUILD_TARGERT}${TOOLCHAIN_VERSION}_${AUTOBUILD_ARCH}_${QT_VERSION}_v${BUILD_VERSION}.zip build_${BUILD_TARGERT}/install
 fi
 expect ${SOURCE_DIR}/ci/scp.exp frs.sourceforge.net kl222,rabbitgis ${PASSWORD} RabbitGIS_${BUILD_TARGERT}${TOOLCHAIN_VERSION}_${AUTOBUILD_ARCH}_${QT_VERSION}_v${BUILD_VERSION}.zip pfs/.
