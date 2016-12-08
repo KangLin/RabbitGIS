@@ -51,6 +51,9 @@ See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
     qmake
     make
 
+#### 3.1 自动编译产生的应用程序
+下载：https://sourceforge.net/projects/rabbitgis/files/
+
 ## 第三方依赖库
 * osgearth
 * osg

@@ -50,6 +50,9 @@ Open "project->build and run->run->run environment"
     qmake
     make
 
+#### 3.1 Automatically build the generated application
+Download:https://sourceforge.net/projects/rabbitgis/files/
+
 ## depend third-party libraries
 * osgearth
 * osg

@@ -1,5 +1,5 @@
 #TODO:版本变更时，修改成相应的版本
-version: '0.1.0.{build}'
+version: '0.0.1.{build}'
 
 environment:
   matrix:
