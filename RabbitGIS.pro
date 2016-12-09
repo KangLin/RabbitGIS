@@ -74,54 +74,38 @@ target.path = $$PREFIX
 !android : INSTALLS += other target
 
 win32 : equals(QMAKE_HOST.os, Windows){
+    for(f, Deployment_third_library_files){
+        Deployment_third_library_files_qt += $$system_path($$files($${f}))
+    }
+
     # Install qt dll
     Deployment_qtlib.target = Deployment_qtlib
     Deployment_qtlib.path = $$system_path($${PREFIX})
     Deployment_qtlib.commands = "$$system_path($$[QT_INSTALL_BINS]/windeployqt)" \
                     --compiler-runtime \
-                    --verbose 7 \
+                    --verbose 3 \
+                    --libdir "$$system_path($${PREFIX})" \
                     "$$system_path($${PREFIX}/$(TARGET))" \
-                    "$$system_path($${PREFIX}/osgEarthQt.dll)"
+                    $${Deployment_third_library_files_qt}
 
     # Install third library dll
     Deployment_third_lib.target = Deployment_third_lib
-    Deployment_third_lib.files = $$system_path($${THIRD_LIBRARY_PATH}/lib/*.dll)
+    Deployment_third_lib.files = $${Deployment_third_library_files}
     Deployment_third_lib.path = $$system_path($$PREFIX)
     Deployment_third_lib.CONFIG += directory no_check_exist
-
-    Deployment_third_bin.target = Deployment_third_bin
-    Deployment_third_bin.files = $$system_path($${THIRD_LIBRARY_PATH}/bin/*.dll)
-    Deployment_third_bin.path = $$system_path($$PREFIX)
-    Deployment_third_bin.CONFIG += directory no_check_exist
-
-    Deployment_osg_plugins.target = Deployment_osg_plugins
-    Deployment_osg_plugins.files = $$system_path($${THIRD_LIBRARY_PATH}/bin/osgPlugins-$${OSG_VERSION}/*)
-    Deployment_osg_plugins.path = $$system_path($$PREFIX/osgPlugins-$${OSG_VERSION})
-    Deployment_osg_plugins.CONFIG += directory no_check_exist
 
     # Install map data
     Deployment_data_files.target = Deployment_data_files
     Deployment_data_files.files = $$system_path($$PWD/Data/*)
-    Deployment_data_files.path = $$system_path($$PREFIX/Data)
+    Deployment_data_files.path = $$system_path($${PREFIX}/Data)
     Deployment_data_files.CONFIG += directory no_check_exist
 
     INSTALLS += Deployment_third_lib \
-                Deployment_third_bin \
-                Deployment_osg_plugins \
-                Deployment_data_files \
-                Deployment_qtlib
-    #QMAKE_EXTRA_TARGETS += Deployment_qtlib Deployment_third_lib Deployment_third_bin
-    
+                Deployment_qtlib \
+                Deployment_data_files
+
     # Copy third library dll to path of development when debug in development
     !exists("$$system_path($${TARGET_PATH}/Data/Map.earth)"){
-
-        # Copy qt plugins 
-        #PlatformsPlugins.commands = \
-        #    $(COPY_DIR) $$system_path($$[QT_INSTALL_PLUGINS]/platforms) $$system_path($${TARGET_PATH}/platforms)
-        #PlatformsPlugins.CONFIG += directory no_link no_clean no_check_exist
-        #PlatformsPlugins.target = PlatformsPlugins
-        #QMAKE_EXTRA_TARGETS += PlatformsPlugins
-        #COPY_THIRD_DEPENDS.depends = PlatformsPlugins
 
         # Copy third library dll
         THIRD_LIBRARY_DLL = $${THIRD_LIBRARY_PATH}/bin/*.dll
@@ -137,7 +121,7 @@ win32 : equals(QMAKE_HOST.os, Windows){
             QMAKE_EXTRA_TARGETS += ThirdLibraryDll
             COPY_THIRD_DEPENDS.depends += ThirdLibraryDll
         }
-    
+
         THIRD_LIBRARY_LIB = $${THIRD_LIBRARY_PATH}/lib/*.dll
         exists($${THIRD_LIBRARY_LIB}){
             equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
@@ -151,7 +135,7 @@ win32 : equals(QMAKE_HOST.os, Windows){
             QMAKE_EXTRA_TARGETS += ThirdLibraryLib
             COPY_THIRD_DEPENDS.depends += ThirdLibraryLib
         }
-    
+
         OSG_PLUGINS = $${THIRD_LIBRARY_PATH}/bin/osgPlugins-$${OSG_VERSION}/
         exists($${OSG_PLUGINS}){
             equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
