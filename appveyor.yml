@@ -180,30 +180,30 @@ before_build:
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\build.sh
-  - C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\Deploy.sh
+#  - C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\Deploy.sh
 
 #after_build:
 
-#artifacts:
-#  - path: build_$(BUILD_TARGERT)/install
-#    name: RabbitGIS_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
-#    type: zip
+artifacts:
+  - path: build_$(BUILD_TARGERT)/install
+    name: RabbitGIS_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
+    type: zip
 
 test: off
 
-#deploy:
-#  provider: FTP #https://sourceforge.net/p/forge/documentation/Release%20Files%20for%20Download/#scp
-#  protocol: sftp #https://sourceforge.net/p/forge/documentation/SFTP/
-#  host: frs.sourceforge.net
-#  username: kl222,RabbitGIS
+deploy:
+  provider: FTP #https://sourceforge.net/p/forge/documentation/Release%20Files%20for%20Download/#scp
+  protocol: sftp #https://sourceforge.net/p/forge/documentation/SFTP/
+  host: frs.sourceforge.net
+  username: kl222,rabbitgis
   #密码用这个加密 https://ci.appveyor.com/tools/encrypt
-#  password: 
-#    secure: 2WEtOQrdty3V3g0aEVvS3Q== 
-#  folder: pfs/Release   #link pfs to /home/frs/project/r/ra/rabbitgis
-#  draft: false
-#  active_mode: false
-#  on:
-#    branch: master
+  password: 
+    secure: 2WEtOQrdty3V3g0aEVvS3Q== 
+  folder: pfs   #link pfs to /home/frs/project/r/ra/rabbitgis
+  draft: false
+  active_mode: false
+  on:
+    branch: master
 
 #deploy:
 #  provider: GitHub
