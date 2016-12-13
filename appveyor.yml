@@ -9,6 +9,7 @@ environment:
     QT_VERSION: qt5.7
     QT_ROOT: /C/Qt/5.7/msvc2015
     AUTOBUILD_ARCH: x86
+    IsDeploy: true
     DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_msvc14_x86_qt5.7.tar.gz/download
     PASSWORD:
       secure: 2WEtOQrdty3V3g0aEVvS3Q==
@@ -167,7 +168,7 @@ init:
   - del C:\msys64\usr\bin\link.exe
   
 install:
-  #- C:\msys64\usr\bin\pacman.exe -Syu --noconfirm 
+  #- C:\msys64\usr\bin\pacman.exe -Syu --noconfirm
   #- C:\msys64\autorebase.bat
   - C:\msys64\usr\bin\pacman.exe -S --noconfirm nasm yasm unzip curl zip expect
   - C:\msys64\autorebase.bat
@@ -180,14 +181,18 @@ before_build:
 build_script:
   - cd %APPVEYOR_BUILD_FOLDER%
   - C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\build.sh
-#  - C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\Deploy.sh
+  - C:\msys64\usr\bin\bash.exe %APPVEYOR_BUILD_FOLDER%\ci\Deploy.sh
 
 #after_build:
 
 artifacts:
-  - path: build_$(BUILD_TARGERT)/install
+  #- path: build_$(BUILD_TARGERT)/install
+  #  name: RabbitGIS_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
+  #  type: zip
+
+  - path: build_${BUILD_TARGERT}/RabbitGIS-Setup-*.exe
     name: RabbitGIS_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
-    type: zip
+#    type: zip
 
 test: off
 
@@ -197,13 +202,15 @@ deploy:
   host: frs.sourceforge.net
   username: kl222,rabbitgis
   #密码用这个加密 https://ci.appveyor.com/tools/encrypt
-  password: 
-    secure: 2WEtOQrdty3V3g0aEVvS3Q== 
+  password:
+    secure: 2WEtOQrdty3V3g0aEVvS3Q==
   folder: pfs   #link pfs to /home/frs/project/r/ra/rabbitgis
   draft: false
   active_mode: false
   on:
-    branch: master
+    #branch: master
+    appveyor_repo_tag: true
+    IsDeploy: true
 
 #deploy:
 #  provider: GitHub

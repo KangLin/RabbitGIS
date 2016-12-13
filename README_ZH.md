@@ -11,7 +11,7 @@
 |[<img src="Resource/png/English.png" alt="English" title="English" width="16" height="16" />英语](README.md)|
 
 -----------------------------------------------------------------------------
-## 编译
+## 编译和打包
 ### 1. 下载预编译或编译第三方依赖库
 #### 1.1. 下载预编译第三方依赖库
 从 https://sourceforge.net/projects/rabbitim-third-library/files/release/ 下载与你编译器和QT版本相同的库。
@@ -53,6 +53,16 @@ See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
 
 #### 3.1 自动编译产生的应用程序
 下载：https://sourceforge.net/projects/rabbitgis/files/
+
+#### 3.2 手动打包
+##### 3.2.1 windows
+1. 把Install/Install.nsi复制到编译输出目录下
+
+    cp Install/Install.nsi build_${BUILD_TARGERT}
+
+2. 执行
+
+    "/C/Program Files (x86)/NSIS/makensis.exe" "build_${BUILD_TARGERT}/Install.nsi"
 
 ## 第三方依赖库
 * osgearth

@@ -11,6 +11,8 @@ fi
 
 cd ${SOURCE_DIR}
 if [ "${BUILD_TARGERT}" != "android" ]; then
-    zip -rq RabbitGIS_${BUILD_TARGERT}${TOOLCHAIN_VERSION}_${AUTOBUILD_ARCH}_${QT_VERSION}_v${BUILD_VERSION}.zip build_${BUILD_TARGERT}/install
+    cp Install/Install.nsi build_${BUILD_TARGERT}
+    "/C/Program Files (x86)/NSIS/makensis.exe" "build_${BUILD_TARGERT}/Install.nsi"
+    #zip -rq RabbitGIS_${BUILD_TARGERT}${TOOLCHAIN_VERSION}_${AUTOBUILD_ARCH}_${QT_VERSION}_v${BUILD_VERSION}.zip build_${BUILD_TARGERT}/install
 fi
-expect ${SOURCE_DIR}/ci/scp.exp frs.sourceforge.net kl222,rabbitgis ${PASSWORD} RabbitGIS_${BUILD_TARGERT}${TOOLCHAIN_VERSION}_${AUTOBUILD_ARCH}_${QT_VERSION}_v${BUILD_VERSION}.zip pfs/.
+#expect ${SOURCE_DIR}/ci/scp.exp frs.sourceforge.net kl222,rabbitgis ${PASSWORD} RabbitGIS_${BUILD_TARGERT}${TOOLCHAIN_VERSION}_${AUTOBUILD_ARCH}_${QT_VERSION}_v${BUILD_VERSION}.zip pfs/.

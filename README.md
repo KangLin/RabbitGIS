@@ -10,7 +10,7 @@
 |[<img src="Resource/png/China.png" alt="Chinese" title="Chinese" width="16" height="16" />Chinese](README_ZH.md)|
 
 -----------------------------------------------------------------------------
-## Build
+## Build and package
 ### 1. Download Precompiled or compiled third-party libraries
 #### 1.1. Download the precompiled third-party libraries
 Download from https://sourceforge.net/projects/rabbitim-third-library/files/release/ 
@@ -52,6 +52,16 @@ Open "project->build and run->run->run environment"
 
 #### 3.1 Automatically build the generated application
 Download:https://sourceforge.net/projects/rabbitgis/files/
+
+#### 3.2 Manual packing
+##### 3.2.1 windows
+1. Copy Install/Install.nsi to output directory
+
+    cp Install/Install.nsi build_${BUILD_TARGERT}
+
+2. Execute
+
+    "/C/Program Files (x86)/NSIS/makensis.exe" "build_${BUILD_TARGERT}/Install.nsi"
 
 ## depend third-party libraries
 * osgearth
