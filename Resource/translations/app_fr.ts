@@ -159,7 +159,7 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="322"/>
+        <location filename="../../Mainwindow.cpp" line="325"/>
         <source>Language(&amp;L)</source>
         <translation type="unfinished"></translation>
     </message>
@@ -275,7 +275,7 @@ Email:kl222@126.com</source>
         <location filename="../../Mainwindow.cpp" line="157"/>
         <location filename="../../Mainwindow.cpp" line="170"/>
         <location filename="../../Mainwindow.cpp" line="188"/>
-        <location filename="../../Mainwindow.cpp" line="304"/>
+        <location filename="../../Mainwindow.cpp" line="307"/>
         <source>Ready</source>
         <translation type="unfinished"></translation>
     </message>
@@ -336,62 +336,67 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="325"/>
+        <location filename="../../Mainwindow.cpp" line="285"/>
+        <source>Track</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Mainwindow.cpp" line="328"/>
         <source>Default</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="327"/>
+        <location filename="../../Mainwindow.cpp" line="330"/>
         <source>English</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="329"/>
+        <location filename="../../Mainwindow.cpp" line="332"/>
         <source>Chinese</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="331"/>
+        <location filename="../../Mainwindow.cpp" line="334"/>
         <source>Chinese(TaiWan)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="448"/>
+        <location filename="../../Mainwindow.cpp" line="451"/>
         <source>Information</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="449"/>
+        <location filename="../../Mainwindow.cpp" line="452"/>
         <source>Change language must reset program.</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="489"/>
+        <location filename="../../Mainwindow.cpp" line="492"/>
         <source>Custom</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="490"/>
+        <location filename="../../Mainwindow.cpp" line="493"/>
         <source>System</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="491"/>
+        <location filename="../../Mainwindow.cpp" line="494"/>
         <source>Blue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="492"/>
+        <location filename="../../Mainwindow.cpp" line="495"/>
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="508"/>
+        <location filename="../../Mainwindow.cpp" line="511"/>
         <source>Change Style Sheet(&amp;S)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="554"/>
+        <location filename="../../Mainwindow.cpp" line="557"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>

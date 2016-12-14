@@ -11,7 +11,7 @@
     <message>
         <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="110"/>
         <source>Rabbit GIS</source>
-        <translation>玉兔 GIS</translation>
+        <translation>玉兔-地理信息系统</translation>
     </message>
     <message>
         <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="150"/>
@@ -147,7 +147,7 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../Mainwindow.ui" line="20"/>
         <source>RabbitGIS</source>
-        <translation>玉兔 GIS</translation>
+        <translation>玉兔-地理信息系统</translation>
     </message>
     <message>
         <location filename="../../Mainwindow.ui" line="38"/>
@@ -160,7 +160,7 @@ Email:kl222@126.com</source>
         <translation>选项(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="322"/>
+        <location filename="../../Mainwindow.cpp" line="325"/>
         <source>Language(&amp;L)</source>
         <translation>语言(&amp;L)</translation>
     </message>
@@ -276,7 +276,7 @@ Email:kl222@126.com</source>
         <location filename="../../Mainwindow.cpp" line="157"/>
         <location filename="../../Mainwindow.cpp" line="170"/>
         <location filename="../../Mainwindow.cpp" line="188"/>
-        <location filename="../../Mainwindow.cpp" line="304"/>
+        <location filename="../../Mainwindow.cpp" line="307"/>
         <source>Ready</source>
         <translation>预备</translation>
     </message>
@@ -337,62 +337,67 @@ Email:kl222@126.com</source>
         <translation>结束</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="325"/>
+        <location filename="../../Mainwindow.cpp" line="285"/>
+        <source>Track</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Mainwindow.cpp" line="328"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="327"/>
+        <location filename="../../Mainwindow.cpp" line="330"/>
         <source>English</source>
         <translation>英语</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="329"/>
+        <location filename="../../Mainwindow.cpp" line="332"/>
         <source>Chinese</source>
         <translation>中文</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="331"/>
+        <location filename="../../Mainwindow.cpp" line="334"/>
         <source>Chinese(TaiWan)</source>
         <translation>中文（台湾）</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="448"/>
+        <location filename="../../Mainwindow.cpp" line="451"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="449"/>
+        <location filename="../../Mainwindow.cpp" line="452"/>
         <source>Change language must reset program.</source>
         <translation>改变语言必须重启程序。</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="489"/>
+        <location filename="../../Mainwindow.cpp" line="492"/>
         <source>Custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="490"/>
+        <location filename="../../Mainwindow.cpp" line="493"/>
         <source>System</source>
         <translation>系统</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="491"/>
+        <location filename="../../Mainwindow.cpp" line="494"/>
         <source>Blue</source>
         <translation>蓝色</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="492"/>
+        <location filename="../../Mainwindow.cpp" line="495"/>
         <source>Dark</source>
         <translation>暗色</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="508"/>
+        <location filename="../../Mainwindow.cpp" line="511"/>
         <source>Change Style Sheet(&amp;S)</source>
         <translation>改变样式(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="554"/>
+        <location filename="../../Mainwindow.cpp" line="557"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
