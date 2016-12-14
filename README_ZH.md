@@ -53,6 +53,7 @@ See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
 
 #### 3.1 自动编译产生的应用程序
 下载：https://sourceforge.net/projects/rabbitgis/files/
+或者：https://github.com/KangLin/RabbitGIS/releases
 
 #### 3.2 手动打包
 ##### 3.2.1 windows

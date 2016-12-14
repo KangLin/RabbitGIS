@@ -65,7 +65,8 @@ DISTFILES += \
     README.md \
     README_ZH.md \
     Data/Map_zh_CN.earth \
-    ci/Deploy.sh
+    ci/Deploy.sh \
+    Install/*
 
 other.files = LICENSE.md Authors.txt ChangeLog.md
 other.path = $$PREFIX

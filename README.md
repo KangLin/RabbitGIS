@@ -51,7 +51,8 @@ Open "project->build and run->run->run environment"
     make
 
 #### 3.1 Automatically build the generated application
-Download:https://sourceforge.net/projects/rabbitgis/files/
+Download: https://sourceforge.net/projects/rabbitgis/files/ 
+or https://github.com/KangLin/RabbitGIS/releases
 
 #### 3.2 Manual packing
 ##### 3.2.1 windows

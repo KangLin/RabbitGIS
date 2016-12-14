@@ -1,4 +1,4 @@
-#TODO:版本变更时，修改成相应的版本
+#TODO: Change version
 version: '0.0.1.{build}'
 
 environment:
@@ -9,7 +9,6 @@ environment:
     QT_VERSION: qt5.7
     QT_ROOT: /C/Qt/5.7/msvc2015
     AUTOBUILD_ARCH: x86
-    IsDeploy: true
     DOWNLOAD_FILE: https://sourceforge.net/projects/rabbitthirdlibrary/files/rabbit_windows_msvc14_x86_qt5.7.tar.gz/download
     PASSWORD:
       secure: 2WEtOQrdty3V3g0aEVvS3Q==
@@ -197,30 +196,34 @@ artifacts:
 test: off
 
 deploy:
-  provider: FTP #https://sourceforge.net/p/forge/documentation/Release%20Files%20for%20Download/#scp
-  protocol: sftp #https://sourceforge.net/p/forge/documentation/SFTP/
-  host: frs.sourceforge.net
-  username: kl222,rabbitgis
-  #密码用这个加密 https://ci.appveyor.com/tools/encrypt
-  password:
-    secure: 2WEtOQrdty3V3g0aEVvS3Q==
-  folder: pfs   #link pfs to /home/frs/project/r/ra/rabbitgis
-  draft: false
-  active_mode: false
-  on:
-    #branch: master
-    appveyor_repo_tag: true
-    IsDeploy: true
+  - provider: FTP #https://sourceforge.net/p/forge/documentation/Release%20Files%20for%20Download/#scp
+    protocol: sftp #https://sourceforge.net/p/forge/documentation/SFTP/
+    host: frs.sourceforge.net
+    username: kl222,rabbitgis
+    #password encrypt: https://ci.appveyor.com/tools/encrypt
+    password:
+      secure: 2WEtOQrdty3V3g0aEVvS3Q==
+    folder: pfs   #link pfs to /home/frs/project/r/ra/rabbitgis
+    draft: false
+    active_mode: false
+    on:
+      #branch: master
+      appveyor_repo_tag: true
+      BUILD_TARGERT: windows_msvc
+      TOOLCHAIN_VERSION: 14
+      QT_VERSION: qt5.7
 
-#deploy:
-#  provider: GitHub
-#  release: rabbitim-third-library-v$(appveyor_build_version)
-#  description: 'rabbitim-third-library-v$(appveyor_build_version)'
-#  #token 在这个地址产生 https://github.com/settings/tokens 用这个加密 https://ci.appveyor.com/tools/encrypt
-#  auth_token:
-#    secure: ZwS9M6Ide+GfM4kLxJ5b9tRoB1wn/56nZRCAIP6Z7s3+YwcE+cx0Dv0d6X82lidF
-#  draft: false
-#  prerelease: false
-#  on:
-#    branch: master                 # release from master branch only
-#    #appveyor_repo_tag: true        # deploy on tag push only
+  - provider: GitHub
+    #release: RabbitGIS-v$(appveyor_build_version)
+    description: 'Release RabbitGIS $(APPVEYOR_REPO_TAG_NAME) on windows'
+    #token : https://github.com/settings/tokens password encrypt: https://ci.appveyor.com/tools/encrypt
+    auth_token:
+      secure: xgIFN2iAfgj1gsWabdHrmFXvj0rce/ZWtKUwm3aDUNfLGu+kO/q94MYD8a46AbDL
+    #artifact: RabbitGIS_$(BUILD_TARGERT)$(TOOLCHAIN_VERSION)_$(AUTOBUILD_ARCH)_$(QT_VERSION)_v$(appveyor_build_version)
+    draft: true
+    prerelease: true
+    on:
+      BUILD_TARGERT: windows_msvc
+      TOOLCHAIN_VERSION: 14
+      QT_VERSION: qt5.7
+      appveyor_repo_tag: true        # deploy on tag push only
