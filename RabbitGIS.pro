@@ -84,10 +84,10 @@ win32 : equals(QMAKE_HOST.os, Windows){
     Deployment_qtlib.path = $$system_path($${PREFIX})
     Deployment_qtlib.commands = "$$system_path($$[QT_INSTALL_BINS]/windeployqt)" \
                     --compiler-runtime \
-                    --verbose 3 \
+                    --verbose 7 \
                     --libdir "$$system_path($${PREFIX})" \
                     "$$system_path($${PREFIX}/$(TARGET))" \
-                    $${Deployment_third_library_files_qt}
+                    $$system_path($$files($${PREFIX}/*.dll, true))
 
     # Install third library dll
     Deployment_third_lib.target = Deployment_third_lib
