@@ -281,7 +281,10 @@ void MainWindow::on_actionOpen_track_T_triggered()
                                    osgEarth::GeoPoint(geoSRS, end.x(), end.y()),
                                                 tr("End").toUtf8().data(), pm));
         track->addChild(pathNode);
-        m_Root->addChild(track);
+        osg::ref_ptr<osgEarth::ModelLayer> layer 
+                = new osgEarth::ModelLayer(tr("Track").toStdString(), track);
+        m_MapNode->getMap()->addModelLayer(layer);
+        //m_MapNode->addChild(track);
 
         // Set view port
         osgViewer::Viewer* viewer = (osgViewer::Viewer*)m_MapViewer.getViewer();
@@ -318,17 +321,25 @@ void MainWindow::changeEvent(QEvent *e)
 
 int MainWindow::InitMenuTranslate()
 {
+    QMap<QString, _MENU> m;
+    m["Default"] = {QLocale::system().name(), tr("Default")};
+    m["en"] = {":/icon/English", tr("English")};
+    m["zh_CN"] = {":/icon/China", tr("Chinese")};
+    m["zh_TW"] = {":/icon/China", tr("Chinese(TaiWan)")};
+    m["Default"].icon = m[QLocale::system().name()].icon;
+    
     m_MenuTranslate.setIcon(QIcon(":/icon/Language"));
     m_MenuTranslate.setTitle(tr("Language(&L)"));
     ui->menuOptions->addMenu(&m_MenuTranslate);
-    m_ActionTranslator["Default"] = m_MenuTranslate.addAction(
-                QIcon(":/icon/Language"), tr("Default"));
-    m_ActionTranslator["en"] = m_MenuTranslate.addAction(
-                QIcon(":/icon/English"), tr("English"));
-    m_ActionTranslator["zh_CN"] = m_MenuTranslate.addAction(
-                QIcon(":/icon/China"), tr("Chinese"));
-    m_ActionTranslator["zh_TW"] = m_MenuTranslate.addAction(
-                QIcon(":/icon/China"), tr("Chinese(TaiWan)"));
+    
+    QMap<QString, _MENU>::iterator itMenu;
+    for(itMenu = m.begin(); itMenu != m.end(); itMenu++)
+    {
+        _MENU v = itMenu.value();
+        m_ActionTranslator[itMenu.key()] =
+                m_MenuTranslate.addAction(
+                    QIcon(v.icon), v.text);
+    }
     
     QMap<QString, QAction*>::iterator it;
     for(it = m_ActionTranslator.begin(); it != m_ActionTranslator.end(); it++)
