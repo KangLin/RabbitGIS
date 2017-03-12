@@ -160,7 +160,7 @@ Email:kl222@126.com</source>
         <translation>选项(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="325"/>
+        <location filename="../../Mainwindow.cpp" line="332"/>
         <source>Language(&amp;L)</source>
         <translation>语言(&amp;L)</translation>
     </message>
@@ -342,62 +342,62 @@ Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="328"/>
+        <location filename="../../Mainwindow.cpp" line="325"/>
         <source>Default</source>
         <translation>默认</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="330"/>
+        <location filename="../../Mainwindow.cpp" line="326"/>
         <source>English</source>
         <translation>英语</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="332"/>
+        <location filename="../../Mainwindow.cpp" line="327"/>
         <source>Chinese</source>
         <translation>中文</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="334"/>
+        <location filename="../../Mainwindow.cpp" line="328"/>
         <source>Chinese(TaiWan)</source>
         <translation>中文（台湾）</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="451"/>
+        <location filename="../../Mainwindow.cpp" line="459"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="452"/>
+        <location filename="../../Mainwindow.cpp" line="460"/>
         <source>Change language must reset program.</source>
         <translation>改变语言必须重启程序。</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="492"/>
+        <location filename="../../Mainwindow.cpp" line="500"/>
         <source>Custom</source>
         <translation>自定义</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="493"/>
+        <location filename="../../Mainwindow.cpp" line="501"/>
         <source>System</source>
         <translation>系统</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="494"/>
+        <location filename="../../Mainwindow.cpp" line="502"/>
         <source>Blue</source>
         <translation>蓝色</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="495"/>
+        <location filename="../../Mainwindow.cpp" line="503"/>
         <source>Dark</source>
         <translation>暗色</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="511"/>
+        <location filename="../../Mainwindow.cpp" line="519"/>
         <source>Change Style Sheet(&amp;S)</source>
         <translation>改变样式(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="557"/>
+        <location filename="../../Mainwindow.cpp" line="565"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>
