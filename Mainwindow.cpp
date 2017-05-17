@@ -499,9 +499,11 @@ int MainWindow::InitMenuStyles()
     QMap<QString, QAction*>::iterator it;
     m_ActionStyles["Custom"] = m_MenuStyle.addAction(tr("Custom"));
     m_ActionStyles["System"] = m_MenuStyle.addAction(tr("System"));
+    m_ActionStyles["Gradient blue"] = m_MenuStyle.addAction(tr("Gradient blue"));
     m_ActionStyles["Blue"] = m_MenuStyle.addAction(tr("Blue"));
+    m_ActionStyles["Gradient Dark"] = m_MenuStyle.addAction(tr("Gradient Dark"));
     m_ActionStyles["Dark"] = m_MenuStyle.addAction(tr("Dark"));
-    
+
     for(it = m_ActionStyles.begin(); it != m_ActionStyles.end(); it++)
     {
         it.value()->setCheckable(true);
@@ -597,7 +599,11 @@ void MainWindow::slotActionGroupStyleTriggered(QAction* act)
             if(it.key() == "Blue")
                 CGlobal::Instance()->SetStyleMenu("Blue", ":/sink/Blue");
             else if(it.key() == "Dark")
-                CGlobal::Instance()->SetStyleMenu("Dark", ":/qdarkstyle/style.qss");
+                CGlobal::Instance()->SetStyleMenu("Dark", ":/sink/Dark");
+            else if(it.key() == "Gradient blue")
+                CGlobal::Instance()->SetStyleMenu("Gradient blue", ":/sink/Gradient_blue");
+            else if(it.key() == "Gradient Dark")
+                CGlobal::Instance()->SetStyleMenu("Gradient Dark", ":/sink/Gradient_Dark");
             else if(it.key() == "Custom")
                 OpenCustomStyleMenu();
             else

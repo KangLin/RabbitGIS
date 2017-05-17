@@ -383,21 +383,31 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../Mainwindow.cpp" line="502"/>
+        <source>Gradient blue</source>
+        <translation>渐变蓝色</translation>
+    </message>
+    <message>
+        <location filename="../../Mainwindow.cpp" line="503"/>
         <source>Blue</source>
         <translation>蓝色</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="503"/>
+        <location filename="../../Mainwindow.cpp" line="504"/>
+        <source>Gradient Dark</source>
+        <translation>渐变暗色</translation>
+    </message>
+    <message>
+        <location filename="../../Mainwindow.cpp" line="505"/>
         <source>Dark</source>
         <translation>暗色</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="519"/>
+        <location filename="../../Mainwindow.cpp" line="521"/>
         <source>Change Style Sheet(&amp;S)</source>
         <translation>改变样式(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="565"/>
+        <location filename="../../Mainwindow.cpp" line="567"/>
         <source>Open File</source>
         <translation>打开文件</translation>
     </message>

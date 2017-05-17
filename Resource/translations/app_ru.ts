@@ -382,21 +382,31 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../Mainwindow.cpp" line="502"/>
-        <source>Blue</source>
+        <source>Gradient blue</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
         <location filename="../../Mainwindow.cpp" line="503"/>
+        <source>Blue</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Mainwindow.cpp" line="504"/>
+        <source>Gradient Dark</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Mainwindow.cpp" line="505"/>
         <source>Dark</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="519"/>
+        <location filename="../../Mainwindow.cpp" line="521"/>
         <source>Change Style Sheet(&amp;S)</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="565"/>
+        <location filename="../../Mainwindow.cpp" line="567"/>
         <source>Open File</source>
         <translation type="unfinished"></translation>
     </message>
