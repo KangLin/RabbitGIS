@@ -19,6 +19,8 @@
 #include <osgEarthAnnotation/PlaceNode>
 #include <osgEarthUtil/LatLongFormatter>
 #include <osgDB/WriteFile>
+#include <osgEarth/ModelLayer>
+#include <osgEarth/ImageLayer>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -653,7 +655,7 @@ void MainWindow::slotActionGroupMapTriggered(QAction *act)
 {
     if(!m_MapNode.valid())
         return;
-    
+
     osg::ref_ptr<osgEarth::Map> map = m_MapNode->getMap();
     int i = 0;
     std::list<QAction*>::iterator it;

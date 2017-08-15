@@ -1,9 +1,9 @@
 
 CONFIG += c++0x
-!msvc{
-    QMAKE_CXXFLAGS += " -std=c++0x "
-} else {
+msvc{
     QMAKE_CXXFLAGS += " /MP "
+} else {
+    QMAKE_CXXFLAGS += " -std=c++0x "
 }
 
 CONFIG += link_prl

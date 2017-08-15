@@ -2,7 +2,7 @@
 CONFIG(debug, debug|release) {
     LIBS += -losgEarthSplatd -losgEarthAnnotationd -losgEarthSymbologyd -losgEarthQtd -losgEarthUtild -losgEarthFeaturesd -losgEarthd 
 } else {
-    LIBS += -losgEarthSplat -losgEarthAnnotation -losgEarthSymbology -losgEarthQt -losgEarthUtil -losgEarthFeatures -losgEarth 
+    LIBS += -losgEarthSplat -losgEarthAnnotation -losgEarthSymbology -losgEarthQt5 -losgEarthUtil -losgEarthFeatures -losgEarth 
 }
 
 CONFIG(debug, debug|release) {
