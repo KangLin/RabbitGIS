@@ -52,23 +52,25 @@ QMAKE_EXTRA_COMPILERS += updateqm
 TRANSLATIONS_OUTPUT_PATH = $${TARGET_PATH}/translations
 mytranslations.target = mytranslations
 QT_QM = $$[QT_INSTALL_TRANSLATIONS]/qt_*.qm
-equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
-    TRANSLATIONS_OUTPUT_PATH = $$replace(TRANSLATIONS_OUTPUT_PATH, /, \\)
-    QT_QM = $$system_path($${QT_QM})
-    TRANSLATIONS_QM_FILES = $$replace(TRANSLATIONS_QM_FILES, /, \\)
+equals(QMAKE_HOST.os, Windows) : msvc | isEmpty(QMAKE_SH){
+        TRANSLATIONS_OUTPUT_PATH = $$system_path($${TRANSLATIONS_OUTPUT_PATH})
+        QT_QM = $$system_path($${QT_QM})
 }
 mkpath($${TRANSLATIONS_OUTPUT_PATH})
 for(file, TRANSLATIONS_QM_FILES){
+    equals(QMAKE_HOST.os, Windows) : msvc | isEmpty(QMAKE_SH){
+        file = $$system_path($${file})
+    }
     isEmpty(mytranslations_commands){
-        mytranslations_commands += $${QMAKE_COPY} $${file} \
-                               $${TRANSLATIONS_OUTPUT_PATH} 
+        mytranslations_commands += $${QMAKE_COPY} "$${file}" \
+                               "$${TRANSLATIONS_OUTPUT_PATH}"
     }
     else {
-        mytranslations_commands += && $${QMAKE_COPY} $${file} \
-                                $${TRANSLATIONS_OUTPUT_PATH} 
+        mytranslations_commands += && $${QMAKE_COPY} "$${file}" \
+                                "$${TRANSLATIONS_OUTPUT_PATH}" 
     }
 }
-mytranslations_commands += && $${QMAKE_COPY} $${QT_QM} $${TRANSLATIONS_OUTPUT_PATH}
+mytranslations_commands += && $${QMAKE_COPY} "$${QT_QM}" "$${TRANSLATIONS_OUTPUT_PATH}"
 mytranslations.commands = $$mytranslations_commands 
 
 !android{
@@ -77,10 +79,10 @@ mytranslations.commands = $$mytranslations_commands
     #PRE_TARGETDEPS += mytranslations
     #发行版本才更新更新配置  
     TRANSLATIONS_FILE = $${TRANSLATIONS_OUTPUT_PATH}/app_zh_CN.qm
-    equals(QMAKE_HOST.os, Windows){
-        TRANSLATIONS_FILE = $$replace(TRANSLATIONS_FILE, /, \\)
-    }
-    #如果已经生成就不再生成了。所以如果你修改了资源文件，需要手动生成
+    #equals(QMAKE_HOST.os, Windows){
+    #    TRANSLATIONS_FILE = $$replace(TRANSLATIONS_FILE, /, \\)
+    #}
+    #TODO:如果已经生成就不再生成了。所以如果你修改了资源文件，需要手动生成
     !exists($${TRANSLATIONS_FILE}){
        POST_TARGETDEPS += mytranslations
     }

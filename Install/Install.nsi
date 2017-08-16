@@ -63,7 +63,7 @@ InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
 ShowUnInstDetails show
-#RequestExecutionLevel user
+RequestExecutionLevel user
 
 ; Install vc runtime
 Function InstallVC

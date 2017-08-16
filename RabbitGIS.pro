@@ -5,14 +5,30 @@
 #-------------------------------------------------
 
 ### TODO:Modify osg version ###
-OSG_VERSION=3.5.3
+OSG_VERSION=3.5.4
 
-QT += core gui opengl
+QT += core gui opengl network qml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = RabbitGIS
 TEMPLATE = app
+
+#Get app version use git, please set git path to environment variable PATH
+isEmpty(GIT_DESCRIBE) {
+    GIT_DESCRIBE = $$system(cd $$system_path($$PWD) && git describe --tags)
+    isEmpty(GIT_VERSION) {
+        GIT_VERSION = $$GIT_DESCRIBE
+    }
+}
+isEmpty(GIT_VERSION) {
+    GIT_VERSION = $$system(cd $$system_path($$PWD) && git rev-parse --short HEAD)
+}
+message("GIT_VERSION:$$GIT_VERSION")
+isEmpty(GIT_VERSION){
+    error("Built without git, please add GIT_VERSION to DEFINES")
+}
+DEFINES += GIT_VERSION=\"\\\"$$quote($$GIT_VERSION)\\\"\"
 
 # Set TARGET_PATH
 win32{
@@ -75,9 +91,6 @@ target.path = $$PREFIX
 !android : INSTALLS += other target
 
 win32 : equals(QMAKE_HOST.os, Windows){
-    for(f, Deployment_third_library_files){
-        Deployment_third_library_files_qt += $$system_path($$files($${f}))
-    }
 
     # Install qt dll
     Deployment_qtlib.target = Deployment_qtlib
@@ -86,8 +99,8 @@ win32 : equals(QMAKE_HOST.os, Windows){
                     --compiler-runtime \
                     --verbose 7 \
                     --libdir "$$system_path($${PREFIX})" \
-                    "$$system_path($${PREFIX}/$(TARGET))" \
-                    $$system_path($$files($${PREFIX}/*.dll, true))
+                    $$system_path($${PREFIX}/$(TARGET)) \
+                    $$system_path($$files($${THIRD_LIBRARY_PATH}/bin/*.dll, true))
 
     # Install third library dll
     Deployment_third_lib.target = Deployment_third_lib
@@ -109,11 +122,11 @@ win32 : equals(QMAKE_HOST.os, Windows){
     !exists("$$system_path($${TARGET_PATH}/Data/Map.earth)"){
 
         # Copy third library dll
-        THIRD_LIBRARY_DLL = $${THIRD_LIBRARY_PATH}/bin/*.dll
+        THIRD_LIBRARY_DLL = $$files($${THIRD_LIBRARY_PATH}/bin/*.dll, true)
         exists($${THIRD_LIBRARY_DLL}){
             equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
-                THIRD_LIBRARY_DLL = $$system_path($$THIRD_LIBRARY_DLL)
-                TARGET_PATH = $$system_path($$TARGET_PATH)
+                THIRD_LIBRARY_DLL = $$system_path($${THIRD_LIBRARY_DLL})
+                TARGET_PATH = $$system_path($${TARGET_PATH})
             }
             ThirdLibraryDll.commands = \
                 $${QMAKE_COPY} $${THIRD_LIBRARY_DLL} $${TARGET_PATH}
@@ -123,7 +136,7 @@ win32 : equals(QMAKE_HOST.os, Windows){
             COPY_THIRD_DEPENDS.depends += ThirdLibraryDll
         }
 
-        THIRD_LIBRARY_LIB = $${THIRD_LIBRARY_PATH}/lib/*.dll
+        THIRD_LIBRARY_LIB = $$files($${THIRD_LIBRARY_PATH}/lib/*.dll, true)
         exists($${THIRD_LIBRARY_LIB}){
             equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
                 THIRD_LIBRARY_LIB = $$system_path($$THIRD_LIBRARY_LIB)
@@ -137,15 +150,16 @@ win32 : equals(QMAKE_HOST.os, Windows){
             COPY_THIRD_DEPENDS.depends += ThirdLibraryLib
         }
 
-        OSG_PLUGINS = $${THIRD_LIBRARY_PATH}/bin/osgPlugins-$${OSG_VERSION}/
+        OSG_PLUGINS = $${THIRD_LIBRARY_PATH}/bin/osgPlugins-$${OSG_VERSION}
+        OSG_PLUGINS_TARGET_PATH = $$TARGET_PATH
         exists($${OSG_PLUGINS}){
             equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
-                OSG_PLUGINS = $$system_path($$OSG_PLUGINS)
-                OSG_PLUGINS_TARGET_PATH = $$system_path($$TARGET_PATH/osgPlugins-$${OSG_VERSION})
+                OSG_PLUGINS = $$system_path($${OSG_PLUGINS})
+                OSG_PLUGINS_TARGET_PATH = $$system_path($$OSG_PLUGINS_TARGET_PATH)
             }
             mkpath($${OSG_PLUGINS_TARGET_PATH})
             osg_plugins.commands = \
-                $${QMAKE_COPY} $${OSG_PLUGINS} $${OSG_PLUGINS_TARGET_PATH}
+                $${QMAKE_COPY_DIR} $${OSG_PLUGINS} $${OSG_PLUGINS_TARGET_PATH}
             osg_plugins.CONFIG += directory no_link no_clean no_check_exist
             osg_plugins.target = osg_plugins
             QMAKE_EXTRA_TARGETS += osg_plugins

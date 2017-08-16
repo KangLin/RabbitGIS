@@ -46,15 +46,13 @@ myPackagesExist(libcrypto) {
     MYPKGCONFIG *= libcrypto
 }
 win32 : equals(QMAKE_HOST.os, Windows){
-    Deployment_third_library_files += $${THIRD_LIBRARY_PATH}/bin/*eay*.dll 
+    Deployment_third_library_files += $${THIRD_LIBRARY_PATH}/bin/*crypto*.dll \
+        $${THIRD_LIBRARY_PATH}/bin/*ssl*.dll
 }
 
 myPackagesExist(libqrencode) {
     DEFINES *= RABBITGIS_USE_LIBQRENCODE
     MYPKGCONFIG *= libqrencode
-}
-win32 : equals(QMAKE_HOST.os, Windows){
-    Deployment_third_library_files += $${THIRD_LIBRARY_PATH}/bin/*qrencode*.dll
 }
 
 myPackagesExist(QZXing) {

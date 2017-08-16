@@ -69,34 +69,33 @@
         <translation>版權所有 (C) 2014 康林工作室</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="18"/>
         <source>Version:%1.%2.%3.%4</source>
-        <translation>版本:%1.%2.%3.%4</translation>
+        <translation type="vanished">版本:%1.%2.%3.%4</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="25"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="19"/>
         <source>Build date:%1 %2</source>
         <translation>編譯日期：%1 %2</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="26"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="20"/>
         <source>Author: KangLin
 Email:kl222@126.com</source>
         <translation>作者：康林
 郵箱:kl222@126.com</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="29"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="23"/>
         <source>Home page:</source>
         <translation>主頁：</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="31"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="25"/>
         <source> Copyright (C) 2014 - %1 KangLin Studio</source>
         <translation>版權所有(C) 2014 - %1 康林工作室</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="88"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="82"/>
         <source>Save as</source>
         <translation>另存為</translation>
     </message>
@@ -160,7 +159,7 @@ Email:kl222@126.com</source>
         <translation>選項(&amp;O)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="332"/>
+        <location filename="../../Mainwindow.cpp" line="334"/>
         <source>Language(&amp;L)</source>
         <translation>語言(&amp;L)</translation>
     </message>
@@ -191,8 +190,8 @@ Email:kl222@126.com</source>
     </message>
     <message>
         <location filename="../../Mainwindow.ui" line="105"/>
-        <location filename="../../Mainwindow.cpp" line="165"/>
-        <location filename="../../Mainwindow.cpp" line="177"/>
+        <location filename="../../Mainwindow.cpp" line="167"/>
+        <location filename="../../Mainwindow.cpp" line="179"/>
         <source>Open project file</source>
         <translation>打開工程文件</translation>
     </message>
@@ -268,146 +267,146 @@ Email:kl222@126.com</source>
         <translation>關於(&amp;A)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="142"/>
+        <location filename="../../Mainwindow.cpp" line="144"/>
         <source>Coordinate:</source>
         <translation>坐標：</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="157"/>
-        <location filename="../../Mainwindow.cpp" line="170"/>
-        <location filename="../../Mainwindow.cpp" line="188"/>
-        <location filename="../../Mainwindow.cpp" line="307"/>
+        <location filename="../../Mainwindow.cpp" line="159"/>
+        <location filename="../../Mainwindow.cpp" line="172"/>
+        <location filename="../../Mainwindow.cpp" line="190"/>
+        <location filename="../../Mainwindow.cpp" line="309"/>
         <source>Ready</source>
         <translation>預備</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="57"/>
+        <location filename="../../Mainwindow.cpp" line="59"/>
         <source>Open project fail</source>
         <translation>打開工程失敗</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="87"/>
+        <location filename="../../Mainwindow.cpp" line="89"/>
         <source>Loading project ...... </source>
         <translation>加載工程 ……</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="96"/>
+        <location filename="../../Mainwindow.cpp" line="98"/>
         <source>Load project fail:%1</source>
         <translation>加載工程失敗：%1</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="164"/>
+        <location filename="../../Mainwindow.cpp" line="166"/>
         <source>Open project file ......</source>
         <translation>打開工程文件 ……</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="166"/>
-        <location filename="../../Mainwindow.cpp" line="178"/>
+        <location filename="../../Mainwindow.cpp" line="168"/>
+        <location filename="../../Mainwindow.cpp" line="180"/>
         <source>Project file(*.earth);; All(*.*)</source>
         <translation>工程文件(*.earth);; 所有(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="176"/>
+        <location filename="../../Mainwindow.cpp" line="178"/>
         <source>Save project to file ......</source>
         <translation>保存工程到文件 ……</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="195"/>
+        <location filename="../../Mainwindow.cpp" line="197"/>
         <source>Open track file ......</source>
         <translation>打開軌跡文件  ......</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="198"/>
+        <location filename="../../Mainwindow.cpp" line="200"/>
         <source>Open track file</source>
         <translation>打開軌跡文件</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="200"/>
+        <location filename="../../Mainwindow.cpp" line="202"/>
         <source>Track file(*.gpx);; nmea file(*.txt *.nmea);; All(*.*)</source>
         <translation>軌跡文件(*.gpx);; GPS nmea文件(*.txt *.nmea);; 所有(*.*)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="274"/>
+        <location filename="../../Mainwindow.cpp" line="276"/>
         <source>Start</source>
         <translation>開始</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="282"/>
+        <location filename="../../Mainwindow.cpp" line="284"/>
         <source>End</source>
         <translation>結束</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="285"/>
+        <location filename="../../Mainwindow.cpp" line="287"/>
         <source>Track</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="325"/>
+        <location filename="../../Mainwindow.cpp" line="327"/>
         <source>Default</source>
         <translation>默認</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="326"/>
+        <location filename="../../Mainwindow.cpp" line="328"/>
         <source>English</source>
         <translation>英語</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="327"/>
+        <location filename="../../Mainwindow.cpp" line="329"/>
         <source>Chinese</source>
         <translation>中文</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="328"/>
+        <location filename="../../Mainwindow.cpp" line="330"/>
         <source>Chinese(TaiWan)</source>
         <translation>中文（臺灣）</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="459"/>
+        <location filename="../../Mainwindow.cpp" line="461"/>
         <source>Information</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="460"/>
+        <location filename="../../Mainwindow.cpp" line="462"/>
         <source>Change language must reset program.</source>
         <translation>改變語言必須重啟程序。</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="500"/>
+        <location filename="../../Mainwindow.cpp" line="502"/>
         <source>Custom</source>
         <translation>自定義</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="501"/>
+        <location filename="../../Mainwindow.cpp" line="503"/>
         <source>System</source>
         <translation>系統</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="502"/>
+        <location filename="../../Mainwindow.cpp" line="504"/>
         <source>Gradient blue</source>
         <translation>漸變藍色</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="503"/>
+        <location filename="../../Mainwindow.cpp" line="505"/>
         <source>Blue</source>
         <translation>藍色</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="504"/>
+        <location filename="../../Mainwindow.cpp" line="506"/>
         <source>Gradient Dark</source>
         <translation>漸變暗色</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="505"/>
+        <location filename="../../Mainwindow.cpp" line="507"/>
         <source>Dark</source>
         <translation>暗色</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="521"/>
+        <location filename="../../Mainwindow.cpp" line="523"/>
         <source>Change Style Sheet(&amp;S)</source>
         <translation>改變樣式(&amp;S)</translation>
     </message>
     <message>
-        <location filename="../../Mainwindow.cpp" line="567"/>
+        <location filename="../../Mainwindow.cpp" line="569"/>
         <source>Open File</source>
         <translation>打開文件</translation>
     </message>
