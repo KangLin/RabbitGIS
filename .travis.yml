@@ -1,0 +1,67 @@
+sudo: required
+dist: trusty
+
+language: cpp
+
+cache:
+  - apt
+  - directories:
+    - ThirdLibrary/Tools
+    - ThirdLibrary/src
+    #- ThirdLibrary/unix
+    #- ThirdLibrary/windows_mingw
+
+compiler:
+  - g++
+
+jdk: oraclejdk7
+
+os:
+  - unix
+
+addons:
+  ssh_known_hosts:
+    - github.com
+
+env:
+  global:
+    - SOURCE_DIR=$TRAVIS_BUILD_DIR
+    - QMAKE=qmake
+
+  matrix:
+    - BUILD_TARGERT="unix" QT_VERSION_DIR=5.8 QT_VERSION=5.8.0 DOWNLOAD_FILE=https://sourceforge.net/projects/rabbitthirdlibrary/files/Release/rabbit_unix_amd64_5.8.0.tar.gz/download
+    - BUILD_TARGERT="android" QT_VERSION_DIR=5.8 QT_VERSION=5.8.0 DOWNLOAD_FILE=https://sourceforge.net/projects/rabbitthirdlibrary/files/Release/rabbit_android_arm_5.8.0.tar.gz/download
+    - BUILD_TARGERT="unix" QT_VERSION_DIR=5.7 QT_VERSION=5.7.0 DOWNLOAD_FILE=https://sourceforge.net/projects/rabbitthirdlibrary/files/Release/rabbit_unix_amd64_5.7.0.tar.gz/download
+    - BUILD_TARGERT="android" QT_VERSION_DIR=5.7 QT_VERSION=5.7.0 DOWNLOAD_FILE=https://sourceforge.net/projects/rabbitthirdlibrary/files/Release/rabbit_android_arm_5.7.0.tar.gz/download
+
+before_install:
+  - echo "TRAVIS_OS_NAME=${TRAVIS_OS_NAME}"
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+install:
+  - bash ci/build-install-apt.sh > /dev/null
+  - bash ci/build-install-tools.sh > /dev/null
+
+before_script:
+  - source ci/build_env.sh
+  - cd ${SOURCE_DIR}
+
+script: 
+  - bash ${SOURCE_DIR}/ci/build.sh ${SOURCE_DIR}
+
+notifications:
+  email: kl222@126.com
+  on_success: never  # [always|never|change]
+  on_failure: always
+
+deploy:
+  provider: releases
+  api_key: 177ce637a8ec54e66ea8693092caf35059cf95d7
+  file: 
+    - ./build_android/android-build/bin/QtApp-debug.apk
+  skip_cleanup: true
+  on:
+    condition: $TRAVIS_OS_NAME = android
+    repo: KangLin/rabbitim
+    tags: true

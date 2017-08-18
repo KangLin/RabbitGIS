@@ -72,6 +72,7 @@ RC_FILE = AppIcon.rc
 OTHER_FILES += \
     .gitignore \
     appveyor.yml \
+    .travis.yml \
     ci/* \
     Data/* \
     Version.h.template

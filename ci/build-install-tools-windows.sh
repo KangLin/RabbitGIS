@@ -4,9 +4,8 @@
 set -ev
 
 SOURCE_DIR="`pwd`"
-echo $SOURCE_DIR
+
 TOOLS_DIR=${SOURCE_DIR}/Tools
-echo ${TOOLS_DIR}
 
 if [ "$BUILD_TARGERT" = "android" ]; then
     export ANDROID_SDK_ROOT=${TOOLS_DIR}/android-sdk

@@ -65,7 +65,14 @@ case ${BUILD_TARGERT} in
         MAKE=nmake
         ;;
     windows_mingw)
-        MAKE=mingw32-make
+        if [ "${RABBIT_BUILD_HOST}"="windows" ]; then
+            MAKE=mingw32-make
+        fi
+        ;;
+    android)
+        if [ "${RABBIT_BUILD_HOST}"="windows" ]; then
+            MAKE="mingw32-make ${RABBIT_MAKE_JOB_PARA}"
+        fi
         ;;
     *)
         MAKE=make
