@@ -55,12 +55,7 @@ INCLUDEPATH += $$PWD/.. $${THIRD_LIBRARY_PATH}/include
 LIBS += -L$${THIRD_LIBRARY_PATH}/lib
 android : LIBS += -L$${THIRD_LIBRARY_PATH}/libs/$${ANDROID_TARGET_ARCH}
 LIBS += $$LDFLAGS
-CONFIG(debug, debug|release) {
-    DEFINES += DEBUG
-    LIBS +=  -L$${THIRD_LIBRARY_PATH}/lib/Debug
-} else {
-    LIBS +=  -L$${THIRD_LIBRARY_PATH}/lib/Release
-}
+
 #####以下配置 pkg-config  
 mingw{
     equals(QMAKE_HOST.os, Windows){

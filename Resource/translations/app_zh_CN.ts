@@ -9,95 +9,86 @@
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="110"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="404"/>
         <source>Rabbit GIS</source>
         <translation>玉兔-地理信息系统</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="150"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="307"/>
         <source>Author:KangLin</source>
         <translation>作者：康林</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="182"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="55"/>
         <source>Informatioin</source>
         <translation>信息</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="209"/>
-        <source>Save As</source>
-        <translation>另存为</translation>
-    </message>
-    <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="301"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="215"/>
         <source>Build Date:</source>
         <translation>编译日期：</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="320"/>
-        <source>The following two-dimensional code scanning Go Home:</source>
-        <translation>扫描下面二维码打开项目主页：</translation>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="122"/>
+        <source>WeChat scan two-dimensional code for donation</source>
+        <translation>微信扫描二维码进行捐赠</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="336"/>
-        <source>Home page:https://github.com/KangLin/rabbitim</source>
-        <translation>项目主页：https://github.com/KangLin/rabbitim</translation>
-    </message>
-    <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="358"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="171"/>
         <source>Version: 1.0.0.0</source>
         <translation></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="375"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="193"/>
+        <source>Home page: https://github.com/KangLin/RabbitGIS.git</source>
+        <translation>主页：https://github.com/KangLin/RabbitGIS.git</translation>
+    </message>
+    <message>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="229"/>
         <source>License</source>
         <translation>许可协议</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="389"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="243"/>
         <source>Change log</source>
         <translation>修改日志</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="403"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="257"/>
         <source>Thanks</source>
         <translation>鸣谢</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="438"/>
-        <source> Copyright (C) 2014 KangLin Studio</source>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="282"/>
+        <source> Copyright (C) 2017 KangLin Studio</source>
         <translation>版权所有 (C) 2014 康林工作室</translation>
     </message>
     <message>
-        <source>Version:%1.%2.%3.%4</source>
-        <translation type="vanished">版本:%1.%2.%3.%4</translation>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="31"/>
+        <source>Version: </source>
+        <translation>版本：</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="19"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="32"/>
         <source>Build date:%1 %2</source>
         <translation>编译日期：%1 %2</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="20"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="33"/>
         <source>Author: KangLin
 Email:kl222@126.com</source>
         <translation>作者：康林
 邮箱:kl222@126.com</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="23"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="36"/>
         <source>Home page:</source>
         <translation>主页：</translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="25"/>
-        <source> Copyright (C) 2014 - %1 KangLin Studio</source>
-        <translation>版权所有(C) 2014 - %1 康林工作室</translation>
-    </message>
-    <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="82"/>
-        <source>Save as</source>
-        <translation>另存为</translation>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="38"/>
+        <source> Copyright (C) 2017 - %1 KangLin Studio</source>
+        <translation>版权所有(C) 2017 - %1 康林工作室</translation>
     </message>
 </context>
 <context>
@@ -338,7 +329,7 @@ Email:kl222@126.com</source>
     <message>
         <location filename="../../Mainwindow.cpp" line="287"/>
         <source>Track</source>
-        <translation type="unfinished"></translation>
+        <translation>轨迹</translation>
     </message>
     <message>
         <location filename="../../Mainwindow.cpp" line="327"/>

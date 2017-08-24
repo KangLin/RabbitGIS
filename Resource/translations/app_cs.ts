@@ -9,89 +9,84 @@
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="110"/>
-        <source>Rabbit GIS</source>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="193"/>
+        <source>Home page: https://github.com/KangLin/RabbitGIS.git</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="150"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="307"/>
         <source>Author:KangLin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="182"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="55"/>
         <source>Informatioin</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="209"/>
-        <source>Save As</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="301"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="215"/>
         <source>Build Date:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="320"/>
-        <source>The following two-dimensional code scanning Go Home:</source>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="122"/>
+        <source>WeChat scan two-dimensional code for donation</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="336"/>
-        <source>Home page:https://github.com/KangLin/rabbitim</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="358"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="171"/>
         <source>Version: 1.0.0.0</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="375"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="229"/>
         <source>License</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="389"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="243"/>
         <source>Change log</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="403"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="257"/>
         <source>Thanks</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="438"/>
-        <source> Copyright (C) 2014 KangLin Studio</source>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="282"/>
+        <source> Copyright (C) 2017 KangLin Studio</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="19"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.ui" line="404"/>
+        <source>Rabbit GIS</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="31"/>
+        <source>Version: </source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="32"/>
         <source>Build date:%1 %2</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="20"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="33"/>
         <source>Author: KangLin
 Email:kl222@126.com</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="23"/>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="36"/>
         <source>Home page:</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="25"/>
-        <source> Copyright (C) 2014 - %1 KangLin Studio</source>
-        <translation type="unfinished"></translation>
-    </message>
-    <message>
-        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="82"/>
-        <source>Save as</source>
+        <location filename="../../Widgets/DlgAbout/DlgAbout.cpp" line="38"/>
+        <source> Copyright (C) 2017 - %1 KangLin Studio</source>
         <translation type="unfinished"></translation>
     </message>
 </context>
