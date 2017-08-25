@@ -3,8 +3,9 @@ set -ev
 
 if [ "$BUILD_TARGERT" = "windows_mingw" \
     -a -n "$APPVEYOR" ]; then
-    export PATH=/C/Qt/Tools/mingw${TOOLCHAIN_VERSION}_32/bin:$PATH
+    export PATH=/C/Qt/Tools/mingw${TOOLCHAIN_VERSION}_32/bin:$PATH    
 fi
+export PKG_CONFIG=/c/msys64/mingw32/bin/pkg-config.exe
 
 PROJECT_DIR=`pwd`
 if [ -n "$1" ]; then
@@ -27,7 +28,6 @@ if [ -n "$DOWNLOAD_FILE" ]; then
        cd ${THIRD_LIBRARY_PATH}
        echo "./change_prefix.sh /c/projects/rabbitthirdlibrary/build_script/../$BUILD_TARGERT `pwd`"
        ./change_prefix.sh /c/projects/rabbitthirdlibrary/build_script/../$BUILD_TARGERT `pwd`
-       cat ${THIRD_LIBRARY_PATH}/lib/pkgconfig/libcurl.pc
        cd ${PROJECT_DIR}
    fi
 fi
@@ -78,6 +78,7 @@ case ${BUILD_TARGERT} in
         MAKE=make
         ;;
 esac
+
 $QMAKE ../RabbitGIS.pro "CONFIG+=release"  \
        THIRD_LIBRARY_PATH=$THIRD_LIBRARY_PATH
 echo "$MAKE install ...."

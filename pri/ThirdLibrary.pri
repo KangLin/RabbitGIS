@@ -36,7 +36,8 @@ myPackagesExist(gdal) {
         Deployment_third_library_files += $${THIRD_LIBRARY_PATH}/bin/*gdal*.dll
     }
 } else : win32 {
-    LIBS += -lgdal_i
+    msvc : LIBS += -lgdal_i
+    mingw : LIBS = -lgdal
 }
 
 myPackagesExist(libcurl) {
@@ -57,23 +58,4 @@ myPackagesExist(libcrypto) {
 win32 : equals(QMAKE_HOST.os, Windows){
     Deployment_third_library_files += $${THIRD_LIBRARY_PATH}/bin/*crypto*.dll \
         $${THIRD_LIBRARY_PATH}/bin/*ssl*.dll
-}
-
-DEFINES *= RABBITGIS_USE_LIBQRENCODE
-myPackagesExist(libqrencode) {
-    MYPKGCONFIG *= libqrencode
-}else:win32{
-    LIBS += -lqrencode
-}
-
-DEFINES *= RABBITGIS_USE_QZXING
-myPackagesExist(QZXing) {
-    MYPKGCONFIG *= QZXing
-    Deployment_third_library_files += $${THIRD_LIBRARY_PATH}/lib/*QZXing*.dll
-} else : msvc {
-    exists("$${THIRD_LIBRARY_PATH}/include/QZXing.h"){
-        DEFINES *= RABBITGIS_USE_QZXING
-        LIBS += -lQZXing2
-        Deployment_third_library_files += $${THIRD_LIBRARY_PATH}/lib/*QZXing*.dll
-    }
 }

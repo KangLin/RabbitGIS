@@ -7,7 +7,7 @@
 ### TODO:Modify osg version ###
 OSG_VERSION=3.5.4
 
-QT += core gui opengl network qml
+QT += core gui opengl
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
