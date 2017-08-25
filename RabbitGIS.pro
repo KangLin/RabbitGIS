@@ -101,7 +101,7 @@ win32 : equals(QMAKE_HOST.os, Windows){
                     --verbose 7 \
                     --libdir "$$system_path($${PREFIX})" \
                     $$system_path($${PREFIX}/$(TARGET)) \
-                    $$system_path($$files($${THIRD_LIBRARY_PATH}/bin/*.dll, true))
+                    $$system_path($$files($${THIRD_LIBRARY_PATH}/bin/*Qt*.dll, true))
 
     # Install third library dll
     Deployment_third_lib.target = Deployment_third_lib
@@ -121,38 +121,23 @@ win32 : equals(QMAKE_HOST.os, Windows){
 
     # Copy third library dll to path of development when debug in development
     !exists("$$system_path($${TARGET_PATH}/Data/Map.earth)"){
-
         # Copy third library dll
-        THIRD_LIBRARY_DLL = $$files($${THIRD_LIBRARY_PATH}/bin/*.dll, true)
-        exists($${THIRD_LIBRARY_DLL}){
-            equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
+        THIRD_LIBRARY_DLL = $${THIRD_LIBRARY_PATH}/bin/*.dll 
+        !isEmpty(THIRD_LIBRARY_DLL){
+            equals(QMAKE_HOST.os, Windows) : msvc | isEmpty(QMAKE_SH){
                 THIRD_LIBRARY_DLL = $$system_path($${THIRD_LIBRARY_DLL})
                 TARGET_PATH = $$system_path($${TARGET_PATH})
             }
-            ThirdLibraryDll.commands = \
-                $${QMAKE_COPY} $${THIRD_LIBRARY_DLL} $${TARGET_PATH}
+            
+            ThirdLibraryDll.commands = $${QMAKE_COPY} $${THIRD_LIBRARY_DLL} $${TARGET_PATH}
             ThirdLibraryDll.CONFIG += directory no_link no_clean no_check_exist
             ThirdLibraryDll.target = ThirdLibraryDll
             QMAKE_EXTRA_TARGETS += ThirdLibraryDll
             COPY_THIRD_DEPENDS.depends += ThirdLibraryDll
         }
 
-        THIRD_LIBRARY_LIB = $$files($${THIRD_LIBRARY_PATH}/lib/*.dll, true)
-        exists($${THIRD_LIBRARY_LIB}){
-            equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
-                THIRD_LIBRARY_LIB = $$system_path($$THIRD_LIBRARY_LIB)
-                TARGET_PATH = $$system_path($$TARGET_PATH)
-            }
-            ThirdLibraryLib.commands = \
-                $${QMAKE_COPY} $${THIRD_LIBRARY_LIB} $${TARGET_PATH}
-            ThirdLibraryLib.CONFIG += directory no_link no_clean no_check_exist
-            ThirdLibraryLib.target = ThirdLibraryLib
-            QMAKE_EXTRA_TARGETS += ThirdLibraryLib
-            COPY_THIRD_DEPENDS.depends += ThirdLibraryLib
-        }
-
         OSG_PLUGINS = $${THIRD_LIBRARY_PATH}/bin/osgPlugins-$${OSG_VERSION}
-        OSG_PLUGINS_TARGET_PATH = $$TARGET_PATH
+        OSG_PLUGINS_TARGET_PATH = $$TARGET_PATH/osgPlugins-$${OSG_VERSION}
         exists($${OSG_PLUGINS}){
             equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
                 OSG_PLUGINS = $$system_path($${OSG_PLUGINS})

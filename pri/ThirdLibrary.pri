@@ -19,7 +19,10 @@ win32 : equals(QMAKE_HOST.os, Windows){
     Deployment_third_library_files += $${THIRD_LIBRARY_PATH}/bin/*osg*.dll \
         $${THIRD_LIBRARY_PATH}/bin/*gdal*.dll \
         $${THIRD_LIBRARY_PATH}/bin/*tiff*.dll \
-        $${THIRD_LIBRARY_PATH}/bin/*OpenThreads*.dll
+        $${THIRD_LIBRARY_PATH}/bin/*png*.dll \
+        $${THIRD_LIBRARY_PATH}/bin/*OpenThreads*.dll 
+    msvc : Deployment_third_library_files += $${THIRD_LIBRARY_PATH}/bin/*zlib*.dll
+    mingw : Deployment_third_library_files += $${THIRD_LIBRARY_PATH}/bin/libz.dll
     Deployment_third_library_files_osg_plugin.target = Deployment_third_library_files_osg_plugin
     Deployment_third_library_files_osg_plugin.files = $${THIRD_LIBRARY_PATH}/bin/osgPlugins-$${OSG_VERSION}/*osg*.dll 
     Deployment_third_library_files_osg_plugin.path = $$system_path($$PREFIX)/osgPlugins-$${OSG_VERSION}
