@@ -61,7 +61,6 @@ include(pri/ThirdLibraryConfig.pri)
 include(pri/ThirdLibrary.pri)
 include(pri/ThirdLibraryJoin.pri)
 include(pri/Files.pri)
-include(pri/Version.pri)
 
 # Rules for creating/updating {ts|qm}-files
 include(Resource/translations/translations.pri)
