@@ -73,15 +73,12 @@ OTHER_FILES += \
     appveyor.yml \
     .travis.yml \
     ci/* \
-    Data/* \
-    Version.h.template
+    Data/* 
 
 DISTFILES += \
     LICENSE.md \
     README.md \
     README_ZH.md \
-    Data/Map_zh_CN.earth \
-    ci/Deploy.sh \
     Install/*
 
 other.files = LICENSE.md Authors.txt ChangeLog.md
