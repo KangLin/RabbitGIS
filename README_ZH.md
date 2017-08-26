@@ -18,15 +18,31 @@
 
 文件格式： RabbitIm_$(平台)$(版本号)_$(架构)_$(QT 版本).zip
 
-|编译器|版本号|平台|架构|
-|:--:|:--:|:--:|:--:|
-|VS2015|14|windows_msvc|x86|
-|VS2013|12|windows_msvc|x86|
-|gcc 5.3.0|530|windows_mingw|x86|
-|gcc 4.9.2|492|windows_mingw|x86|
-|gcc 4.9.1|491|windows_mingw|x86|
-|gcc 4.8.2|482|windows_mingw|x86|
-|gcc 4.8|4.8|android|arm|
+|平台|编译器|版本号|架构|Qt 版本|
+|:--:|:--:|:--:|:--:|:--:|
+|windows_msvc|VS2015|14|x86|qt5.8.0|
+|windows_msvc|VS2015|14|x86|qt5.7.1|
+|windows_msvc|VS2015|14|x86|qt5.6.2|
+|windows_msvc|VS2015|14|x86_64|qt5.8.0|
+|windows_msvc|VS2015|14|x86_64|qt5.7.1|
+|windows_msvc|VS2013|12|x86|qt5.8.0|
+|windows_msvc|VS2013|12|x86|qt5.7.1|
+|windows_msvc|VS2013|12|x86|qt5.6.2|
+|windows_msvc|VS2013|12|x86_64|qt5.8.0|
+|windows_msvc|VS2013|12|x86_64|qt5.7.1|
+|windows_mingw|gcc 5.3.0|530|x86|qt5.8.0|
+|windows_mingw|gcc 5.3.0|530|x86|qt5.7.1|
+|windows_mingw|gcc 4.9.2|530|x86|qt5.6.2|
+|windows_mingw|gcc 5.3.0|530|x86_64|qt5.8.0|
+|windows_mingw|gcc 5.3.0|530|x86_64|qt5.7.1|
+|unix|gcc 5.3.0|530|x86|qt5.8.0|
+|unix|gcc 5.3.0|530|x86|qt5.7.1|
+|unix|gcc 5.3.0|530|x86_64|qt5.8.0|
+|unix|gcc 5.3.0|530|x86_64|qt5.7.1|
+|android|gcc 4.8|4.8|arm|qt5.8.0|
+|android|gcc 4.8|4.8|arm|qt5.7.1|
+|android|gcc 4.8|4.8|x86|qt5.8.0|
+|android|gcc 4.8|4.8|x86|qt5.7.1|
 
 #### 2.2. 编译第三方依赖库
 See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
@@ -35,7 +51,7 @@ See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
 #### 2.1 设置编译环境变量
 打开 "project->build and run->build->build environment"
 
-    PKG_CONFIG=              #[可选]设置 pkg_config 程序
+    PKG_CONFIG=              #[可选]设置 pkg_config 程序，注意：如果在windows下用ming32 的 pkg-config，不能用 msys2 的 pkg-config
 
 #### 2.2 设置运行环境变量
 打开 "project->build and run->run->run environment"

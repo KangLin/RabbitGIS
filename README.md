@@ -17,15 +17,32 @@ Download from https://sourceforge.net/projects/rabbitim-third-library/files/rele
 
 File format: RabbitIm_$(Platform)$(Version)_$(Architecture)_$(QT_VERSION).zip
 
-|Compiler|Versioin|Platform|Architecture|
-|:--:|:--:|:--:|:--:|
-|VS2015|14|windows_msvc|x86|
-|VS2013|12|windows_msvc|x86|
-|gcc 5.3.0|530|windows_mingw|x86|
-|gcc 4.9.2|492|windows_mingw|x86|
-|gcc 4.9.1|491|windows_mingw|x86|
-|gcc 4.8.2|482|windows_mingw|x86|
-|gcc 4.8|4.8|android|arm|
+|Platform|Compiler|Versioin|Architecture|Qt Version|
+|:--:|:--:|:--:|:--:|:--:|
+|windows_msvc|VS2015|14|x86|qt5.8.0|
+|windows_msvc|VS2015|14|x86|qt5.7.1|
+|windows_msvc|VS2015|14|x86|qt5.6.2|
+|windows_msvc|VS2015|14|x86_64|qt5.8.0|
+|windows_msvc|VS2015|14|x86_64|qt5.7.1|
+|windows_msvc|VS2013|12|x86|qt5.8.0|
+|windows_msvc|VS2013|12|x86|qt5.7.1|
+|windows_msvc|VS2013|12|x86|qt5.6.2|
+|windows_msvc|VS2013|12|x86_64|qt5.8.0|
+|windows_msvc|VS2013|12|x86_64|qt5.7.1|
+|windows_mingw|gcc 5.3.0|530|x86|qt5.8.0|
+|windows_mingw|gcc 5.3.0|530|x86|qt5.7.1|
+|windows_mingw|gcc 4.9.2|530|x86|qt5.6.2|
+|windows_mingw|gcc 5.3.0|530|x86_64|qt5.8.0|
+|windows_mingw|gcc 5.3.0|530|x86_64|qt5.7.1|
+|unix|gcc 5.3.0|530|x86|qt5.8.0|
+|unix|gcc 5.3.0|530|x86|qt5.7.1|
+|unix|gcc 5.3.0|530|x86_64|qt5.8.0|
+|unix|gcc 5.3.0|530|x86_64|qt5.7.1|
+|android|gcc 4.8|4.8|arm|qt5.8.0|
+|android|gcc 4.8|4.8|arm|qt5.7.1|
+|android|gcc 4.8|4.8|x86|qt5.8.0|
+|android|gcc 4.8|4.8|x86|qt5.7.1|
+
 
 #### 2.2. compiled third-party libraries
 See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
@@ -34,7 +51,7 @@ See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
 #### 2.1 Set up build environment
 Open "project->build and run->build->build environment"
 
-    PKG_CONFIG=              #[option]Set pkg_config programe
+    PKG_CONFIG=              #[option]Set pkg_config programe, Note: If the windows in the use of ming32 pkg-config, can not use msys2 pkg-config
 
 #### 2.2 Set up run environment
 Open "project->build and run->run->run environment"
