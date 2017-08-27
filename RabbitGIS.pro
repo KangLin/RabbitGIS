@@ -135,7 +135,7 @@ win32 : equals(QMAKE_HOST.os, Windows){
         OSG_PLUGINS = $${THIRD_LIBRARY_PATH}/bin/osgPlugins-$${OSG_VERSION}
         OSG_PLUGINS_TARGET_PATH = $$TARGET_PATH/osgPlugins-$${OSG_VERSION}
         exists($${OSG_PLUGINS}){
-            equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
+            equals(QMAKE_HOST.os, Windows) : msvc | isEmpty(QMAKE_SH){
                 OSG_PLUGINS = $$system_path($${OSG_PLUGINS})
                 OSG_PLUGINS_TARGET_PATH = $$system_path($$OSG_PLUGINS_TARGET_PATH)
             }
@@ -149,10 +149,11 @@ win32 : equals(QMAKE_HOST.os, Windows){
         }
 
         DATA_FILES = $$PWD/Data
+        DATA_FILES_TARGET_PATH = $$TARGET_PATH/Data
         exists($${DATA_FILES}){
-            equals(QMAKE_HOST.os, Windows){#:isEmpty(QMAKE_SH){
+            equals(QMAKE_HOST.os, Windows) : msvc | isEmpty(QMAKE_SH){
                 DATA_FILES = $$system_path($$DATA_FILES)
-                DATA_FILES_TARGET_PATH = $$system_path($$TARGET_PATH/Data)
+                DATA_FILES_TARGET_PATH = $$system_path($$DATA_FILES_TARGET_PATH)
             }
             mkpath($${DATA_FILES_TARGET_PATH})
             data_files.commands = \
