@@ -19,14 +19,18 @@ File format: RabbitIm_$(Platform)$(Version)_$(Architecture)_$(QT_VERSION).zip
 
 |Platform|Compiler|Versioin|Architecture|Qt Version|
 |:--:|:--:|:--:|:--:|:--:|
+|windows_msvc|VS2015|14|x86|qt5.9.1|
 |windows_msvc|VS2015|14|x86|qt5.8.0|
 |windows_msvc|VS2015|14|x86|qt5.7.1|
 |windows_msvc|VS2015|14|x86|qt5.6.2|
+|windows_msvc|VS2015|14|x86_64|qt5.9.1|
 |windows_msvc|VS2015|14|x86_64|qt5.8.0|
 |windows_msvc|VS2015|14|x86_64|qt5.7.1|
+|windows_msvc|VS2013|12|x86|qt5.9.1|
 |windows_msvc|VS2013|12|x86|qt5.8.0|
 |windows_msvc|VS2013|12|x86|qt5.7.1|
 |windows_msvc|VS2013|12|x86|qt5.6.2|
+|windows_msvc|VS2013|12|x86_64|qt5.9.1|
 |windows_msvc|VS2013|12|x86_64|qt5.8.0|
 |windows_msvc|VS2013|12|x86_64|qt5.7.1|
 |windows_mingw|gcc 5.3.0|530|x86|qt5.8.0|
@@ -53,6 +57,8 @@ Open "project->build and run->build->build environment"
 
     PKG_CONFIG=              #[option]Set pkg_config programe, Note: If the windows in the use of ming32 pkg-config, can not use msys2 pkg-config
 
+Add git path to PATH environment. if no git, set GIT_VERSION in qmake paramter.
+
 #### 2.2 Set up run environment
 Open "project->build and run->run->run environment"
 
@@ -61,6 +67,8 @@ Open "project->build and run->run->run environment"
 #### 2.3 Set qmake parameter
 
     THIRD_LIBRARY_PATH=      #Set third library path, The default is ${SOURCE_ROOT}/ThirdLibrary/${PLATFORM}
+
+If no git, set GIT_VERSION in qmake paramter.
 
 ### 3. compiling
 

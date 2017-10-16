@@ -6,12 +6,12 @@ CONFIG(debug, debug|release) {
 }
 
 CONFIG(debug, debug|release) {
-    LIBS += -losgQtd -losgd -losgDBd -losgFXd -losgGAd -losgParticled -losgSimd -losgTextd -losgUtild -losgTerraind -losgManipulatord -losgViewerd -losgWidgetd -losgShadowd -losgAnimationd -losgVolumed -lOpenThreadsd
+    LIBS += -losgQt5d -losgd -losgDBd -losgFXd -losgGAd -losgParticled -losgSimd -losgTextd -losgUtild -losgTerraind -losgManipulatord -losgViewerd -losgWidgetd -losgShadowd -losgAnimationd -losgVolumed -lOpenThreadsd
 } else {
     myPackagesExist(openscenegraph) {
-        MYPKGCONFIG *= openscenegraph-osgQt
+        MYPKGCONFIG *= openscenegraph-osgQt5
     } else {
-        LIBS += -losgQt -losg -losgDB -losgFX -losgGA -losgParticle -losgSim -losgText -losgUtil -losgTerrain -losgManipulator -losgViewer -losgWidget -losgShadow -losgAnimation -losgVolume -lOpenThreads
+        LIBS += -losgQt5 -losg -losgDB -losgFX -losgGA -losgParticle -losgSim -losgText -losgUtil -losgTerrain -losgManipulator -losgViewer -losgWidget -losgShadow -losgAnimation -losgVolume -lOpenThreads
     }
 }
 

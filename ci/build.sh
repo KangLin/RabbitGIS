@@ -14,7 +14,7 @@ fi
 
 cd ${PROJECT_DIR}
 THIRDLIBRARY_DIR=${PROJECT_DIR}/ThirdLibrary
-THIRD_LIBRARY_PATH=${THIRDLIBRARY_DIR}/${BUILD_TARGERT}
+THIRD_LIBRARY_PATH=${THIRDLIBRARY_DIR}/${BUILD_TARGERT}_${AUTOBUILD_ARCH}
 mkdir -p ${THIRDLIBRARY_DIR}
 
 #下载预编译库
@@ -26,8 +26,8 @@ if [ -n "$DOWNLOAD_FILE" ]; then
         -a "$BUILD_TARGERT" != "windows_msvc" \
         -a -f "${THIRD_LIBRARY_PATH}/change_prefix.sh" ]; then
        cd ${THIRD_LIBRARY_PATH}
-       echo "./change_prefix.sh /c/projects/rabbitthirdlibrary/build_script/../$BUILD_TARGERT `pwd`"
-       ./change_prefix.sh /c/projects/rabbitthirdlibrary/build_script/../$BUILD_TARGERT `pwd`
+       echo "./change_prefix.sh /c/projects/rabbitthirdlibrary/build_script/../$BUILD_TARGERT_${AUTOBUILD_ARCH} `pwd`"
+       ./change_prefix.sh /c/projects/rabbitthirdlibrary/build_script/../$BUILD_TARGERT_${AUTOBUILD_ARCH} `pwd`
        cd ${PROJECT_DIR}
    fi
 fi

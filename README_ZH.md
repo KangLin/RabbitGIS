@@ -20,14 +20,18 @@
 
 |平台|编译器|版本号|架构|Qt 版本|
 |:--:|:--:|:--:|:--:|:--:|
+|windows_msvc|VS2015|14|x86|qt5.9.1|
 |windows_msvc|VS2015|14|x86|qt5.8.0|
 |windows_msvc|VS2015|14|x86|qt5.7.1|
 |windows_msvc|VS2015|14|x86|qt5.6.2|
+|windows_msvc|VS2015|14|x86_64|qt5.9.1|
 |windows_msvc|VS2015|14|x86_64|qt5.8.0|
 |windows_msvc|VS2015|14|x86_64|qt5.7.1|
+|windows_msvc|VS2013|12|x86|qt5.9.1|
 |windows_msvc|VS2013|12|x86|qt5.8.0|
 |windows_msvc|VS2013|12|x86|qt5.7.1|
 |windows_msvc|VS2013|12|x86|qt5.6.2|
+|windows_msvc|VS2013|12|x86_64|qt5.9.1|
 |windows_msvc|VS2013|12|x86_64|qt5.8.0|
 |windows_msvc|VS2013|12|x86_64|qt5.7.1|
 |windows_mingw|gcc 5.3.0|530|x86|qt5.8.0|
@@ -53,6 +57,8 @@ See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
 
     PKG_CONFIG=              #[可选]设置 pkg_config 程序，注意：如果在windows下用ming32 的 pkg-config，不能用 msys2 的 pkg-config
 
+把 git 路径加入到 PATH 环境变量中，如果没有 git ,则需要把 GIT_VERSION 加到 qmake 参数中
+
 #### 2.2 设置运行环境变量
 打开 "project->build and run->run->run environment"
 
@@ -62,6 +68,9 @@ See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
 
     THIRD_LIBRARY_PATH=      #设置第三方依赖库路径，默认位置是 ${SOURCE_ROOT}/ThirdLibrary/${PLATFORM}
 
+如果没有 git ,则需要把 GIT_VERSION 加到 qmake 参数中
+    GIT_VERSION=             #程序的版本号
+    
 ### 3. 编译
 
     qmake
@@ -81,8 +90,8 @@ See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
     "/C/Program Files (x86)/NSIS/makensis.exe" "build_${BUILD_TARGERT}/Install.nsi"
 
 ## 第三方依赖库
-* osgearth
-* osg
+* osgearth 
+* osg      (大于 3.5.6)
 * gdal
 * libcurl
 * libpng
