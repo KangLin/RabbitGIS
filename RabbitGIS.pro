@@ -15,20 +15,25 @@ TARGET = RabbitGIS
 TEMPLATE = app
 
 #Get app version use git, please set git path to environment variable PATH
-isEmpty(GIT_DESCRIBE) {
-    GIT_DESCRIBE = $$system(cd $$system_path($$PWD) && git describe --tags)
-    isEmpty(GIT_VERSION) {
-        GIT_VERSION = $$GIT_DESCRIBE
+isEmpty(BUILD_VERSION) {
+    isEmpty(GIT) : GIT=$$(GIT)
+    isEmpty(GIT) : GIT=git
+    isEmpty(GIT_DESCRIBE) {
+        GIT_DESCRIBE = $$system(cd $$system_path($$PWD) && $$GIT describe --tags)
+        isEmpty(BUILD_VERSION) {
+            BUILD_VERSION = $$GIT_DESCRIBE
+        }
+    }
+    isEmpty(BUILD_VERSION) {
+        BUILD_VERSION = $$system(cd $$system_path($$PWD) && $$GIT rev-parse --short HEAD)
+    }
+    
+    isEmpty(BUILD_VERSION){
+        error("Built without git, please add BUILD_VERSION to DEFINES or add git path to environment variable GIT")
     }
 }
-isEmpty(GIT_VERSION) {
-    GIT_VERSION = $$system(cd $$system_path($$PWD) && git rev-parse --short HEAD)
-}
-message("GIT_VERSION:$$GIT_VERSION")
-isEmpty(GIT_VERSION){
-    error("Built without git, please add GIT_VERSION to DEFINES")
-}
-DEFINES += GIT_VERSION=\"\\\"$$quote($$GIT_VERSION)\\\"\"
+message("BUILD_VERSION:$$BUILD_VERSION")
+DEFINES += BUILD_VERSION=\"\\\"$$quote($$BUILD_VERSION)\\\"\"
 
 # Set TARGET_PATH
 win32{

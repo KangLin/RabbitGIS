@@ -57,7 +57,7 @@ Open "project->build and run->build->build environment"
 
     PKG_CONFIG=              #[option]Set pkg_config programe, Note: If the windows in the use of ming32 pkg-config, can not use msys2 pkg-config
 
-Add git path to PATH environment. if no git, set GIT_VERSION in qmake paramter.
+Add git path to PATH environment. if no git, set BUILD_VERSION in qmake paramter.
 
 #### 2.2 Set up run environment
 Open "project->build and run->run->run environment"
@@ -68,7 +68,7 @@ Open "project->build and run->run->run environment"
 
     THIRD_LIBRARY_PATH=      #Set third library path, The default is ${SOURCE_ROOT}/ThirdLibrary/${PLATFORM}
 
-If no git, set GIT_VERSION in qmake paramter.
+If no git, set BUILD_VERSION in qmake paramter.
 
 ### 3. compiling
 

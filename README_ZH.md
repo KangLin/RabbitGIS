@@ -57,7 +57,7 @@ See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
 
     PKG_CONFIG=              #[可选]设置 pkg_config 程序，注意：如果在windows下用ming32 的 pkg-config，不能用 msys2 的 pkg-config
 
-把 git 路径加入到 PATH 环境变量中，如果没有 git ,则需要把 GIT_VERSION 加到 qmake 参数中
+把 git 路径加入到 PATH 环境变量中，如果没有 git ,则需要把 BUILD_VERSION 加到 qmake 参数中
 
 #### 2.2 设置运行环境变量
 打开 "project->build and run->run->run environment"
@@ -68,8 +68,8 @@ See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
 
     THIRD_LIBRARY_PATH=      #设置第三方依赖库路径，默认位置是 ${SOURCE_ROOT}/ThirdLibrary/${PLATFORM}
 
-如果没有 git ,则需要把 GIT_VERSION 加到 qmake 参数中
-    GIT_VERSION=             #程序的版本号
+如果没有 git ,则需要把 BUILD_VERSION 加到 qmake 参数中
+    BUILD_VERSION=             #程序的版本号
     
 ### 3. 编译
 
