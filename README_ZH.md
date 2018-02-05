@@ -20,10 +20,12 @@
 
 |平台|编译器|版本号|架构|Qt 版本|
 |:--:|:--:|:--:|:--:|:--:|
+|windows_msvc|VS2015|14|x86|qt5.10.0|
 |windows_msvc|VS2015|14|x86|qt5.9.1|
 |windows_msvc|VS2015|14|x86|qt5.8.0|
 |windows_msvc|VS2015|14|x86|qt5.7.1|
 |windows_msvc|VS2015|14|x86|qt5.6.2|
+|windows_msvc|VS2015|14|x86_64|qt5.10.0|
 |windows_msvc|VS2015|14|x86_64|qt5.9.1|
 |windows_msvc|VS2015|14|x86_64|qt5.8.0|
 |windows_msvc|VS2015|14|x86_64|qt5.7.1|
@@ -34,6 +36,8 @@
 |windows_msvc|VS2013|12|x86_64|qt5.9.1|
 |windows_msvc|VS2013|12|x86_64|qt5.8.0|
 |windows_msvc|VS2013|12|x86_64|qt5.7.1|
+|windows_mingw|gcc 5.3.0|530|x86|qt5.10.0|
+|windows_mingw|gcc 5.3.0|530|x86|qt5.9|
 |windows_mingw|gcc 5.3.0|530|x86|qt5.8.0|
 |windows_mingw|gcc 5.3.0|530|x86|qt5.7.1|
 |windows_mingw|gcc 4.9.2|530|x86|qt5.6.2|
@@ -54,23 +58,25 @@ See [RabbitThirdLibrary](https://github.com/KangLin/RabbitThirdLibrary)
 ### 2. 设置环境变量
 #### 2.1 设置编译环境变量
 打开 "project->build and run->build->build environment"
+或者添加下列变量到 qmake 参数:
 
     PKG_CONFIG=              #[可选]设置 pkg_config 程序，注意：如果在windows下用ming32 的 pkg-config，不能用 msys2 的 pkg-config
+    GIT=                     #git 程序
 
 把 git 路径加入到 PATH 环境变量中，如果没有 git ,则需要把 BUILD_VERSION 加到 qmake 参数中
 
-#### 2.2 设置运行环境变量
-打开 "project->build and run->run->run environment"
-
-    OSGEARTH_DEFAULT_FONT=simsun.ttc #设置字体，例如：设置宋体
-
-#### 2.3 设置 qmake 参数
+#### 2.2 设置 qmake 参数
 
     THIRD_LIBRARY_PATH=      #设置第三方依赖库路径，默认位置是 ${SOURCE_ROOT}/ThirdLibrary/${PLATFORM}
 
 如果没有 git ,则需要把 BUILD_VERSION 加到 qmake 参数中
-    BUILD_VERSION=             #程序的版本号
-    
+    BUILD_VERSION=           #程序的版本号
+
+#### 2.3 设置运行环境变量
+打开 "project->build and run->run->run environment"  
+
+    OSGEARTH_DEFAULT_FONT=simsun.ttc #设置字体，例如：设置宋体
+
 ### 3. 编译
 
     qmake

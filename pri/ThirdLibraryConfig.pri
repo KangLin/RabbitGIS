@@ -11,33 +11,68 @@ isEmpty(THIRD_LIBRARY_PATH) : THIRD_LIBRARY_PATH = $$(THIRD_LIBRARY_PATH)
 #android选项中包含了unix选项，所以在写工程如下条件判断时，必须把android条件放在unix条件前  
 win32 {
     DEFINES += WINDOWS
-    RABBITGIS_SYSTEM = "windows"
+    RABBITIM_SYSTEM = "windows"
+
+    contains(QMAKE_TARGET.arch, x86_64){
+        RABBITIM_ARCHITECTURE = "x64"
+    }else {
+        RABBITIM_ARCHITECTURE = "x86"
+    }
+
     msvc {
         QMAKE_CXXFLAGS += /wd"4819"  #忽略msvc下对utf-8的警告  
         #QMAKE_LFLAGS += -ladvapi32
-        RABBITGIS_PLATFORM = "msvc"
-        isEmpty(THIRD_LIBRARY_PATH) : THIRD_LIBRARY_PATH = $$PWD/../ThirdLibrary/windows_msvc
-        CONFIG(debug, debug|release) {
-            QMAKE_LFLAGS += /SUBSYSTEM:WINDOWS",5.01" /NODEFAULTLIB:libcmtd
+        RABBIT_TOOLCHAIN_VERSION=$$(RABBIT_TOOLCHAIN_VERSION)
+        RABBITIM_PLATFORM = "windows_msvc"
+        isEmpty(RABBIT_TOOLCHAIN_VERSION) {    
+            VisualStudioVersion = $$(VisualStudioVersion)
+            contains(VisualStudioVersion, 15.0):RABBIT_TOOLCHAIN_VERSION = "15"
+            contains(VisualStudioVersion, 14.0):RABBIT_TOOLCHAIN_VERSION = "14"
+            contains(VisualStudioVersion, 12.0):RABBIT_TOOLCHAIN_VERSION = "12"
+        }
+        debug {
+            QMAKE_LFLAGS *= /SUBSYSTEM:WINDOWS",5.01" /NODEFAULTLIB:libcmtd
         }else{
-            QMAKE_LFLAGS += /SUBSYSTEM:WINDOWS",5.01" /NODEFAULTLIB:libcmt
+            QMAKE_LFLAGS *= /SUBSYSTEM:WINDOWS",5.01" /NODEFAULTLIB:libcmt
         }
     } else {
-        RABBITGIS_PLATFORM = "mingw"
-        isEmpty(THIRD_LIBRARY_PATH) : THIRD_LIBRARY_PATH = $$PWD/../ThirdLibrary/windows_mingw
+        RABBITIM_PLATFORM = "windows_mingw"
         DEFINES += "_WIN32_WINNT=0x0501" #__USE_MINGW_ANSI_STDIO
     }
+
 } else:android {
-    isEmpty(THIRD_LIBRARY_PATH) : THIRD_LIBRARY_PATH = $$PWD/../ThirdLibrary/android
+    message("QMAKE_TARGET.arch:$$QMAKE_TARGET.arch")
+    RABBITIM_SYSTEM = "android"
+    RABBITIM_PLATFORM = "android"
+    RABBITIM_ARCHITECTURE = $${ANDROID_ARCHITECTURE}
     DEFINES += ANDROID MOBILE
-    RABBITGIS_SYSTEM = "android"
+
 }  else:unix {
-    RABBITGIS_SYSTEM = unix
+    RABBITIM_SYSTEM = unix
+    RABBITIM_PLATFORM = unix
     DEFINES += UNIX
-    isEmpty(THIRD_LIBRARY_PATH) : THIRD_LIBRARY_PATH = $$PWD/../ThirdLibrary/unix
+
+    contains(QMAKE_TARGET.arch, x86_64){
+        RABBITIM_ARCHITECTURE = "x64"
+    }else {
+        RABBITIM_ARCHITECTURE = "x86"
+    }
+
 }
+
+isEmpty(RABBIT_CONFIG) {
+    CONFIG(debug, debug|release) {
+        RABBIT_CONFIG=Debug
+    } else {
+        RABBIT_CONFIG=Release
+    }
+}
+
+isEmpty(THIRD_LIBRARY_PATH) : THIRD_LIBRARY_PATH = $$(THIRD_LIBRARY_PATH)
+isEmpty(THIRD_LIBRARY_PATH) : THIRD_LIBRARY_PATH = $$PWD/../ThirdLibrary/$${RABBITIM_PLATFORM}$${RABBIT_TOOLCHAIN_VERSION}_$${RABBITIM_ARCHITECTURE}_qt$${QT_VERSION}_$${RABBIT_CONFIG}
+
 CONFIG(static, static|shared) {
-    DEFINES += RABBITGIS_STATIC
+    DEFINES += RABBITIM_STATIC
     exists("$${THIRD_LIBRARY_PATH}_static"){
         THIRD_LIBRARY_PATH=$${THIRD_LIBRARY_PATH}_static
     }
@@ -49,6 +84,7 @@ CONFIG(static, static|shared) {
 #    CONFIG += shared    #生成动态库  
 }
 message("THIRD_LIBRARY_PATH:$${THIRD_LIBRARY_PATH}")
+!exists($$THIRD_LIBRARY_PATH) : warning("Please set THIRD_LIBRARY_PATH")
 
 INCLUDEPATH += $$PWD/.. $${THIRD_LIBRARY_PATH}/include
 #DEPENDPATH += $${THIRD_LIBRARY_PATH}/include
