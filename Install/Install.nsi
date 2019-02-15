@@ -4,9 +4,9 @@
 !define PRODUCT_NAME "RabbitGIS"
 !define PRODUCT_VERSION "v0.0.1"
 !define PRODUCT_PUBLISHER "KangLin studio"
-!define PRODUCT_WEB_SITE "https://github.com/KangLin/RabbitGIS"
-!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\RabbitGIS.exe"
-!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\RabbitGIS"
+!define PRODUCT_WEB_SITE "https://github.com/KangLin/${PRODUCT_NAME}"
+!define PRODUCT_DIR_REGKEY "Software\Microsoft\Windows\CurrentVersion\App Paths\${PRODUCT_NAME}.exe"
+!define PRODUCT_UNINST_KEY "Software\Microsoft\Windows\CurrentVersion\Uninstall\${PRODUCT_NAME}"
 !define PRODUCT_UNINST_ROOT_KEY "HKLM"
 
 SetCompressor lzma
@@ -36,7 +36,7 @@ SetCompressor lzma
 ; Instfiles page
 !insertmacro MUI_PAGE_INSTFILES
 ; Finish page
-!define MUI_FINISHPAGE_RUN "$INSTDIR\RabbitGIS.exe"
+!define MUI_FINISHPAGE_RUN "$INSTDIR\${PRODUCT_NAME}.exe"
 !insertmacro MUI_PAGE_FINISH
 
 ; Uninstaller pages
@@ -50,15 +50,16 @@ LangString LANG_PRODUCT_NAME ${LANG_ENGLISH} "RabbitGIS"
 LangString LANG_PRODUCT_NAME ${LANG_SIMPCHINESE} "玉兔地理信息系统"
 
 LangString LANG_UNINSTALL_CONFIRM ${LANG_ENGLISH} "Thank you very much! $(^Name) has been successfully removed."
-LangString LANG_UNINSTALL_CONFIRM ${LANG_SIMPCHINESE} "非常感謝您的使用！ $(^Name) 已成功地从您的计算机中移除。"
+LangString LANG_UNINSTALL_CONFIRM ${LANG_SIMPCHINESE} "非常感谢您的使用！ $(^Name) 已成功地从您的计算机中移除。"
 
 LangString LANG_REMOVE_COMPONENT ${LANG_ENGLISH} "You sure you want to completely remove $ (^ Name), and all of its components?"
 LangString LANG_REMOVE_COMPONENT ${LANG_SIMPCHINESE} "你确实要完全移除 $(^Name) ，其及所有的组件？"
 
 ; MUI end ------
 
-Name "$(LANG_PRODUCT_NAME) ${PRODUCT_VERSION}"
-OutFile "RabbitGIS-Setup-${PRODUCT_VERSION}.exe"
+Name "$(LANG_PRODUCT_NAME)-${PRODUCT_VERSION}"
+Caption "$(LANG_PRODUCT_NAME)-${PRODUCT_VERSION}"
+OutFile "${PRODUCT_NAME}-Setup-${PRODUCT_VERSION}.exe"
 InstallDir "$PROGRAMFILES\${PRODUCT_NAME}"
 InstallDirRegKey HKLM "${PRODUCT_DIR_REGKEY}" ""
 ShowInstDetails show
@@ -119,7 +120,7 @@ Function InstallFont
 FunctionEnd
 
 Function .onInit
-;  !insertmacro MUI_LANGDLL_DISPLAY
+  !insertmacro MUI_LANGDLL_DISPLAY
 FunctionEnd
 
 Section "${PRODUCT_NAME}" SEC01
@@ -128,9 +129,9 @@ Section "${PRODUCT_NAME}" SEC01
   File /r "install\*"
   SetShellVarContext all
   CreateDirectory "$SMPROGRAMS\${PRODUCT_NAME}"
-  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\${PRODUCT_NAME}.lnk" "$INSTDIR\RabbitGIS.exe"
+  CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\${PRODUCT_NAME}.exe"
   CreateShortCut "$SMPROGRAMS\${PRODUCT_NAME}\Uninstall.lnk" "$INSTDIR\uninst.exe"
-  CreateShortCut "$DESKTOP\${PRODUCT_NAME}.lnk" "$INSTDIR\RabbitGIS.exe"
+  CreateShortCut "$DESKTOP\$(LANG_PRODUCT_NAME).lnk" "$INSTDIR\${PRODUCT_NAME}.exe"
   SetShellVarContext current
   call InstallRuntime
 SectionEnd
@@ -145,11 +146,10 @@ SectionEnd
 
 Section -Post
   WriteUninstaller "$INSTDIR\uninst.exe"
-  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\RabbitGIS.exe"
-  call InstallFont
+  WriteRegStr HKLM "${PRODUCT_DIR_REGKEY}" "" "$INSTDIR\${PRODUCT_NAME}.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayName" "$(^Name)"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "UninstallString" "$INSTDIR\uninst.exe"
-  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\RabbitGIS.exe"
+  WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayIcon" "$INSTDIR\${PRODUCT_NAME}.exe"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "DisplayVersion" "${PRODUCT_VERSION}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "URLInfoAbout" "${PRODUCT_WEB_SITE}"
   WriteRegStr ${PRODUCT_UNINST_ROOT_KEY} "${PRODUCT_UNINST_KEY}" "Publisher" "${PRODUCT_PUBLISHER}"
