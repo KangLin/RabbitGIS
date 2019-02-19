@@ -6,10 +6,19 @@
 
 * Author：KangLin（email:kl222@126.com ; QQ:16614119)
 * Project：https://github.com/KangLin/rabbitGIS  
+-----------------------------------------------------------------------------
 
 |[<img src="Resource/png/China.png" alt="Chinese" title="Chinese" width="16" height="16" />Chinese](README_ZH.md)|
 
+## Donation
+- Donation (greater than ¥20):  
+![donation (greater than ¥20)](Resource/png/Contribute.png "donation (greater than ¥20)")
+
+- Donate ¥20  
+![donation ¥20](Resource/png/Contribute20.png "donation ¥20")
+
 -----------------------------------------------------------------------------
+
 ## Build and package
 ### 1. Download Precompiled or compiled third-party libraries
 #### 1.1. Download the precompiled third-party libraries

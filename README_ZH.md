@@ -7,10 +7,19 @@
 * 作者：康林（email:kl222@126.com ; QQ:16614119)
 * 项目位置：https://github.com/KangLin/rabbitGIS  
 
+-----------------------------------------------------------------------------
 
 |[<img src="Resource/png/English.png" alt="English" title="English" width="16" height="16" />英语](README.md)|
 
+## 捐赠
+- 捐赠(大于￥20)：  
+![捐赠( 大于 ￥20 )](Resource/png/Contribute.png  "捐赠(大于￥20)")
+
+- 捐赠￥20  
+![捐赠￥20](Resource/png/Contribute20.png  "捐赠￥20")
+
 -----------------------------------------------------------------------------
+
 ## 编译和打包
 ### 1. 下载预编译或编译第三方依赖库
 #### 1.1. 下载预编译第三方依赖库
