@@ -8,14 +8,11 @@
 * Project：https://github.com/KangLin/rabbitGIS  
 -----------------------------------------------------------------------------
 
-|[<img src="Resource/png/China.png" alt="Chinese" title="Chinese" width="16" height="16" />Chinese](README_ZH.md)|
+|[<img src="Resource/png/China.png" alt="Chinese" title="Chinese" width="16" height="16" />Chinese](README_zh_CN.md)|
 
 ## Donation
-- Donation (greater than ¥20):  
-![donation (greater than ¥20)](Resource/png/Contribute.png "donation (greater than ¥20)")
 
-- Donate ¥20  
-![donation ¥20](Resource/png/Contribute20.png "donation ¥20")
+![donation](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "donation")
 
 -----------------------------------------------------------------------------
 

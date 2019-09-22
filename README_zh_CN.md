@@ -12,11 +12,8 @@
 |[<img src="Resource/png/English.png" alt="English" title="English" width="16" height="16" />英语](README.md)|
 
 ## 捐赠
-- 捐赠(大于￥20)：  
-![捐赠( 大于 ￥20 )](Resource/png/Contribute.png  "捐赠(大于￥20)")
 
-- 捐赠￥20  
-![捐赠￥20](Resource/png/Contribute20.png  "捐赠￥20")
+![捐赠](https://github.com/KangLin/RabbitCommon/raw/master/Src/Resource/image/Contribute.png "捐赠")
 
 -----------------------------------------------------------------------------
 
